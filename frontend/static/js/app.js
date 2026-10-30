@@ -164,8 +164,16 @@ function navigateTo(screenId, updateHash = true) {
 
   // Update Screen Title & Subtitle
   const meta = SCREEN_TITLES[screenId];
-  document.getElementById("current-screen-title").textContent = meta.title;
-  document.getElementById("current-screen-subtitle").textContent = meta.subtitle;
+  if (meta) {
+    document.getElementById("current-screen-title").textContent = meta.title;
+    document.getElementById("current-screen-subtitle").textContent = meta.subtitle;
+  }
+
+  // Hide general page-top-bar on dedicated dashboard screens like reports
+  const pageTopBar = document.querySelector(".page-top-bar");
+  if (pageTopBar) {
+    pageTopBar.style.display = (screenId === "reports") ? "none" : "flex";
+  }
 
   // Screen-Specific Triggers
   if (screenId === "map") {
@@ -223,37 +231,19 @@ async function fetchEnvironmentalSummary() {
     if (!res.ok) return;
     const data = await res.json();
 
-    // Live Rainfall Card
     if (data.live_rainfall) {
       const rain = data.live_rainfall;
       appState.rainfall_mmh = rain.value;
-      const rainEl = document.getElementById("hero-rain-val");
-      if (rainEl) rainEl.innerHTML = `${rain.value.toFixed(1)} <small>${rain.unit}</small>`;
-      const badge = document.getElementById("hero-rain-badge");
-      if (badge) badge.textContent = rain.data_mode || "Live Open-Meteo";
-      
       const weatherTxt = document.getElementById("app-weather-txt");
       if (weatherTxt) weatherTxt.textContent = `${Math.round(rain.temp_c || 24)}°C ${rain.condition || "Light Rain"}`;
     }
 
-    // River Level Card
     if (data.river_level) {
-      const river = data.river_level;
-      appState.river_stage_m = river.value;
-      const riverEl = document.getElementById("hero-river-val");
-      if (riverEl) riverEl.innerHTML = `${river.value.toFixed(2)} <small>${river.unit}</small>`;
-      const badge = document.getElementById("hero-river-badge");
-      if (badge) badge.textContent = `Khan River: ${river.status}`;
+      appState.river_stage_m = data.river_level.value;
     }
 
-    // Drainage Flow Card
     if (data.drainage_flow) {
-      const flow = data.drainage_flow;
-      appState.drainage_flow_m3s = flow.value;
-      const flowEl = document.getElementById("hero-flow-val");
-      if (flowEl) flowEl.innerHTML = `${flow.value.toFixed(1)} <small>${flow.unit}</small>`;
-      const badge = document.getElementById("hero-flow-badge");
-      if (badge) badge.textContent = flow.gate_action || "Sluice Discharge Active";
+      appState.drainage_flow_m3s = data.drainage_flow.value;
     }
   } catch (err) {
     console.warn("Environmental polling fallback:", err);

@@ -17,10 +17,12 @@ import websockets
 
 sys.stdout.reconfigure(encoding="utf-8")
 
+import tempfile
+
 CHROME_EXE = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-CDP_PORT = 9444
+CDP_PORT = 9777
 TARGET_URL = "http://127.0.0.1:8000/#reports"
-USER_DATA_DIR = r"C:\Users\Arpit\AppData\Local\Temp\chrome_cdp_reports"
+USER_DATA_DIR = tempfile.mkdtemp(prefix="chrome_cdp_reports_")
 ARTIFACT_DIR = r"C:\Users\Arpit\.gemini\antigravity\brain\4b346643-0a90-4b44-a46e-95be0cc73810"
 OUTPUT_DIR = Path(r"E:\ai-manthan\hydro_guard_indore\data")
 
@@ -70,21 +72,24 @@ async def run_reports_cdp():
         async def reader_loop():
             try:
                 async for raw_msg in ws:
-                    msg = json.loads(raw_msg)
-                    mid = msg.get("id")
-                    if mid is not None and mid in pending_futures:
-                        fut = pending_futures.pop(mid)
-                        if not fut.done():
-                            fut.set_result(msg.get("result", {}))
-                    else:
-                        method = msg.get("method")
-                        params = msg.get("params", {})
-                        if method == "Console.messageAdded":
-                            cmsg = params.get("message", {})
-                            console_messages.append(cmsg.get("text", ""))
-                        elif method == "Runtime.consoleAPICalled":
-                            args = [str(a.get("value", a.get("description", ""))) for a in params.get("args", [])]
-                            console_messages.append(" ".join(args))
+                    try:
+                        msg = json.loads(raw_msg)
+                        mid = msg.get("id")
+                        if mid is not None and mid in pending_futures:
+                            fut = pending_futures.pop(mid)
+                            if not fut.done():
+                                fut.set_result(msg.get("result", {}))
+                        else:
+                            method = msg.get("method")
+                            params = msg.get("params", {})
+                            if method == "Console.messageAdded":
+                                cmsg = params.get("message", {})
+                                console_messages.append(cmsg.get("text", ""))
+                            elif method == "Runtime.consoleAPICalled":
+                                args = [str(a.get("value", a.get("description", ""))) for a in (params.get("args") or [])]
+                                console_messages.append(" ".join(args))
+                    except Exception as inner_e:
+                        pass
             except websockets.exceptions.ConnectionClosed as e:
                 print(f"[WS ConnectionClosed] code={e.code}, reason={e.reason}")
             except Exception as e:
@@ -137,9 +142,15 @@ async def run_reports_cdp():
         # -------------------------------------------------------------
         print(f"\n[STEP 1] Navigating to {TARGET_URL}...")
         await send_cmd("Page.navigate", {"url": TARGET_URL})
-        await asyncio.sleep(4.0)
-
-        # Trigger navigation directly inside page JS to guarantee reports is active
+        
+        # Wait for page scripts to load and initialize
+        for _ in range(40):
+            await asyncio.sleep(0.3)
+            chk = await send_cmd("Runtime.evaluate", {"expression": "typeof navigateTo === 'function'"})
+            if chk.get("result", {}).get("value") is True:
+                break
+        
+        # Explicitly switch to reports screen
         eval_init = await send_cmd("Runtime.evaluate", {
             "expression": """
             (() => {
@@ -156,7 +167,15 @@ async def run_reports_cdp():
             "returnByValue": True
         })
         print(f"[STEP 1] Init evaluation: {eval_init.get('result', {}).get('value')}")
-        await asyncio.sleep(3.0)  # Wait for fetch(/api/v1/reports/summary) and /stations to resolve and render
+        
+        # Wait for station cards to render
+        for _ in range(30):
+            await asyncio.sleep(0.3)
+            chk_cards = await send_cmd("Runtime.evaluate", {"expression": "document.querySelectorAll('.rm-station-card').length"})
+            if (chk_cards.get("result", {}).get("value") or 0) > 0:
+                print(f"[STEP 1] Station cards rendered: {chk_cards.get('result', {}).get('value')}")
+                break
+        await asyncio.sleep(1.0)
 
         # -------------------------------------------------------------
         # STEP 2: Verify DOM Elements & Aesthetic Structure

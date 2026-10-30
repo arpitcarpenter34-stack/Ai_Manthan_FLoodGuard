@@ -34,15 +34,21 @@ def populate_initial_samples() -> None:
             target_level_pct=92.0, duration_sec=3.0, filename="critical_flash_surge_92pct.wav"
         )
 
-        # Pre-generate sample camera frames (JPG)
+        # Generate sample camera frames only if genuine real-world drain photos do not exist
         import cv2
-        clean_img = cv_detector.generate_synthetic_drain_frame("clean_rainwater")
-        polluted_img = cv_detector.generate_synthetic_drain_frame("polluted_sludge")
-        borderline_img = cv_detector.generate_synthetic_drain_frame("borderline_runoff")
+        clean_path = config.SAMPLE_IMAGE_DIR / "clean_rainwater.jpg"
+        polluted_path = config.SAMPLE_IMAGE_DIR / "polluted_sludge.jpg"
+        borderline_path = config.SAMPLE_IMAGE_DIR / "borderline_runoff.jpg"
 
-        cv2.imwrite(str(config.SAMPLE_IMAGE_DIR / "clean_rainwater.jpg"), clean_img)
-        cv2.imwrite(str(config.SAMPLE_IMAGE_DIR / "polluted_sludge.jpg"), polluted_img)
-        cv2.imwrite(str(config.SAMPLE_IMAGE_DIR / "borderline_runoff.jpg"), borderline_img)
+        if not clean_path.exists():
+            clean_img = cv_detector.generate_synthetic_drain_frame("clean_rainwater")
+            cv2.imwrite(str(clean_path), clean_img)
+        if not polluted_path.exists():
+            polluted_img = cv_detector.generate_synthetic_drain_frame("polluted_sludge")
+            cv2.imwrite(str(polluted_path), polluted_img)
+        if not borderline_path.exists():
+            borderline_img = cv_detector.generate_synthetic_drain_frame("borderline_runoff")
+            cv2.imwrite(str(borderline_path), borderline_img)
     except Exception as e:
         pass
 
