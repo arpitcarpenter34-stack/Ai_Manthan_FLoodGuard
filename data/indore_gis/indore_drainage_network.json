@@ -1,0 +1,162 @@
+{
+  "nodes": [
+    {
+      "id": "NODE_RAU",
+      "name": "Rau Headwaters",
+      "hindi_name": "राऊ उद्गम क्षेत्र",
+      "lat": 22.645,
+      "lon": 75.818,
+      "elevation_m": 560.0,
+      "catchment_km2": 18.5,
+      "max_capacity_m3_s": 45.0,
+      "type": "headwater",
+      "river": "Saraswati Tributary"
+    },
+    {
+      "id": "NODE_BHANWARKUAN",
+      "name": "Bhanwarkuan Storm Junction",
+      "hindi_name": "भंवरकुआं स्टॉर्म जंक्शन",
+      "lat": 22.6891,
+      "lon": 75.8653,
+      "elevation_m": 552.0,
+      "catchment_km2": 24.0,
+      "max_capacity_m3_s": 65.0,
+      "type": "major_feeder",
+      "river": "Khan River Feeder"
+    },
+    {
+      "id": "NODE_RAMBAGH",
+      "name": "Rambagh Urban Drain",
+      "hindi_name": "रामबाग शहरी नाला",
+      "lat": 22.71,
+      "lon": 75.862,
+      "elevation_m": 536.0,
+      "catchment_km2": 14.2,
+      "max_capacity_m3_s": 50.0,
+      "type": "urban_collector",
+      "river": "Khan River Feeder"
+    },
+    {
+      "id": "NODE_RAJWARA",
+      "name": "Rajwada / Krishnapura Confluence",
+      "hindi_name": "राजवाड़ा / कृष्णपुरा छत्री संगम",
+      "lat": 22.7186,
+      "lon": 75.855,
+      "elevation_m": 540.0,
+      "catchment_km2": 38.0,
+      "max_capacity_m3_s": 110.0,
+      "type": "confluence",
+      "river": "Khan & Saraswati Confluence"
+    },
+    {
+      "id": "NODE_PARDESHIPURA",
+      "name": "Pardeshipura Industrial Drain",
+      "hindi_name": "परदेशीपुरा औद्योगिक नाला",
+      "lat": 22.741,
+      "lon": 75.875,
+      "elevation_m": 526.0,
+      "catchment_km2": 21.0,
+      "max_capacity_m3_s": 75.0,
+      "type": "industrial_drain",
+      "river": "Khan River Main Trunk"
+    },
+    {
+      "id": "NODE_VIJAY_NAGAR",
+      "name": "Vijay Nagar Eastern Sump",
+      "hindi_name": "विजय नगर पूर्वी संप",
+      "lat": 22.7533,
+      "lon": 75.8937,
+      "elevation_m": 532.0,
+      "catchment_km2": 16.5,
+      "max_capacity_m3_s": 60.0,
+      "type": "storm_sump",
+      "river": "Bhamori / Khan Link"
+    },
+    {
+      "id": "NODE_KABITHEDI_STP",
+      "name": "Kabithedi Main STP & Terminal Outfall",
+      "hindi_name": "कबीटखेड़ी मुख्य एसटीपी व टर्मिनल आउटफॉल",
+      "lat": 22.775,
+      "lon": 75.851,
+      "elevation_m": 515.0,
+      "catchment_km2": 85.0,
+      "max_capacity_m3_s": 245.0,
+      "type": "treatment_terminal",
+      "river": "Khan River Northern Basin"
+    }
+  ],
+  "edges": [
+    {
+      "source": "NODE_RAU",
+      "target": "NODE_RAJWARA",
+      "channel": "Saraswati River",
+      "length_km": 8.5,
+      "length_m": 8500.0,
+      "elev_drop_m": 20.0,
+      "slope": 0.002352941176470588,
+      "roughness_n": 0.035,
+      "manning_velocity_m_s": 2.05,
+      "travel_time_min": 69.1
+    },
+    {
+      "source": "NODE_BHANWARKUAN",
+      "target": "NODE_RAMBAGH",
+      "channel": "South Khan Trunk",
+      "length_km": 3.2,
+      "length_m": 3200.0,
+      "elev_drop_m": 16.0,
+      "slope": 0.005,
+      "roughness_n": 0.028,
+      "manning_velocity_m_s": 3.74,
+      "travel_time_min": 14.3
+    },
+    {
+      "source": "NODE_RAMBAGH",
+      "target": "NODE_RAJWARA",
+      "channel": "Central Khan Sump",
+      "length_km": 1.4,
+      "length_m": 1400.0,
+      "elev_drop_m": -4.0,
+      "slope": 0.0005,
+      "roughness_n": 0.025,
+      "manning_velocity_m_s": 1.32,
+      "travel_time_min": 17.6
+    },
+    {
+      "source": "NODE_RAJWARA",
+      "target": "NODE_PARDESHIPURA",
+      "channel": "Mid-Khan Channel",
+      "length_km": 3.8,
+      "length_m": 3800.0,
+      "elev_drop_m": 14.0,
+      "slope": 0.0036842105263157894,
+      "roughness_n": 0.03,
+      "manning_velocity_m_s": 2.99,
+      "travel_time_min": 21.2
+    },
+    {
+      "source": "NODE_PARDESHIPURA",
+      "target": "NODE_KABITHEDI_STP",
+      "channel": "Lower Khan Main Channel",
+      "length_km": 5.2,
+      "length_m": 5200.0,
+      "elev_drop_m": 11.0,
+      "slope": 0.0021153846153846153,
+      "roughness_n": 0.025,
+      "manning_velocity_m_s": 2.72,
+      "travel_time_min": 31.8
+    },
+    {
+      "source": "NODE_VIJAY_NAGAR",
+      "target": "NODE_PARDESHIPURA",
+      "channel": "Bhamori Feeder",
+      "length_km": 2.6,
+      "length_m": 2600.0,
+      "elev_drop_m": 6.0,
+      "slope": 0.002307692307692308,
+      "roughness_n": 0.032,
+      "manning_velocity_m_s": 2.22,
+      "travel_time_min": 19.5
+    }
+  ]
+}

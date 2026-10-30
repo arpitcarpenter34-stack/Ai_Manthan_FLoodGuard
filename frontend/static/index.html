@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYDRO-GUARD AI | Indore Urban Drainage Intelligence</title>
+  
+  <!-- Leaflet GIS Map Styles (OSM Tiles, No API Key Required) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Custom Modern Design System -->
+  <link rel="stylesheet" href="/static/css/style.css?v=3.2">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       VIEW 1: CINEMATIC HOMEPAGE (Exact match to reference image)
+       ========================================================================= -->
+  <div id="view-home" class="view-container active" style="display: block;">
+    
+    <!-- White Glassmorphic Floating Navbar -->
+    <div class="home-navbar-wrapper">
+      <nav class="home-navbar">
+        <div class="logo-container" onclick="scrollToSection('hero')" style="cursor: pointer;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="rgba(255,255,255,0.2)"></path>
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h1>HYDRO-GUARD AI</h1>
+            <span>Indore Urban Drainage Intelligence</span>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a class="nav-link active" onclick="scrollToSection('hero')">Home</a></li>
+          <li><a class="nav-link" onclick="navigateTo('map')">Flood Map</a></li>
+          <li><a class="nav-link" onclick="navigateTo('prediction')">Prediction</a></li>
+          <li><a class="nav-link" onclick="navigateTo('purity')">Water Purity</a></li>
+          <li><a class="nav-link" onclick="navigateTo('sound')">Sound Level</a></li>
+          <li><a class="nav-link" onclick="navigateTo('reports')">Reports & Monitoring</a></li>
+          <li><a class="nav-link" onclick="navigateTo('history')">History</a></li>
+        </ul>
+
+        <button class="nav-cta-btn" onclick="scrollToSection('features-section')">
+          <span>Get Started</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Cinematic Hero Section -->
+    <header id="hero" class="hero-section">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-container">
+        <!-- Left Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 8v4l3 3"></path>
+            </svg>
+            <span>AI-POWERED URBAN WATER MANAGEMENT</span>
+          </div>
+
+          <h1 class="hero-title">
+            Predict Floods.<br>
+            Prevent Disasters.<br>
+            <span class="highlight-blue">Build Resilient Cities.</span>
+          </h1>
+
+          <p class="hero-description">
+            Real-time monitoring, AI-powered prediction, and smart drainage management for a safer, flood-resilient Indore.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-dashboard-explore" onclick="scrollToSection('features-section')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Explore Dashboard</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            <button class="btn-map-view" onclick="navigateTo('map')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                <line x1="8" y1="2" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="22"></line>
+              </svg>
+              <span>View Flood Map</span>
+            </button>
+          </div>
+
+          <!-- 4 Bottom Feature Cards (Exact match to reference image bottom-left) -->
+          <div class="hero-feature-cards">
+            <!-- Card 1: Flood Prediction -->
+            <div class="hero-mini-card" onclick="navigateTo('prediction')">
+              <div>
+                <div class="hero-mini-icon icon-teal">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                </div>
+                <div class="hero-mini-title">Flood Prediction</div>
+                <div class="hero-mini-desc">AI-powered inundation forecasting</div>
+              </div>
+              <div class="hero-mini-arrow">→</div>
+            </div>
+
+            <!-- Card 2: Water Purity Analysis -->
+            <div class="hero-mini-card" onclick="navigateTo('purity')">
+              <div>
+                <div class="hero-mini-icon icon-blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                  </svg>
+                </div>
+                <div class="hero-mini-title">Water Purity Analysis</div>
+                <div class="hero-mini-desc">Check water quality from images</div>
+              </div>
+              <div class="hero-mini-arrow">→</div>
+            </div>
+
+            <!-- Card 3: Acoustic Drain Monitoring -->
+            <div class="hero-mini-card" onclick="navigateTo('sound')">
+              <div>
+                <div class="hero-mini-icon icon-purple">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  </svg>
+                </div>
+                <div class="hero-mini-title">Acoustic Drain Monitoring</div>
+                <div class="hero-mini-desc">Detect abnormal sound levels</div>
+              </div>
+              <div class="hero-mini-arrow">→</div>
+            </div>
+
+            <!-- Card 4: Pump & Gate Simulation -->
+            <div class="hero-mini-card" onclick="navigateTo('simulator')">
+              <div>
+                <div class="hero-mini-icon icon-amber">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"></path>
+                  </svg>
+                </div>
+                <div class="hero-mini-title">Pump & Gate Simulation</div>
+                <div class="hero-mini-desc">Optimize drainage operations</div>
+              </div>
+              <div class="hero-mini-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visuals: 3 Floating Information Cards (Exact match to reference image right side) -->
+        <div class="hero-visuals">
+          <!-- Card 1: Rainfall -->
+          <div class="floating-card card-rainfall">
+            <div class="floating-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                <line x1="8" y1="19" x2="8" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <line x1="16" y1="19" x2="16" y2="21"></line>
+              </svg>
+            </div>
+            <div class="floating-card-data">
+              <div class="floating-card-label">Rainfall</div>
+              <div class="floating-card-val" id="hero-rain-val">42.6 <small>mm/h</small></div>
+              <div class="floating-card-badge">
+                <span class="live-indicator-dot" style="width: 6px; height: 6px; display: inline-block;"></span>
+                <span id="hero-rain-badge">Live Data (Open-Meteo)</span>
+              </div>
+            </div>
+            <div class="mini-graph">
+              <div class="mini-bar" style="height: 10px;"></div>
+              <div class="mini-bar" style="height: 16px;"></div>
+              <div class="mini-bar" style="height: 22px;"></div>
+              <div class="mini-bar" style="height: 14px;"></div>
+            </div>
+          </div>
+
+          <!-- Card 2: River Level -->
+          <div class="floating-card card-river">
+            <div class="floating-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+              </svg>
+            </div>
+            <div class="floating-card-data">
+              <div class="floating-card-label">River Level</div>
+              <div class="floating-card-val" id="hero-river-val">4.32 <small>m</small></div>
+              <div class="floating-card-badge">
+                <span class="live-indicator-dot" style="width: 6px; height: 6px; display: inline-block;"></span>
+                <span>Simulated / Model Output</span>
+              </div>
+            </div>
+            <div class="mini-graph">
+              <div class="mini-bar" style="height: 14px;"></div>
+              <div class="mini-bar" style="height: 18px;"></div>
+              <div class="mini-bar" style="height: 24px;"></div>
+              <div class="mini-bar" style="height: 20px;"></div>
+            </div>
+          </div>
+
+          <!-- Card 3: Drainage Flow -->
+          <div class="floating-card card-drainage">
+            <div class="floating-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+            </div>
+            <div class="floating-card-data">
+              <div class="floating-card-label">Drainage Flow</div>
+              <div class="floating-card-val" id="hero-flow-val">2.8 <small>m³/s</small></div>
+              <div class="floating-card-badge">
+                <span class="live-indicator-dot" style="width: 6px; height: 6px; display: inline-block; background-color: #0284c7;"></span>
+                <span>Estimated (AI Model)</span>
+              </div>
+            </div>
+            <div class="mini-graph">
+              <div class="mini-bar" style="height: 8px;"></div>
+              <div class="mini-bar" style="height: 15px;"></div>
+              <div class="mini-bar" style="height: 22px;"></div>
+              <div class="mini-bar" style="height: 12px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll To Explore Indicator -->
+      <div class="scroll-explore-indicator" onclick="scrollToSection('features-section')">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span>SCROLL TO EXPLORE</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         FEATURE SELECTION SECTION (7 Core Features Options)
+         ========================================================================= -->
+    <section id="features-section" class="homepage-features-section">
+      <div class="section-head">
+        <span class="section-head-badge">Operational System Suite</span>
+        <h2 class="section-head-title">Select an Application Module to Open</h2>
+        <p class="section-head-subtitle">
+          Seamlessly choose from real-time GIS spatial mapping, dual-engine flood prediction, edge CV water purity screening, dark sewer acoustic analysis, or SQLite audit history.
+        </p>
+      </div>
+
+      <div class="feature-cards-grid">
+        <!-- Feature 1: Overview Dashboard -->
+        <div class="feature-launch-card" onclick="navigateTo('sound')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <span class="flc-badge">Telemetry & Health</span>
+          </div>
+          <h3 class="flc-title">Overview Dashboard</h3>
+          <p class="flc-desc">
+            City-wide real-time hydrological overview, 2-second background IoT telemetry stream, and municipal early warning notifications.
+          </p>
+          <div class="flc-action">
+            <span>Open Dashboard</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 2: Indore Flood Map -->
+        <div class="feature-launch-card" onclick="navigateTo('map')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                <line x1="8" y1="2" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="22"></line>
+              </svg>
+            </div>
+            <span class="flc-badge">GIS Topography</span>
+          </div>
+          <h3 class="flc-title">Indore Flood Map</h3>
+          <p class="flc-desc">
+            Interactive Leaflet GIS map illustrating the natural 45m gravity elevation drop (Rau 560m to Kabithedi 515m) and 7 real-time monitored drainage sump nodes.
+          </p>
+          <div class="flc-action">
+            <span>Open Map View</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 3: Flood Prediction -->
+        <div class="feature-launch-card" onclick="navigateTo('prediction')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span class="flc-badge">Physics + ML (92.7%)</span>
+          </div>
+          <h3 class="flc-title">Flood Prediction</h3>
+          <p class="flc-desc">
+            Dual-engine hydraulic forecast: Manning channel routing calculates travel lag times while a Random Forest model predicts deluge inundation probabilities.
+          </p>
+          <div class="flc-action">
+            <span>Run Prediction</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 4: Water Image Purity Tester -->
+        <div class="feature-launch-card" onclick="navigateTo('purity')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <span class="flc-badge">OpenCV 80% Rule</span>
+          </div>
+          <h3 class="flc-title">Water Image Purity Tester</h3>
+          <p class="flc-desc">
+            Computer vision colorimetric and turbidity screening. Enforces the mandatory 80% Khan River Purity Rule to divert toxic sludge to the 245 MLD STP.
+          </p>
+          <div class="flc-action">
+            <span>Open Purity Tester</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 5: Sound Level Tester -->
+        <div class="feature-launch-card" onclick="navigateTo('sound')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </div>
+            <span class="flc-badge">Acoustic AI</span>
+          </div>
+          <h3 class="flc-title">Sound Level Tester</h3>
+          <p class="flc-desc">
+            Upload and analyze drain/sewer hydrophone audio recordings to estimate water levels in dark underground culverts where optical cameras fail.
+          </p>
+          <div class="flc-action">
+            <span>Open Sound Tester</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 6: Pump & Sluice Gate Simulator -->
+        <div class="feature-launch-card" onclick="navigateTo('simulator')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+            </div>
+            <span class="flc-badge">Gate Actuation</span>
+          </div>
+          <h3 class="flc-title">Pump & Sluice Simulator</h3>
+          <p class="flc-desc">
+            Simulate monsoonal cloudbursts, surge multipliers, and test automated sluice gate diversion to protect the historic Rajwada confluence and Khan River.
+          </p>
+          <div class="flc-action">
+            <span>Open Simulator</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 7: History & Logs -->
+        <div class="feature-launch-card" onclick="navigateTo('history')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <span class="flc-badge">SQLite Persistence</span>
+          </div>
+          <h3 class="flc-title">History & Logs</h3>
+          <p class="flc-desc">
+            Review permanent SQLite database records stored in data/hydro_guard.db. Audit all past image and audio analyses with one-click CSV export.
+          </p>
+          <div class="flc-action">
+            <span>View Audit Logs</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topography and Municipal Info Section -->
+    <section id="about" style="padding: 60px 24px; background: #ffffff; border-top: 1px solid #e2e8f0;">
+      <div style="max-width: 1320px; margin: 0 auto; text-align: center;">
+        <span class="section-head-badge">Urban Topography</span>
+        <h2 style="font-size: 28px; font-weight: 850; color: #0f172a; margin-bottom: 12px;">Engineered for Indore's 45m Gravity Slope</h2>
+        <p style="font-size: 15px; color: #64748b; max-width: 720px; margin: 0 auto 40px; line-height: 1.6;">
+          Indore benefits from a natural South-to-North elevation drop from the southern Rau ridge (560m MSL) down to the northern Kabithedi terminal (515m MSL). FloodGuard AI coordinates municipal sluice gates and pumps to optimize this natural gravity drainage.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; text-align: left;">
+            <div style="font-size: 28px; margin-bottom: 8px;">⛰️</div>
+            <h4 style="font-size: 16px; font-weight: 750; color: #0f172a; margin-bottom: 6px;">560m Rau Ridge</h4>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Southern headwaters capturing high-intensity monsoon runoff into the Saraswati river feeder.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; text-align: left;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🏛️</div>
+            <h4 style="font-size: 16px; font-weight: 750; color: #0f172a; margin-bottom: 6px;">540m Rajwada Confluence</h4>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Historic Krishnapura Chhatri junction where Saraswati and Khan rivers converge into a main conduit.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; text-align: left;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🏭</div>
+            <h4 style="font-size: 16px; font-weight: 750; color: #0f172a; margin-bottom: 6px;">515m Kabithedi STP</h4>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">245 MLD terminal treatment facility with 6 high-lift pumps discharging to the northern river outfall.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer for Homepage -->
+    <footer style="padding: 30px 24px; border-top: 1px solid #e2e8f0; background: #ffffff; text-align: center; color: #64748b; font-size: 13px;">
+      <div style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div><b>HYDRO-GUARD AI</b> • Indore Municipal Corporation (IMC) Urban Drainage Intelligence</div>
+        <div>Backend: <b style="color: var(--safe-green);">FastAPI Port 8000</b> • SQLite: <b style="color: #0284c7;">Connected</b></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       VIEW 2: DEDICATED APPLICATION INTERFACE (Matching Reference Mockup)
+       ========================================================================= -->
+  <div id="view-app" class="view-container" style="display: none;">
+    
+    <!-- Top Global App Header -->
+    <header class="app-header">
+      <div class="app-brand" onclick="navigateToHome()" style="cursor: pointer;">
+        <div class="app-brand-shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+        </div>
+        <div class="app-brand-titles">
+          <h2>HYDRO-GUARD AI</h2>
+          <span>Indore Smart Water & Flood Management</span>
+        </div>
+      </div>
+
+      <div class="app-header-widgets">
+        <!-- Location Pill -->
+        <div class="header-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Indore, MP</span>
+        </div>
+
+        <!-- Weather Pill with Live Data Indicator -->
+        <div class="header-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+            <line x1="8" y1="19" x2="8" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+            <line x1="16" y1="19" x2="16" y2="21"></line>
+          </svg>
+          <span id="app-weather-txt">24°C Light Rain</span>
+          <div class="live-indicator-dot"></div>
+          <span style="font-size: 11px; color: var(--safe-green); font-weight: 750;">Live Data</span>
+        </div>
+
+        <!-- Clock Pill -->
+        <div class="header-pill">
+          <span id="app-clock-txt">23 Oct 2026 03:45 PM</span>
+        </div>
+
+        <!-- Home Return Button -->
+        <button class="btn-home-return" onclick="navigateToHome()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- App Layout: Sidebar + Main Content -->
+    <div class="app-layout">
+      <!-- Left Sidebar (Matching Reference Image) -->
+      <aside class="app-sidebar">
+        <ul class="sidebar-menu">
+          <li class="sidebar-item" onclick="navigateToHome()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+            <span>Home</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-purity" onclick="navigateTo('purity')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span>Image Purity Tester</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-sound" onclick="navigateTo('sound')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            </svg>
+            <span>Sound Level Tester</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-map" onclick="navigateTo('map')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+            </svg>
+            <span>Indore Map View</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-prediction" onclick="navigateTo('prediction')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Flood Prediction</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-simulator" onclick="navigateTo('simulator')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 2v4M12 18v4"></path>
+            </svg>
+            <span>Pump & Sluice Simulator</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-reports" onclick="navigateTo('reports')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Reports & Monitoring</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-history" onclick="navigateTo('history')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            </svg>
+            <span>History & Logs</span>
+          </li>
+        </ul>
+
+        <!-- Sidebar Slogan Box ("स्वच्छ नाले समृद्ध इंदौर") -->
+        <div class="sidebar-footer-box">
+          <svg class="sidebar-footer-wave" viewBox="0 0 100 20" preserveAspectRatio="none">
+            <path d="M0 10 Q25 0 50 10 T100 10 L100 20 L0 20 Z" fill="rgba(0, 210, 255, 0.4)"></path>
+          </svg>
+          <div class="sidebar-footer-slogan">स्वच्छ नाले समृद्ध इंदौर</div>
+        </div>
+      </aside>
+
+      <!-- Main Operational Area -->
+      <main class="app-main">
+        
+        <!-- Top Back/Header Strip -->
+        <div class="page-top-bar">
+          <button class="btn-page-back" onclick="navigateToHome()" title="Back to Homepage">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <div class="page-title-box">
+            <h2 id="current-screen-title">Sound Level Tester</h2>
+            <p id="current-screen-subtitle">Upload and analyze drain/sewer audio to estimate water level and detect abnormal conditions</p>
+          </div>
+        </div>
+
+        <!-- SCREEN 1: SOUND LEVEL TESTER (Exact match to reference mockup) -->
+        <section id="screen-sound" class="screen-container active">
+          <div class="ops-grid">
+            
+            <!-- Column 1: Upload & Options -->
+            <div class="ops-col">
+              <!-- Card 1: Upload Audio File -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>1. Upload Audio File</span>
+                  </div>
+                  <span class="provenance-tag tag-edge">Edge AI</span>
+                </div>
+
+                <div class="drag-drop-area" id="sound-dropzone" onclick="document.getElementById('input-audio-upload').click()">
+                  <div class="drag-drop-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                  </div>
+                  <div class="drag-drop-main">Click to upload audio file</div>
+                  <div class="drag-drop-hint">or drag and drop here<br>Supported formats: WAV, MP3 (Max 20 MB)<br>Recommended: 10–60 seconds recording</div>
+                  <button type="button" class="btn-file-select">📁 Choose Audio File</button>
+                  <input type="file" id="input-audio-upload" accept="audio/*" style="display: none;">
+                </div>
+              </div>
+
+              <!-- Card 3: Analysis Options -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <span>3. Analysis Options</span>
+                  </div>
+                </div>
+
+                <label class="control-label">Analysis Mode</label>
+                <select id="sound-analysis-mode" class="select-dropdown">
+                  <option value="standard">Standard Analysis (Recommended)</option>
+                  <option value="surge">High-Sensitivity Surge Detection</option>
+                  <option value="spectral">Spectral Centroid Resonant Mode</option>
+                </select>
+                <div class="dropdown-desc">Analyze audio for water level estimation and anomaly detection</div>
+
+                <div class="actions-row">
+                  <button id="btn-run-sound-analysis" class="btn-action-primary" onclick="runAcousticAnalysis()">
+                    <span>▶ Analyze Audio</span>
+                  </button>
+                  <button class="btn-action-outline" onclick="resetSoundTester()">
+                    <span>↺ Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Audio Preview & Samples -->
+            <div class="ops-col">
+              <!-- Card 2: Audio Preview -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <span>2. Audio Preview</span>
+                  </div>
+                  <span id="sound-preview-filename" style="font-size: 11.5px; color: var(--cyan-accent); font-weight: 700;">sample_medium.mp3</span>
+                </div>
+
+                <!-- Animated / Dynamic Waveform Canvas -->
+                <div class="waveform-box">
+                  <canvas id="audio-waveform-canvas"></canvas>
+                </div>
+
+                <!-- Custom Scrubber Controls -->
+                <div class="audio-player-controls">
+                  <button class="btn-audio-play" id="btn-toggle-playback" onclick="toggleAudioPlayback()">
+                    <span id="play-pause-icon">▶</span>
+                  </button>
+                  <span class="audio-time-label" id="audio-current-time">0:00 / 0:28</span>
+                  <input type="range" id="audio-scrubber" class="audio-scrubber" min="0" max="100" value="0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--cyan-accent); flex-shrink: 0;">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                </div>
+                <!-- Native Hidden Audio Element for Playback -->
+                <audio id="native-audio-player"></audio>
+              </div>
+
+              <!-- Card: Sample Audio Clips -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 18V5l12-2v13"></path>
+                      <circle cx="6" cy="18" r="3"></circle>
+                      <circle cx="18" cy="16" r="3"></circle>
+                    </svg>
+                    <span>Sample Audio Clips</span>
+                  </div>
+                </div>
+                <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 12px;">Try these sample recordings to see how it works</div>
+
+                <div class="sample-items-list">
+                  <div class="sample-item-row" onclick="loadSampleAudio('sample_low.mp3', 25.0, '/samples/audio/trickle_flow_25pct.wav')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-green"></div>
+                      <div class="sample-item-name">Low Flow (Normal)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>sample_low.mp3</span>
+                      <div class="btn-sample-play">▶</div>
+                    </div>
+                  </div>
+
+                  <div class="sample-item-row" onclick="loadSampleAudio('sample_medium.mp3', 60.0, '/samples/audio/moderate_surge_60pct.wav')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-amber"></div>
+                      <div class="sample-item-name">Medium Flow (Watch)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>sample_medium.mp3</span>
+                      <div class="btn-sample-play">▶</div>
+                    </div>
+                  </div>
+
+                  <div class="sample-item-row" onclick="loadSampleAudio('sample_high.mp3', 92.0, '/samples/audio/critical_flash_surge_92pct.wav')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-red"></div>
+                      <div class="sample-item-name">High Flow (High Risk)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>sample_high.mp3</span>
+                      <div class="btn-sample-play">▶</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: 4. Analysis Result (Exact match to reference mockup) -->
+            <div class="ops-col">
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>4. Analysis Result</span>
+                  </div>
+                  <span class="panel-timestamp" id="sound-result-timestamp">23 Oct 2026, 03:44 PM</span>
+                </div>
+
+                <!-- 3 Top Metric Cards -->
+                <div class="results-metrics-grid">
+                  <!-- Circular Gauge: Estimated Water Level -->
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Estimated Water Level</div>
+                    <div class="circular-gauge-wrap">
+                      <svg class="circular-gauge-svg" viewBox="0 0 72 72">
+                        <circle class="gauge-bg-circle" cx="36" cy="36" r="30"></circle>
+                        <circle id="gauge-sound-circle" class="gauge-val-circle" cx="36" cy="36" r="30" stroke-dasharray="188.4" stroke-dashoffset="60.3"></circle>
+                      </svg>
+                      <div class="gauge-center-text" id="gauge-sound-text">68%</div>
+                    </div>
+                  </div>
+
+                  <!-- Sound Level Card -->
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Sound Level</div>
+                    <div class="metric-number-val" id="sound-db-text">72 dB</div>
+                    <div class="metric-sound-bars">
+                      <div class="eq-bar"></div>
+                      <div class="eq-bar"></div>
+                      <div class="eq-bar"></div>
+                      <div class="eq-bar"></div>
+                      <div class="eq-bar"></div>
+                    </div>
+                  </div>
+
+                  <!-- Overflow Risk Card -->
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Overflow Risk</div>
+                    <div class="metric-risk-text" id="sound-risk-text">Low</div>
+                    <div class="metric-risk-wave" id="sound-risk-wave">≈</div>
+                  </div>
+                </div>
+
+                <!-- Big Alert Banner -->
+                <div class="status-verdict-banner safe" id="sound-alert-banner">
+                  <div class="status-verdict-icon" id="sound-alert-icon">✓</div>
+                  <div>
+                    <div class="status-verdict-headline" id="sound-alert-headline">Normal Flow</div>
+                    <div class="status-verdict-sub" id="sound-alert-sub">Current audio indicates normal drainage flow condition.</div>
+                  </div>
+                </div>
+
+                <!-- Audio Analysis Details Table -->
+                <div style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  </svg>
+                  <span>Audio Analysis Details</span>
+                </div>
+
+                <table class="details-keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="key">File Name</td>
+                      <td class="val" id="spec-sound-filename">sample_medium.mp3</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Duration</td>
+                      <td class="val" id="spec-sound-duration">0:28 seconds</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Sample Rate</td>
+                      <td class="val" id="spec-sound-samplerate">44.1 kHz</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Dominant Frequency</td>
+                      <td class="val" id="spec-sound-domfreq">350 Hz</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Average Decibel Level</td>
+                      <td class="val" id="spec-sound-avgdb">72 dB SPL</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Confidence Score</td>
+                      <td class="val" id="spec-sound-confidence">0.84</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Persisted Audit ID</td>
+                      <td class="val" id="spec-sound-recordid" style="color: var(--cyan-accent);">#24 (SQLite)</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- Recommended Action -->
+                <div class="recommended-action-box">
+                  <div class="rec-bulb-icon">💡</div>
+                  <div>
+                    <div class="rec-content-title">Recommended Action</div>
+                    <div class="rec-content-text" id="sound-rec-text">
+                      Continue monitoring. No immediate action required. Water level is within normal range.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SCREEN 2: IMAGE PURITY TESTER (Consistent Design System) -->
+        <section id="screen-purity" class="screen-container">
+          <div class="ops-grid">
+            <!-- Column 1: Upload & Options -->
+            <div class="ops-col">
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>1. Upload Drain Photo</span>
+                  </div>
+                  <span class="provenance-tag tag-edge">Edge CV</span>
+                </div>
+
+                <div class="drag-drop-area" id="purity-dropzone" onclick="document.getElementById('input-image-upload').click()">
+                  <div class="drag-drop-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                  </div>
+                  <div class="drag-drop-main">Click to upload photograph</div>
+                  <div class="drag-drop-hint">or drag and drop here<br>Supported formats: JPG, PNG (Max 10 MB)</div>
+                  <button type="button" class="btn-file-select">📁 Choose Photo</button>
+                  <input type="file" id="input-image-upload" accept="image/*" style="display: none;">
+                </div>
+              </div>
+
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82"></path>
+                    </svg>
+                    <span>3. Screening Threshold</span>
+                  </div>
+                </div>
+
+                <label class="control-label">Purity Threshold Rule</label>
+                <select id="purity-rule-mode" class="select-dropdown">
+                  <option value="80">80% Khan River Rule (Mandatory Standard)</option>
+                  <option value="90">Strict Rejuvenation Rule (90%)</option>
+                  <option value="70">Monsoon Emergency Standard (70%)</option>
+                </select>
+                <div class="dropdown-desc">Mandates diversion: &ge;80% Khan River, &lt;80% Kabithedi STP</div>
+
+                <div class="actions-row">
+                  <button id="btn-run-purity-analysis" class="btn-action-primary" onclick="runImageAnalysis()">
+                    <span>▶ Analyze Image</span>
+                  </button>
+                  <button class="btn-action-outline" onclick="resetImageTester()">
+                    <span>↺ Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Photo Preview & Samples -->
+            <div class="ops-col">
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    </svg>
+                    <span>2. Outfall Photo Preview</span>
+                  </div>
+                  <span id="purity-preview-filename" style="font-size: 11.5px; color: var(--cyan-accent); font-weight: 700;">clean_rainwater.jpg</span>
+                </div>
+
+                <div style="width: 100%; height: 180px; background: #070e1e; border: 1px solid rgba(0, 210, 255, 0.2); border-radius: var(--radius-sm); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <img id="purity-preview-img" src="/samples/images/clean_rainwater.jpg" alt="Outfall preview" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                  <div id="purity-preview-hud" style="position: absolute; bottom: 8px; left: 8px; background: rgba(7, 14, 30, 0.8); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: var(--cyan-accent); font-weight: 700;">
+                    HUD: 640x480 Colorimetry Active
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sample Outfall Photos -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>Sample Drain Outfalls</span>
+                  </div>
+                </div>
+                <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 12px;">Pre-calibrated test frames from Indore municipal drains</div>
+
+                <div class="sample-items-list">
+                  <div class="sample-item-row" onclick="loadSampleImage('clean_rainwater', 'clean_rainwater.jpg', '/samples/images/clean_rainwater.jpg')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-green"></div>
+                      <div class="sample-item-name">Clean Rainwater (Pass)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>clean_rainwater.jpg</span>
+                      <div class="btn-sample-play">👁️</div>
+                    </div>
+                  </div>
+
+                  <div class="sample-item-row" onclick="loadSampleImage('borderline_runoff', 'borderline_runoff.jpg', '/samples/images/borderline_runoff.jpg')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-amber"></div>
+                      <div class="sample-item-name">Borderline Runoff (Watch)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>borderline_runoff.jpg</span>
+                      <div class="btn-sample-play">👁️</div>
+                    </div>
+                  </div>
+
+                  <div class="sample-item-row" onclick="loadSampleImage('polluted_sludge', 'polluted_sludge.jpg', '/samples/images/polluted_sludge.jpg')">
+                    <div class="sample-item-left">
+                      <div class="sample-status-bar status-bar-red"></div>
+                      <div class="sample-item-name">Polluted Sludge (Fail)</div>
+                    </div>
+                    <div class="sample-item-filename">
+                      <span>polluted_sludge.jpg</span>
+                      <div class="btn-sample-play">👁️</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: 4. Analysis Result -->
+            <div class="ops-col">
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <div class="panel-title-left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                    </svg>
+                    <span>4. Screening Result</span>
+                  </div>
+                  <span class="panel-timestamp" id="purity-result-timestamp">23 Oct 2026, 03:45 PM</span>
+                </div>
+
+                <!-- 3 Top Metric Cards -->
+                <div class="results-metrics-grid">
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Measured Purity</div>
+                    <div class="circular-gauge-wrap">
+                      <svg class="circular-gauge-svg" viewBox="0 0 72 72">
+                        <circle class="gauge-bg-circle" cx="36" cy="36" r="30"></circle>
+                        <circle id="gauge-purity-circle" class="gauge-val-circle" cx="36" cy="36" r="30" stroke-dasharray="188.4" stroke-dashoffset="9.4"></circle>
+                      </svg>
+                      <div class="gauge-center-text" id="gauge-purity-text">95%</div>
+                    </div>
+                  </div>
+
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Turbidity</div>
+                    <div class="metric-number-val" id="purity-turbidity-val">12 NTU</div>
+                    <div style="font-size: 11px; color: var(--safe-green); font-weight: 700;">Within Limit</div>
+                  </div>
+
+                  <div class="metric-card-box">
+                    <div class="metric-card-label">Suspended Solids</div>
+                    <div class="metric-number-val" id="purity-solids-val">45 ppm</div>
+                    <div style="font-size: 11px; color: var(--cyan-accent); font-weight: 700;">Normal</div>
+                  </div>
+                </div>
+
+                <!-- Status Banner -->
+                <div class="status-verdict-banner safe" id="purity-alert-banner">
+                  <div class="status-verdict-icon" id="purity-alert-icon">✓</div>
+                  <div>
+                    <div class="status-verdict-headline" id="purity-alert-headline">PASS — Purity &ge; 80%</div>
+                    <div class="status-verdict-sub" id="purity-alert-sub">Water meets cleanliness threshold for Khan River discharge.</div>
+                  </div>
+                </div>
+
+                <!-- Sluice Gate Action -->
+                <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Automated Gate Action:</div>
+                  <div id="purity-gate-action" style="font-size: 16px; font-weight: 850; color: #10b981; margin-top: 2px;">
+                    GATE OPEN TO KHAN RIVER
+                  </div>
+                </div>
+
+                <!-- Key-Value Specs Table -->
+                <table class="details-keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="key">File Name</td>
+                      <td class="val" id="spec-purity-filename">clean_rainwater.jpg</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Color Hue Angle</td>
+                      <td class="val" id="spec-purity-hue">210.0&deg; (Clean Cyan)</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Floating Debris</td>
+                      <td class="val" id="spec-purity-debris">0 Objects Detected</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Processing Latency</td>
+                      <td class="val" id="spec-purity-latency">34 ms (Edge CPU)</td>
+                    </tr>
+                    <tr>
+                      <td class="key">Persisted Audit ID</td>
+                      <td class="val" id="spec-purity-recordid" style="color: var(--cyan-accent);">#25 (SQLite)</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="recommended-action-box">
+                  <div class="rec-bulb-icon">💡</div>
+                  <div>
+                    <div class="rec-content-title">Recommended Action</div>
+                    <div class="rec-content-text" id="purity-rec-text">
+                      Maintain gravity channel outflow into the Khan River. Clean storm runoff aids river rejuvenation.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 7: REPORTS & MONITORING (Phase 2B Reference Match) -->
+        <section id="screen-reports" class="screen-container">
+          <!-- Top Page Bar / Header with Live Badge -->
+          <div class="rm-header-row">
+            <div>
+              <h2 class="rm-page-title">Reports & Monitoring</h2>
+              <p class="rm-page-subtitle">Water Quality • Drainage • Filtration • Area Intelligence</p>
+            </div>
+            <div class="rm-header-right">
+              <div class="rm-info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Indore, Madhya Pradesh</span>
+              </div>
+              <div class="rm-info-pill" id="rm-date-pill">
+                <span id="rm-clock-txt">Mon, 29 Oct 2026 14:32</span>
+              </div>
+              <div class="rm-info-pill" id="rm-weather-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                  <line x1="8" y1="19" x2="8" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <line x1="16" y1="19" x2="16" y2="21"></line>
+                </svg>
+                <span id="rm-weather-temp">28°C Light Rain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Summary Metric Cards Row -->
+          <div class="rm-metrics-grid">
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2v6m0 0l-3-3m3 3l3-3"></path>
+                  <path d="M5 10h14v2a7 7 0 0 1-14 0v-2z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Total Drains</div>
+                <div class="rm-metric-num" id="rm-stat-stations">7</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  <path d="M7 8h10M7 12h10M7 16h6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Filtration Units</div>
+                <div class="rm-metric-num" id="rm-stat-filtration">3</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-indigo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Monitored Areas</div>
+                <div class="rm-metric-num" id="rm-stat-areas">4</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-pass">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">PASS</div>
+                <div class="rm-metric-num" id="rm-stat-pass" style="color: #10b981;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-hold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">HOLD</div>
+                <div class="rm-metric-num" id="rm-stat-hold" style="color: #f59e0b;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-fail">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">FAIL</div>
+                <div class="rm-metric-num" id="rm-stat-fail" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blocked">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Blocked Routes</div>
+                <div class="rm-metric-num" id="rm-stat-blocked" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-alert">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Active Alerts</div>
+                <div class="rm-metric-num" id="rm-stat-alerts" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Horizontal Tabs -->
+          <div class="rm-tabs-row">
+            <button class="rm-tab-btn active" id="tab-btn-drains" onclick="switchReportsTab('drains')">
+              Drain Reports
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-filtration" onclick="switchReportsTab('filtration')">
+              Filtration Units
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-areas" onclick="switchReportsTab('areas')">
+              Area Monitoring
+            </button>
+          </div>
+
+          <!-- Toolbar (Search & Filter Row) -->
+          <div class="rm-toolbar" id="rm-toolbar-drains">
+            <div class="rm-search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="rm-input-search" placeholder="Search by Drain ID or Sample ID..." oninput="onReportsFilterChange()">
+            </div>
+
+            <select id="rm-filter-zone" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">All Zones</option>
+              <option value="South">South Indore Ridge</option>
+              <option value="Central">Central Heritage</option>
+              <option value="North">North Industrial</option>
+              <option value="East">East Commercial</option>
+            </select>
+
+            <select id="rm-filter-quality" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Quality Status</option>
+              <option value="PASS">PASS (≥80%)</option>
+              <option value="HOLD">HOLD (60-79%)</option>
+              <option value="FAIL">FAIL (&lt;60%)</option>
+            </select>
+
+            <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Route Status</option>
+              <option value="OPEN">Main Outlet: OPEN</option>
+              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+            </select>
+
+            <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
+
+            <select id="rm-filter-cleaning" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Cleaning Status</option>
+              <option value="Clear">Inspected / Clear</option>
+              <option value="Scheduled">Scheduled Maintenance</option>
+              <option value="Desilting">Desilting Required</option>
+            </select>
+
+            <select id="rm-filter-sort" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="display_code">Sort By: Drain Code</option>
+              <option value="purity_desc">Purity (High to Low)</option>
+              <option value="purity_asc">Purity (Low to High)</option>
+              <option value="water_level_desc">Water Level Surge</option>
+              <option value="name">Station Name</option>
+            </select>
+
+            <div class="rm-btn-group">
+              <button class="rm-btn-primary" onclick="downloadAllReportsPDF()" title="Download Official Combined Municipal PDF Report">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download All 7 Drain Reports</span>
+              </button>
+              <button class="rm-btn-outline" onclick="exportReportsCSV()" title="Download CSV Spreadsheet">
+                <span>CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 1: DRAIN REPORTS (4-Column Grid) -->
+          <div id="rm-tab-content-drains" class="rm-tab-content active">
+            <div class="rm-cards-grid" id="rm-stations-grid">
+              <!-- Dynamically populated station cards -->
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="rm-pagination-bar">
+              <div class="rm-pagination-info" id="rm-pagination-text">Showing 1 – 7 of 7 drains</div>
+              <div class="rm-pagination-controls">
+                <button class="rm-page-btn" onclick="changeReportsPage(-1)" id="rm-btn-prev">‹</button>
+                <button class="rm-page-btn active" id="rm-page-num-1">1</button>
+                <button class="rm-page-btn" onclick="changeReportsPage(1)" id="rm-btn-next">›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: FILTRATION UNITS -->
+          <div id="rm-tab-content-filtration" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-filtration-grid">
+              <!-- Dynamically populated filtration cards -->
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 3: AREA MONITORING -->
+          <div id="rm-tab-content-areas" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-areas-grid">
+              <!-- Dynamically populated area cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal: View Full Inspection Report -->
+        <div id="modal-station-detail" class="rm-modal-backdrop" style="display: none;" onclick="closeStationModal(event)">
+          <div class="rm-modal-card" onclick="event.stopPropagation()">
+            <div class="rm-modal-header">
+              <div class="rm-modal-title" id="modal-station-title">D-01 • Rajwada Confluence</div>
+              <button class="rm-modal-close" onclick="closeStationModal()">✕</button>
+            </div>
+            <div class="rm-modal-body" id="modal-station-body">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 3: INDORE FLOOD MAP VIEW -->
+        <section id="screen-map" class="screen-container">
+          <div class="map-stats-strip">
+            <div class="map-stat-card">
+              <div class="map-stat-num">560 m</div>
+              <div class="map-stat-label">South Ridge (Rau)</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num">515 m</div>
+              <div class="map-stat-label">North Outfall (Kabithedi)</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num">45.0 m</div>
+              <div class="map-stat-label">Gravity Elevation Drop</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num">7 Nodes</div>
+              <div class="map-stat-label">Active Monitored Sumps</div>
+            </div>
+            <div class="map-stat-card" style="border-left: 2px solid var(--cyan-accent);">
+              <div class="map-stat-num" id="map-stat-waterway-len">41.4 km</div>
+              <div class="map-stat-label">OSM Waterways (Khan & Saraswati)</div>
+            </div>
+          </div>
+
+          <div class="map-view-container">
+            <div id="leaflet-map"></div>
+          </div>
+        </section>
+
+        <!-- SCREEN 4: DUAL FLOOD PREDICTION -->
+        <section id="screen-prediction" class="screen-container">
+          <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px;">
+            <!-- Inputs -->
+            <div class="glass-panel">
+              <div class="panel-title">
+                <div class="panel-title-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>Scenario Controls</span>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 6px;">
+                  <span>Rainfall Intensity</span>
+                  <span id="slider-rain-val" style="color: var(--cyan-accent);">35.0 mm/h</span>
+                </div>
+                <input type="range" id="input-rain-slider" min="5" max="120" value="35" step="5" style="width: 100%; accent-color: var(--cyan-accent);">
+              </div>
+
+              <div style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 6px;">
+                  <span>Storm Surge Multiplier</span>
+                  <span id="slider-surge-val" style="color: var(--cyan-accent);">1.2x</span>
+                </div>
+                <input type="range" id="input-surge-slider" min="0.5" max="3.5" value="1.2" step="0.1" style="width: 100%; accent-color: var(--cyan-accent);">
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <label class="control-label">Operational High-Lift Pumps (Kabithedi STP)</label>
+                <input type="number" id="input-pumps-count" min="0" max="6" value="2" class="select-dropdown" style="margin-bottom: 4px;">
+                <div class="dropdown-desc">Drawdown relief: ~4.5% water level reduction per active pump unit</div>
+              </div>
+
+              <button class="btn-action-primary" onclick="runDualPrediction()" style="width: 100%; padding: 12px;">
+                <span>⚡ Run Dual-Engine Prediction</span>
+              </button>
+            </div>
+
+            <!-- Results -->
+            <div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <!-- ML Model Card -->
+                <div class="glass-panel" style="margin-bottom: 0;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">ML Inundation Risk</div>
+                    <span class="provenance-tag tag-ml">Random Forest AI</span>
+                  </div>
+                  <div id="ml-prob-val" style="font-size: 32px; font-weight: 850; color: var(--cyan-accent);">35.7%</div>
+                  <div id="ml-tier-val" style="font-size: 12px; font-weight: 750; color: var(--safe-green); margin-top: 4px;">LOW / NORMAL FLOW</div>
+                </div>
+
+                <!-- Hydraulic Routing Card -->
+                <div class="glass-panel" style="margin-bottom: 0;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">Peak Surge Arrival</div>
+                    <span class="provenance-tag tag-edge">Manning Physics</span>
+                  </div>
+                  <div id="phys-arrival-val" style="font-size: 32px; font-weight: 850; color: #fff;">27 Mins</div>
+                  <div id="phys-choke-val" style="font-size: 12px; font-weight: 750; color: var(--cyan-accent); margin-top: 4px;">Bottleneck: Rau Headwaters</div>
+                </div>
+              </div>
+
+              <!-- AI Advisory -->
+              <div class="glass-panel" style="margin-bottom: 20px; padding: 14px 18px; border-left: 3px solid var(--cyan-accent);">
+                <div style="font-size: 11px; font-weight: 800; color: var(--cyan-accent); text-transform: uppercase; margin-bottom: 4px;">AI Emergency Operational Advisory</div>
+                <div id="pred-advisory-txt" style="font-size: 13px; color: #e2e8f0; line-height: 1.5;">
+                  Standard gravity drainage active. No sluice throttling needed. Operating within nominal envelope.
+                </div>
+              </div>
+
+              <!-- Inundation Table -->
+              <div class="glass-panel">
+                <div class="panel-title">
+                  <span>Indore Node Inundation Predictions</span>
+                  <span style="font-size: 11px; color: #94a3b8;">7 Monitored Reaches</span>
+                </div>
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Node Name</th>
+                      <th>MSL</th>
+                      <th>Stage (%)</th>
+                      <th>Status</th>
+                      <th>Gate Decision</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pred-nodes-tbody">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 7: REPORTS & MONITORING (Phase 2B Reference Match) -->
+        <section id="screen-reports" class="screen-container">
+          <!-- Top Page Bar / Header with Live Badge -->
+          <div class="rm-header-row">
+            <div>
+              <h2 class="rm-page-title">Reports & Monitoring</h2>
+              <p class="rm-page-subtitle">Water Quality • Drainage • Filtration • Area Intelligence</p>
+            </div>
+            <div class="rm-header-right">
+              <div class="rm-info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Indore, Madhya Pradesh</span>
+              </div>
+              <div class="rm-info-pill" id="rm-date-pill">
+                <span id="rm-clock-txt">Mon, 29 Oct 2026 14:32</span>
+              </div>
+              <div class="rm-info-pill" id="rm-weather-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                  <line x1="8" y1="19" x2="8" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <line x1="16" y1="19" x2="16" y2="21"></line>
+                </svg>
+                <span id="rm-weather-temp">28°C Light Rain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Summary Metric Cards Row -->
+          <div class="rm-metrics-grid">
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2v6m0 0l-3-3m3 3l3-3"></path>
+                  <path d="M5 10h14v2a7 7 0 0 1-14 0v-2z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Total Drains</div>
+                <div class="rm-metric-num" id="rm-stat-stations">7</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  <path d="M7 8h10M7 12h10M7 16h6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Filtration Units</div>
+                <div class="rm-metric-num" id="rm-stat-filtration">3</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-indigo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Monitored Areas</div>
+                <div class="rm-metric-num" id="rm-stat-areas">4</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-pass">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">PASS</div>
+                <div class="rm-metric-num" id="rm-stat-pass" style="color: #10b981;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-hold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">HOLD</div>
+                <div class="rm-metric-num" id="rm-stat-hold" style="color: #f59e0b;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-fail">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">FAIL</div>
+                <div class="rm-metric-num" id="rm-stat-fail" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blocked">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Blocked Routes</div>
+                <div class="rm-metric-num" id="rm-stat-blocked" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-alert">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Active Alerts</div>
+                <div class="rm-metric-num" id="rm-stat-alerts" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Horizontal Tabs -->
+          <div class="rm-tabs-row">
+            <button class="rm-tab-btn active" id="tab-btn-drains" onclick="switchReportsTab('drains')">
+              Drain Reports
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-filtration" onclick="switchReportsTab('filtration')">
+              Filtration Units
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-areas" onclick="switchReportsTab('areas')">
+              Area Monitoring
+            </button>
+          </div>
+
+          <!-- Toolbar (Search & Filter Row) -->
+          <div class="rm-toolbar" id="rm-toolbar-drains">
+            <div class="rm-search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="rm-input-search" placeholder="Search by Drain ID or Sample ID..." oninput="onReportsFilterChange()">
+            </div>
+
+            <select id="rm-filter-zone" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">All Zones</option>
+              <option value="South">South Indore Ridge</option>
+              <option value="Central">Central Heritage</option>
+              <option value="North">North Industrial</option>
+              <option value="East">East Commercial</option>
+            </select>
+
+            <select id="rm-filter-quality" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Quality Status</option>
+              <option value="PASS">PASS (≥80%)</option>
+              <option value="HOLD">HOLD (60-79%)</option>
+              <option value="FAIL">FAIL (&lt;60%)</option>
+            </select>
+
+            <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Route Status</option>
+              <option value="OPEN">Main Outlet: OPEN</option>
+              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+            </select>
+
+            <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
+
+            <select id="rm-filter-cleaning" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Cleaning Status</option>
+              <option value="Clear">Inspected / Clear</option>
+              <option value="Scheduled">Scheduled Maintenance</option>
+              <option value="Desilting">Desilting Required</option>
+            </select>
+
+            <select id="rm-filter-sort" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="display_code">Sort By: Drain Code</option>
+              <option value="purity_desc">Purity (High to Low)</option>
+              <option value="purity_asc">Purity (Low to High)</option>
+              <option value="water_level_desc">Water Level Surge</option>
+              <option value="name">Station Name</option>
+            </select>
+
+            <div class="rm-btn-group">
+              <button class="rm-btn-primary" onclick="downloadAllReportsPDF()" title="Download Official Combined Municipal PDF Report">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download All 7 Drain Reports</span>
+              </button>
+              <button class="rm-btn-outline" onclick="exportReportsCSV()" title="Download CSV Spreadsheet">
+                <span>CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 1: DRAIN REPORTS (4-Column Grid) -->
+          <div id="rm-tab-content-drains" class="rm-tab-content active">
+            <div class="rm-cards-grid" id="rm-stations-grid">
+              <!-- Dynamically populated station cards -->
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="rm-pagination-bar">
+              <div class="rm-pagination-info" id="rm-pagination-text">Showing 1 – 7 of 7 drains</div>
+              <div class="rm-pagination-controls">
+                <button class="rm-page-btn" onclick="changeReportsPage(-1)" id="rm-btn-prev">‹</button>
+                <button class="rm-page-btn active" id="rm-page-num-1">1</button>
+                <button class="rm-page-btn" onclick="changeReportsPage(1)" id="rm-btn-next">›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: FILTRATION UNITS -->
+          <div id="rm-tab-content-filtration" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-filtration-grid">
+              <!-- Dynamically populated filtration cards -->
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 3: AREA MONITORING -->
+          <div id="rm-tab-content-areas" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-areas-grid">
+              <!-- Dynamically populated area cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal: View Full Inspection Report -->
+        <div id="modal-station-detail" class="rm-modal-backdrop" style="display: none;" onclick="closeStationModal(event)">
+          <div class="rm-modal-card" onclick="event.stopPropagation()">
+            <div class="rm-modal-header">
+              <div class="rm-modal-title" id="modal-station-title">D-01 • Rajwada Confluence</div>
+              <button class="rm-modal-close" onclick="closeStationModal()">✕</button>
+            </div>
+            <div class="rm-modal-body" id="modal-station-body">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 5: PUMP & SLUICE SIMULATOR -->
+        <section id="screen-simulator" class="screen-container">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div class="glass-panel">
+              <div class="panel-title">
+                <span>Real-Time Stream Injection Controls</span>
+                <span class="provenance-tag tag-sim">2s Telemetry</span>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
+                Inject severe weather cloudbursts or sewer contamination bursts into the live 2-second background simulator.
+              </p>
+
+              <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 6px;">
+                  <span>Storm Surge Multiplier</span>
+                  <span id="sim-surge-label" style="color: var(--cyan-accent);">1.0x</span>
+                </div>
+                <input type="range" id="sim-surge-slider" min="0.5" max="4.0" value="1.0" step="0.2" style="width: 100%; accent-color: var(--cyan-accent);">
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 650;">
+                  <input type="checkbox" id="sim-effluent-toggle" style="width: 18px; height: 18px; accent-color: var(--cyan-accent);">
+                  <span>Inject Severe Sewer Effluent Burst (Triggers 80% Rule Fail)</span>
+                </label>
+              </div>
+
+              <button class="btn-action-primary" onclick="applySimulationControls()" style="width: 100%;">
+                <span>Apply Live Simulator Controls</span>
+              </button>
+            </div>
+
+            <!-- Dual Sluice Gate Schematic -->
+            <div class="glass-panel">
+              <div class="panel-title">
+                <span>Automated Dual-Gate Khan River Routing</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); padding: 14px;">
+                  <div style="font-size: 13px; font-weight: 800; color: var(--safe-green); margin-bottom: 4px;">1. CLEAN WATER DIVERSION (&ge; 80% PURITY)</div>
+                  <div style="font-size: 12.5px; color: #cbd5e1;">Discharges directly into the Khan River main trunk. Supports river rejuvenation and natural groundwater recharge.</div>
+                </div>
+
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-sm); padding: 14px;">
+                  <div style="font-size: 13px; font-weight: 800; color: var(--danger-red); margin-bottom: 4px;">2. CONTAMINATED SLUDGE DIVERSION (&lt; 80% PURITY)</div>
+                  <div style="font-size: 12.5px; color: #cbd5e1;">Immediately diverted to the Kabithedi 245 MLD Sewage Treatment Plant to protect downstream settlements.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 7: REPORTS & MONITORING (Phase 2B Reference Match) -->
+        <section id="screen-reports" class="screen-container">
+          <!-- Top Page Bar / Header with Live Badge -->
+          <div class="rm-header-row">
+            <div>
+              <h2 class="rm-page-title">Reports & Monitoring</h2>
+              <p class="rm-page-subtitle">Water Quality • Drainage • Filtration • Area Intelligence</p>
+            </div>
+            <div class="rm-header-right">
+              <div class="rm-info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Indore, Madhya Pradesh</span>
+              </div>
+              <div class="rm-info-pill" id="rm-date-pill">
+                <span id="rm-clock-txt">Mon, 29 Oct 2026 14:32</span>
+              </div>
+              <div class="rm-info-pill" id="rm-weather-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                  <line x1="8" y1="19" x2="8" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <line x1="16" y1="19" x2="16" y2="21"></line>
+                </svg>
+                <span id="rm-weather-temp">28°C Light Rain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Summary Metric Cards Row -->
+          <div class="rm-metrics-grid">
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2v6m0 0l-3-3m3 3l3-3"></path>
+                  <path d="M5 10h14v2a7 7 0 0 1-14 0v-2z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Total Drains</div>
+                <div class="rm-metric-num" id="rm-stat-stations">7</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  <path d="M7 8h10M7 12h10M7 16h6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Filtration Units</div>
+                <div class="rm-metric-num" id="rm-stat-filtration">3</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-indigo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Monitored Areas</div>
+                <div class="rm-metric-num" id="rm-stat-areas">4</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-pass">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">PASS</div>
+                <div class="rm-metric-num" id="rm-stat-pass" style="color: #10b981;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-hold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">HOLD</div>
+                <div class="rm-metric-num" id="rm-stat-hold" style="color: #f59e0b;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-fail">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">FAIL</div>
+                <div class="rm-metric-num" id="rm-stat-fail" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blocked">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Blocked Routes</div>
+                <div class="rm-metric-num" id="rm-stat-blocked" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-alert">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Active Alerts</div>
+                <div class="rm-metric-num" id="rm-stat-alerts" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Horizontal Tabs -->
+          <div class="rm-tabs-row">
+            <button class="rm-tab-btn active" id="tab-btn-drains" onclick="switchReportsTab('drains')">
+              Drain Reports
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-filtration" onclick="switchReportsTab('filtration')">
+              Filtration Units
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-areas" onclick="switchReportsTab('areas')">
+              Area Monitoring
+            </button>
+          </div>
+
+          <!-- Toolbar (Search & Filter Row) -->
+          <div class="rm-toolbar" id="rm-toolbar-drains">
+            <div class="rm-search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="rm-input-search" placeholder="Search by Drain ID or Sample ID..." oninput="onReportsFilterChange()">
+            </div>
+
+            <select id="rm-filter-zone" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">All Zones</option>
+              <option value="South">South Indore Ridge</option>
+              <option value="Central">Central Heritage</option>
+              <option value="North">North Industrial</option>
+              <option value="East">East Commercial</option>
+            </select>
+
+            <select id="rm-filter-quality" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Quality Status</option>
+              <option value="PASS">PASS (≥80%)</option>
+              <option value="HOLD">HOLD (60-79%)</option>
+              <option value="FAIL">FAIL (&lt;60%)</option>
+            </select>
+
+            <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Route Status</option>
+              <option value="OPEN">Main Outlet: OPEN</option>
+              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+            </select>
+
+            <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
+
+            <select id="rm-filter-cleaning" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Cleaning Status</option>
+              <option value="Clear">Inspected / Clear</option>
+              <option value="Scheduled">Scheduled Maintenance</option>
+              <option value="Desilting">Desilting Required</option>
+            </select>
+
+            <select id="rm-filter-sort" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="display_code">Sort By: Drain Code</option>
+              <option value="purity_desc">Purity (High to Low)</option>
+              <option value="purity_asc">Purity (Low to High)</option>
+              <option value="water_level_desc">Water Level Surge</option>
+              <option value="name">Station Name</option>
+            </select>
+
+            <div class="rm-btn-group">
+              <button class="rm-btn-primary" onclick="downloadAllReportsPDF()" title="Download Official Combined Municipal PDF Report">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download All 7 Drain Reports</span>
+              </button>
+              <button class="rm-btn-outline" onclick="exportReportsCSV()" title="Download CSV Spreadsheet">
+                <span>CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 1: DRAIN REPORTS (4-Column Grid) -->
+          <div id="rm-tab-content-drains" class="rm-tab-content active">
+            <div class="rm-cards-grid" id="rm-stations-grid">
+              <!-- Dynamically populated station cards -->
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="rm-pagination-bar">
+              <div class="rm-pagination-info" id="rm-pagination-text">Showing 1 – 7 of 7 drains</div>
+              <div class="rm-pagination-controls">
+                <button class="rm-page-btn" onclick="changeReportsPage(-1)" id="rm-btn-prev">‹</button>
+                <button class="rm-page-btn active" id="rm-page-num-1">1</button>
+                <button class="rm-page-btn" onclick="changeReportsPage(1)" id="rm-btn-next">›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: FILTRATION UNITS -->
+          <div id="rm-tab-content-filtration" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-filtration-grid">
+              <!-- Dynamically populated filtration cards -->
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 3: AREA MONITORING -->
+          <div id="rm-tab-content-areas" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-areas-grid">
+              <!-- Dynamically populated area cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal: View Full Inspection Report -->
+        <div id="modal-station-detail" class="rm-modal-backdrop" style="display: none;" onclick="closeStationModal(event)">
+          <div class="rm-modal-card" onclick="event.stopPropagation()">
+            <div class="rm-modal-header">
+              <div class="rm-modal-title" id="modal-station-title">D-01 • Rajwada Confluence</div>
+              <button class="rm-modal-close" onclick="closeStationModal()">✕</button>
+            </div>
+            <div class="rm-modal-body" id="modal-station-body">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN 6: HISTORY & LOGS (SQLite) -->
+        <section id="screen-history" class="screen-container">
+          <div class="map-stats-strip">
+            <div class="map-stat-card">
+              <div class="map-stat-num" id="stat-total-analyses">24</div>
+              <div class="map-stat-label">Total Analyses</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num" id="stat-telemetry-count">180+</div>
+              <div class="map-stat-label">Telemetry Snapshots</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num" style="font-size: 16px; margin-top: 4px;">hydro_guard.db</div>
+              <div class="map-stat-label">SQLite Database</div>
+            </div>
+            <div class="map-stat-card">
+              <div class="map-stat-num" style="color: var(--safe-green);">HEALTHY</div>
+              <div class="map-stat-label">Database Status</div>
+            </div>
+          </div>
+
+          <div class="glass-panel">
+            <div class="panel-title">
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-action-primary" style="padding: 6px 14px; font-size: 12px;" onclick="filterLogs('ALL')">All Logs</button>
+                <button class="btn-action-outline" style="padding: 6px 14px; font-size: 12px;" onclick="filterLogs('CV_PURITY')">Image Purity (CV)</button>
+                <button class="btn-action-outline" style="padding: 6px 14px; font-size: 12px;" onclick="filterLogs('ACOUSTIC_LEVEL')">Acoustic Audio</button>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-action-outline" style="padding: 6px 14px; font-size: 12px;" onclick="exportAuditCSV()">
+                  ⬇️ Export SQLite Audit CSV
+                </button>
+              </div>
+            </div>
+
+            <div style="max-height: 480px; overflow-y: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Record ID</th>
+                    <th>Timestamp</th>
+                    <th>Analysis Type</th>
+                    <th>Input Source</th>
+                    <th>Primary Metric</th>
+                    <th>Status Verdict</th>
+                    <th>Gate Action</th>
+                  </tr>
+                </thead>
+                <tbody id="history-logs-tbody">
+                  <!-- Dynamic from /api/v1/sensors/history -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 7: REPORTS & MONITORING (Phase 2B Reference Match) -->
+        <section id="screen-reports" class="screen-container">
+          <!-- Top Page Bar / Header with Live Badge -->
+          <div class="rm-header-row">
+            <div>
+              <h2 class="rm-page-title">Reports & Monitoring</h2>
+              <p class="rm-page-subtitle">Water Quality • Drainage • Filtration • Area Intelligence</p>
+            </div>
+            <div class="rm-header-right">
+              <div class="rm-info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Indore, Madhya Pradesh</span>
+              </div>
+              <div class="rm-info-pill" id="rm-date-pill">
+                <span id="rm-clock-txt">Mon, 29 Oct 2026 14:32</span>
+              </div>
+              <div class="rm-info-pill" id="rm-weather-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                  <line x1="8" y1="19" x2="8" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <line x1="16" y1="19" x2="16" y2="21"></line>
+                </svg>
+                <span id="rm-weather-temp">28°C Light Rain</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Summary Metric Cards Row -->
+          <div class="rm-metrics-grid">
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2v6m0 0l-3-3m3 3l3-3"></path>
+                  <path d="M5 10h14v2a7 7 0 0 1-14 0v-2z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Total Drains</div>
+                <div class="rm-metric-num" id="rm-stat-stations">7</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  <path d="M7 8h10M7 12h10M7 16h6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Filtration Units</div>
+                <div class="rm-metric-num" id="rm-stat-filtration">3</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-indigo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Monitored Areas</div>
+                <div class="rm-metric-num" id="rm-stat-areas">4</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-pass">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">PASS</div>
+                <div class="rm-metric-num" id="rm-stat-pass" style="color: #10b981;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-hold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">HOLD</div>
+                <div class="rm-metric-num" id="rm-stat-hold" style="color: #f59e0b;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-fail">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">FAIL</div>
+                <div class="rm-metric-num" id="rm-stat-fail" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-blocked">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Blocked Routes</div>
+                <div class="rm-metric-num" id="rm-stat-blocked" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+
+            <div class="rm-metric-card">
+              <div class="rm-metric-icon rm-icon-alert">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="rm-metric-label">Active Alerts</div>
+                <div class="rm-metric-num" id="rm-stat-alerts" style="color: #ef4444;">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Horizontal Tabs -->
+          <div class="rm-tabs-row">
+            <button class="rm-tab-btn active" id="tab-btn-drains" onclick="switchReportsTab('drains')">
+              Drain Reports
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-filtration" onclick="switchReportsTab('filtration')">
+              Filtration Units
+            </button>
+            <button class="rm-tab-btn" id="tab-btn-areas" onclick="switchReportsTab('areas')">
+              Area Monitoring
+            </button>
+          </div>
+
+          <!-- Toolbar (Search & Filter Row) -->
+          <div class="rm-toolbar" id="rm-toolbar-drains">
+            <div class="rm-search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="rm-input-search" placeholder="Search by Drain ID or Sample ID..." oninput="onReportsFilterChange()">
+            </div>
+
+            <select id="rm-filter-zone" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">All Zones</option>
+              <option value="South">South Indore Ridge</option>
+              <option value="Central">Central Heritage</option>
+              <option value="North">North Industrial</option>
+              <option value="East">East Commercial</option>
+            </select>
+
+            <select id="rm-filter-quality" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Quality Status</option>
+              <option value="PASS">PASS (≥80%)</option>
+              <option value="HOLD">HOLD (60-79%)</option>
+              <option value="FAIL">FAIL (&lt;60%)</option>
+            </select>
+
+            <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Route Status</option>
+              <option value="OPEN">Main Outlet: OPEN</option>
+              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+            </select>
+
+            <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
+
+            <select id="rm-filter-cleaning" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="ALL">Cleaning Status</option>
+              <option value="Clear">Inspected / Clear</option>
+              <option value="Scheduled">Scheduled Maintenance</option>
+              <option value="Desilting">Desilting Required</option>
+            </select>
+
+            <select id="rm-filter-sort" class="rm-select" onchange="onReportsFilterChange()">
+              <option value="display_code">Sort By: Drain Code</option>
+              <option value="purity_desc">Purity (High to Low)</option>
+              <option value="purity_asc">Purity (Low to High)</option>
+              <option value="water_level_desc">Water Level Surge</option>
+              <option value="name">Station Name</option>
+            </select>
+
+            <div class="rm-btn-group">
+              <button class="rm-btn-primary" onclick="downloadAllReportsPDF()" title="Download Official Combined Municipal PDF Report">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download All 7 Drain Reports</span>
+              </button>
+              <button class="rm-btn-outline" onclick="exportReportsCSV()" title="Download CSV Spreadsheet">
+                <span>CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 1: DRAIN REPORTS (4-Column Grid) -->
+          <div id="rm-tab-content-drains" class="rm-tab-content active">
+            <div class="rm-cards-grid" id="rm-stations-grid">
+              <!-- Dynamically populated station cards -->
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="rm-pagination-bar">
+              <div class="rm-pagination-info" id="rm-pagination-text">Showing 1 – 7 of 7 drains</div>
+              <div class="rm-pagination-controls">
+                <button class="rm-page-btn" onclick="changeReportsPage(-1)" id="rm-btn-prev">‹</button>
+                <button class="rm-page-btn active" id="rm-page-num-1">1</button>
+                <button class="rm-page-btn" onclick="changeReportsPage(1)" id="rm-btn-next">›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: FILTRATION UNITS -->
+          <div id="rm-tab-content-filtration" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-filtration-grid">
+              <!-- Dynamically populated filtration cards -->
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 3: AREA MONITORING -->
+          <div id="rm-tab-content-areas" class="rm-tab-content" style="display: none;">
+            <div class="rm-facility-grid" id="rm-areas-grid">
+              <!-- Dynamically populated area cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal: View Full Inspection Report -->
+        <div id="modal-station-detail" class="rm-modal-backdrop" style="display: none;" onclick="closeStationModal(event)">
+          <div class="rm-modal-card" onclick="event.stopPropagation()">
+            <div class="rm-modal-header">
+              <div class="rm-modal-title" id="modal-station-title">D-01 • Rajwada Confluence</div>
+              <button class="rm-modal-close" onclick="closeStationModal()">✕</button>
+            </div>
+            <div class="rm-modal-body" id="modal-station-body">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Leaflet GIS JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Main Client Application JS -->
+  <script src="/static/js/app.js?v=3.2"></script>
+</body>
+</html>

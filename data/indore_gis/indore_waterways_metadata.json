@@ -1,0 +1,77 @@
+{
+  "source": "OpenStreetMap REST API v0.6",
+  "retrieval_timestamp": "2026-10-29T07:39:37.841119+00:00",
+  "geographic_region": "Indore, Madhya Pradesh, India",
+  "crs": "EPSG:4326 (WGS84)",
+  "bounding_box": {
+    "south": 22.62,
+    "west": 75.78,
+    "north": 22.82,
+    "east": 75.94,
+    "crs": "EPSG:4326 (WGS84)"
+  },
+  "feature_count": 7,
+  "total_waterway_length_km": 41.44,
+  "is_real_gis_data": true,
+  "provenance": "VERIFIED_OSM_SURFACE_WATERWAYS",
+  "license": "Open Data Commons Open Database License (ODbL) by OpenStreetMap Foundation (OSMF)",
+  "verified_features": [
+    {
+      "osm_id": 191817154,
+      "name": "Khan River (Kanh River - Main Channel)",
+      "system": "Khan River",
+      "waterway_type": "river",
+      "coordinates_count": 457,
+      "length_km": 21.696
+    },
+    {
+      "osm_id": 169028701,
+      "name": "Saraswati River (Lower Confluence Reach)",
+      "system": "Saraswati River",
+      "waterway_type": "river",
+      "coordinates_count": 44,
+      "length_km": 3.156
+    },
+    {
+      "osm_id": 169028702,
+      "name": "Saraswati River (Upper Municipal Reach)",
+      "system": "Saraswati River",
+      "waterway_type": "river",
+      "coordinates_count": 160,
+      "length_km": 6.32
+    },
+    {
+      "osm_id": 191774911,
+      "name": "Khan River Tributary (South Urban Branch)",
+      "system": "Khan River",
+      "waterway_type": "stream",
+      "coordinates_count": 172,
+      "length_km": 4.943
+    },
+    {
+      "osm_id": 191774909,
+      "name": "Pipliyahana Drain Feeder (Culverted Reach)",
+      "system": "Khan River Feeder",
+      "waterway_type": "stream",
+      "coordinates_count": 137,
+      "length_km": 3.535
+    },
+    {
+      "osm_id": 852094968,
+      "name": "Khan River (Limbodi Reach)",
+      "system": "Khan River",
+      "waterway_type": "stream",
+      "coordinates_count": 41,
+      "length_km": 1.035
+    },
+    {
+      "osm_id": 852094971,
+      "name": "Khan River (Palda Reach)",
+      "system": "Khan River",
+      "waterway_type": "stream",
+      "coordinates_count": 20,
+      "length_km": 0.751
+    }
+  ],
+  "engineering_distinction": "CRITICAL DISTINCTION: These alignments represent verified real-world surface river channels (Khan and Saraswati rivers) and natural storm feeders surveyed in OpenStreetMap. They are maintained strictly separate from internal subsurface drainage culverts, pipe diameters, invert elevations, and municipal pump station telemetry."
+}

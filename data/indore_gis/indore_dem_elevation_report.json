@@ -1,0 +1,339 @@
+{
+  "title": "HYDRO-GUARD AI — Phase 1 Copernicus DEM GLO-30 Elevation Audit",
+  "audit_timestamp": "2026-10-30T05:15:01.062724+00:00",
+  "geography": {
+    "city": "Indore, Madhya Pradesh, India",
+    "river_basin": "Khan & Saraswati Rivers",
+    "tile_name": "Copernicus_DSM_COG_10_N22_00_E075_00_DEM",
+    "tile_bounding_box": {
+      "south": 22.0,
+      "north": 23.0,
+      "west": 75.0,
+      "east": 76.0
+    },
+    "spatial_resolution": "1 arc-second (~30 meters)",
+    "vertical_datum": "EGM2008 (MSL-aligned)"
+  },
+  "scientific_constraints_statement": [
+    "1. Copernicus DEM GLO-30 is a Digital Surface Model (DSM) capturing top-of-canopy and rooftop surfaces, not submerged riverbeds or pipe inverts.",
+    "2. DEM endpoint differences establish surface elevation trends only; they do not establish physically validated hydraulic flow paths.",
+    "3. Hydraulic direction status is classified as UNVERIFIED across edges pending ground-truth surveyed channel-bed or pipe invert data.",
+    "4. Assumed elevations from config.py are strictly preserved; DEM surface elevations are maintained in dedicated attributes.",
+    "5. The +14m to +25m offset between assumed and DEM elevations is documented as an empirical difference; hypotheses regarding geodetic datum or DSM bias remain unverified without independent ground benchmarks.",
+    "6. Existing graph topology, edge identifiers, and API compatibility are fully preserved."
+  ],
+  "basin_gradient_summary": {
+    "total_assumed_elevation_drop_m": 45.0,
+    "total_dem_surface_drop_m": 39.47,
+    "south_ridge_dem_m": 579.61,
+    "north_terminal_dem_m": 540.14,
+    "regional_south_to_north_gravity_slope_confirmed": true
+  },
+  "nodes_elevation_comparison": {
+    "NODE_RAU": {
+      "node_id": "NODE_RAU",
+      "name": "Rau Headwaters",
+      "hindi_name": "राऊ उद्गम क्षेत्र",
+      "lat": 22.645,
+      "lon": 75.818,
+      "assumed_elevation_m": 560.0,
+      "dem_surface_elevation_m": 579.61,
+      "elevation_delta_m": 19.61,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 19.61,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 19.61m higher than the assumed value (560.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062629+00:00"
+    },
+    "NODE_BHANWARKUAN": {
+      "node_id": "NODE_BHANWARKUAN",
+      "name": "Bhanwarkuan Storm Junction",
+      "hindi_name": "भंवरकुआं स्टॉर्म जंक्शन",
+      "lat": 22.6891,
+      "lon": 75.8653,
+      "assumed_elevation_m": 552.0,
+      "dem_surface_elevation_m": 566.29,
+      "elevation_delta_m": 14.29,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 14.29,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 14.29m higher than the assumed value (552.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062640+00:00"
+    },
+    "NODE_RAMBAGH": {
+      "node_id": "NODE_RAMBAGH",
+      "name": "Rambagh Urban Drain",
+      "hindi_name": "रामबाग शहरी नाला",
+      "lat": 22.71,
+      "lon": 75.862,
+      "assumed_elevation_m": 536.0,
+      "dem_surface_elevation_m": 552.26,
+      "elevation_delta_m": 16.26,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 16.26,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 16.26m higher than the assumed value (536.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062644+00:00"
+    },
+    "NODE_RAJWARA": {
+      "node_id": "NODE_RAJWARA",
+      "name": "Rajwada / Krishnapura Confluence",
+      "hindi_name": "राजवाड़ा / कृष्णपुरा छत्री संगम",
+      "lat": 22.7186,
+      "lon": 75.855,
+      "assumed_elevation_m": 540.0,
+      "dem_surface_elevation_m": 556.41,
+      "elevation_delta_m": 16.41,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 16.41,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 16.41m higher than the assumed value (540.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062649+00:00"
+    },
+    "NODE_PARDESHIPURA": {
+      "node_id": "NODE_PARDESHIPURA",
+      "name": "Pardeshipura Industrial Drain",
+      "hindi_name": "परदेशीपुरा औद्योगिक नाला",
+      "lat": 22.741,
+      "lon": 75.875,
+      "assumed_elevation_m": 526.0,
+      "dem_surface_elevation_m": 545.84,
+      "elevation_delta_m": 19.84,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 19.84,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 19.84m higher than the assumed value (526.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062654+00:00"
+    },
+    "NODE_VIJAY_NAGAR": {
+      "node_id": "NODE_VIJAY_NAGAR",
+      "name": "Vijay Nagar Eastern Sump",
+      "hindi_name": "विजय नगर पूर्वी संप",
+      "lat": 22.7533,
+      "lon": 75.8937,
+      "assumed_elevation_m": 532.0,
+      "dem_surface_elevation_m": 550.28,
+      "elevation_delta_m": 18.28,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 18.28,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 18.28m higher than the assumed value (532.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062658+00:00"
+    },
+    "NODE_KABITHEDI_STP": {
+      "node_id": "NODE_KABITHEDI_STP",
+      "name": "Kabithedi Main STP & Terminal Outfall",
+      "hindi_name": "कबीटखेड़ी मुख्य एसटीपी व टर्मिनल आउटफॉल",
+      "lat": 22.775,
+      "lon": 75.851,
+      "assumed_elevation_m": 515.0,
+      "dem_surface_elevation_m": 540.14,
+      "elevation_delta_m": 25.14,
+      "elevation_delta_analysis": {
+        "numerical_delta_m": 25.14,
+        "verified_fact": "Copernicus GLO-30 DEM (EGM2008 datum) is 25.14m higher than the assumed value (515.0m). Original assumed values in config.py lack recorded geodetic datum or benchmark metadata.",
+        "possible_unverified_explanations": [
+          "Potential geoid/vertical datum offset between local Survey of India MSL benchmark and EGM2008 geoid (unverified without official SOI benchmark data).",
+          "Copernicus DEM is a Digital Surface Model (DSM) measuring canopy/building surface reflections rather than bare ground (unverified without DTM/LiDAR).",
+          "Original assumed values were illustrative approximations introduced during initial project prototyping."
+        ]
+      },
+      "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
+      "spatial_resolution": "1 arc-second (~30m)",
+      "vertical_datum": "EGM2008",
+      "retrieval_timestamp": "2026-10-30T05:15:01.062665+00:00"
+    }
+  },
+  "edges_hydraulic_validation": [
+    {
+      "from_node": "NODE_RAU",
+      "to_node": "NODE_RAJWARA",
+      "from_name": "Rau Headwaters",
+      "to_name": "Rajwada / Krishnapura Confluence",
+      "channel_name": "Saraswati River",
+      "length_km": 8.5,
+      "roughness_n": 0.035,
+      "assumed_elev_drop_m": 20.0,
+      "assumed_slope": 0.00235,
+      "assumed_downhill": true,
+      "dem_elev_drop_m": 23.2,
+      "dem_slope": 0.00273,
+      "dem_surface_downhill": true,
+      "has_elevation_discrepancy": false,
+      "discrepancy_notes": [],
+      "special_investigation_note": null,
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_CONSISTENT",
+      "scientific_status": "SURFACE_SLOPE_CONSISTENT",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    },
+    {
+      "from_node": "NODE_BHANWARKUAN",
+      "to_node": "NODE_RAMBAGH",
+      "from_name": "Bhanwarkuan Storm Junction",
+      "to_name": "Rambagh Urban Drain",
+      "channel_name": "South Khan Trunk",
+      "length_km": 3.2,
+      "roughness_n": 0.028,
+      "assumed_elev_drop_m": 16.0,
+      "assumed_slope": 0.005,
+      "assumed_downhill": true,
+      "dem_elev_drop_m": 14.03,
+      "dem_slope": 0.00438,
+      "dem_surface_downhill": true,
+      "has_elevation_discrepancy": false,
+      "discrepancy_notes": [],
+      "special_investigation_note": null,
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_CONSISTENT",
+      "scientific_status": "SURFACE_SLOPE_CONSISTENT",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    },
+    {
+      "from_node": "NODE_RAMBAGH",
+      "to_node": "NODE_RAJWARA",
+      "from_name": "Rambagh Urban Drain",
+      "to_name": "Rajwada / Krishnapura Confluence",
+      "channel_name": "Central Khan Sump",
+      "length_km": 1.4,
+      "roughness_n": 0.025,
+      "assumed_elev_drop_m": -4.0,
+      "assumed_slope": -0.00286,
+      "assumed_downhill": false,
+      "dem_elev_drop_m": -4.15,
+      "dem_slope": -0.00296,
+      "dem_surface_downhill": false,
+      "has_elevation_discrepancy": true,
+      "discrepancy_notes": [
+        "Assumed model has negative/reverse slope (-4.0m drop). Original config assigned downstream node higher elevation than upstream node.",
+        "Copernicus surface DSM indicates reverse elevation difference (-4.15m). CAUTION: Urban surface features (buildings/flyovers) or localized backwater conditions may mask underlying canal/pipe invert slope."
+      ],
+      "special_investigation_note": "RAMBAGH-TO-RAJWADA INVESTIGATION: In the assumed model, Rambagh (536m) is set 4m lower than Rajwada (540m), producing an unphysical assumed negative drop of -4.0m. In the real Copernicus DEM, authoritative bilinear sampling yields Rajwada at 556.41m and Rambagh at 552.26m (surface delta: -4.15m; nearest-neighbor cell center was 551.99m). Geographic investigation reveals Rajwada is in the dense historic commercial center (palace/commercial rooftops), whereas Rambagh is at the natural river embankment. Surface DEM cannot see underground pipe/channel inverts. Per scientific constraints, existing edge direction is strictly preserved and marked UNVERIFIED until municipal invert records are available.",
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_ADVERSE",
+      "scientific_status": "SURFACE_SLOPE_ADVERSE",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    },
+    {
+      "from_node": "NODE_RAJWARA",
+      "to_node": "NODE_PARDESHIPURA",
+      "from_name": "Rajwada / Krishnapura Confluence",
+      "to_name": "Pardeshipura Industrial Drain",
+      "channel_name": "Mid-Khan Channel",
+      "length_km": 3.8,
+      "roughness_n": 0.03,
+      "assumed_elev_drop_m": 14.0,
+      "assumed_slope": 0.00368,
+      "assumed_downhill": true,
+      "dem_elev_drop_m": 10.57,
+      "dem_slope": 0.00278,
+      "dem_surface_downhill": true,
+      "has_elevation_discrepancy": false,
+      "discrepancy_notes": [],
+      "special_investigation_note": null,
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_CONSISTENT",
+      "scientific_status": "SURFACE_SLOPE_CONSISTENT",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    },
+    {
+      "from_node": "NODE_VIJAY_NAGAR",
+      "to_node": "NODE_PARDESHIPURA",
+      "from_name": "Vijay Nagar Eastern Sump",
+      "to_name": "Pardeshipura Industrial Drain",
+      "channel_name": "Bhamori Feeder",
+      "length_km": 2.6,
+      "roughness_n": 0.032,
+      "assumed_elev_drop_m": 6.0,
+      "assumed_slope": 0.00231,
+      "assumed_downhill": true,
+      "dem_elev_drop_m": 4.44,
+      "dem_slope": 0.00171,
+      "dem_surface_downhill": true,
+      "has_elevation_discrepancy": false,
+      "discrepancy_notes": [],
+      "special_investigation_note": null,
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_CONSISTENT",
+      "scientific_status": "SURFACE_SLOPE_CONSISTENT",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    },
+    {
+      "from_node": "NODE_PARDESHIPURA",
+      "to_node": "NODE_KABITHEDI_STP",
+      "from_name": "Pardeshipura Industrial Drain",
+      "to_name": "Kabithedi Main STP & Terminal Outfall",
+      "channel_name": "Lower Khan Main Channel",
+      "length_km": 5.2,
+      "roughness_n": 0.025,
+      "assumed_elev_drop_m": 11.0,
+      "assumed_slope": 0.00212,
+      "assumed_downhill": true,
+      "dem_elev_drop_m": 5.7,
+      "dem_slope": 0.0011,
+      "dem_surface_downhill": true,
+      "has_elevation_discrepancy": false,
+      "discrepancy_notes": [],
+      "special_investigation_note": null,
+      "hydraulic_direction_status": "UNVERIFIED",
+      "surface_elevation_status": "SURFACE_SLOPE_CONSISTENT",
+      "scientific_status": "SURFACE_SLOPE_CONSISTENT",
+      "hydraulic_validation_limitation": "DEM endpoint elevation differences establish surface topography trends only. Hydraulic flow path validation remains UNVERIFIED until surveyed channel-bed or pipe invert elevations are available."
+    }
+  ],
+  "remaining_uncertainties": [
+    "Underground sewer and stormwater pipe invert levels are unmeasured in satellite DEM data.",
+    "Copernicus GLO-30 measures surface reflections (rooftops/canopy) rather than bare-earth riverbed inverts.",
+    "Rambagh to Rajwada exhibits adverse surface elevation difference (-4.15m), likely influenced by commercial rooftops at Rajwada bazaar, but subsurface invert levels are unverified.",
+    "The +14m to +25m elevation offset between assumed and DEM values cannot be conclusively attributed to EGM2008 datum shift or DSM bias without official Survey of India benchmark calibration sheets.",
+    "Dynamic hydrodynamic flow, backwater surcharging, and head losses during peak monsoon require calibrated 1D/2D hydraulic modeling."
+  ]
+}

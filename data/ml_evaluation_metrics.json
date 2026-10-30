@@ -1,0 +1,38 @@
+{
+  "model_type": "RandomForestClassifier",
+  "hyperparameters": {
+    "n_estimators": 120,
+    "max_depth": 8,
+    "min_samples_split": 4
+  },
+  "dataset_info": {
+    "total_samples": 1500,
+    "train_samples": 1200,
+    "test_samples": 300,
+    "target_name": "urban_inundation_warning",
+    "test_split_ratio": 0.2
+  },
+  "evaluation_metrics": {
+    "accuracy": 0.9267,
+    "precision": 0.7714,
+    "recall": 0.6585,
+    "f1_score": 0.7105,
+    "roc_auc": 0.9379,
+    "confusion_matrix": {
+      "true_negatives": 251,
+      "false_positives": 8,
+      "false_negatives": 14,
+      "true_positives": 27
+    }
+  },
+  "feature_importance": {
+    "rainfall_intensity_mmh": 0.1445,
+    "antecedent_rainfall_24h_mm": 0.1371,
+    "river_stage_khan_m": 0.2194,
+    "drainage_flow_m3s": 0.1067,
+    "active_pumps_count": 0.2717,
+    "soil_saturation_pct": 0.1206,
+    "basin_elevation_drop_m": 0.0
+  },
+  "disclaimer": "Ground-truth data derived from Indore 2019-2023 monsoon hydrological flood envelope."
+}

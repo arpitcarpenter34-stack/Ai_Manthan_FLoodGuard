@@ -1,0 +1,776 @@
+{
+  "title": "HYDRO-GUARD AI — Phase 2A Real Spatial River Network Report",
+  "report_timestamp": "2026-10-30T06:29:53.223356+00:00",
+  "geography": {
+    "city": "Indore, Madhya Pradesh, India",
+    "projection": "UTM Zone 43N (EPSG:32643) for metric measurements",
+    "geographic_crs": "WGS84 (EPSG:4326) for latitude/longitude coordinates"
+  },
+  "provenance_distinction_statement": {
+    "REAL_OSM_GEOMETRY": "OpenStreetMap mapped geometries, derived from OSM source data (ODbL 1.0 license by OpenStreetMap Foundation).",
+    "DERIVED_SPATIAL_RELATIONSHIPS": "Junctions, endpoints, and metric reach lengths derived through Shapely/PyProj metric intersection and projection algorithms.",
+    "ASSUMED_HYDRAULIC_RELATIONSHIPS": "The legacy 6-edge directed graph (Rau -> Kabithedi) representing assumed gravity flow between urban sumps, maintained separate from real river geometry.",
+    "UNVERIFIED_CONNECTIONS": "All physical flow directions and subsurface connections (such as culverts connecting Pipliyahana Drain or underground storm pipes) remain UNVERIFIED pending municipal invert data."
+  },
+  "network_statistics": {
+    "total_osm_features": 7,
+    "total_spatial_nodes": 13,
+    "total_spatial_edges": 9,
+    "total_mapped_network_length_km": 41.355,
+    "total_mapped_network_length_m": 41354.97,
+    "duplicate_geometries_count": 0,
+    "river_confluence_candidates_count": 2,
+    "continuity_junctions_count": 1,
+    "total_geometric_junctions_count": 3,
+    "detected_confluence_junctions_count": 3,
+    "connected_components_count": 4,
+    "isolated_segments_count": 3
+  },
+  "confluence_candidates": [
+    {
+      "junction_id": "JUNCTION_3e6e1736",
+      "name": "Junction 1: Kanh River & Saraswathi",
+      "junction_type": "RIVER_CONFLUENCE_CANDIDATE",
+      "classification_description": "Candidate river confluence: Kanh River & Saraswathi intersection candidate.",
+      "lat": 22.718464,
+      "lon": 75.858849,
+      "utm_x": 588199.99,
+      "utm_y": 2512609.68,
+      "intersecting_ways": [
+        "way/169028701",
+        "way/191817154"
+      ],
+      "intersecting_features": [
+        "Kanh River",
+        "Saraswathi"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "UNVERIFIED_PHYSICAL_CONFLUENCE"
+    },
+    {
+      "junction_id": "JUNCTION_a5bb96a9",
+      "name": "Junction 2: Kanh River & Khan tributary",
+      "junction_type": "RIVER_CONFLUENCE_CANDIDATE",
+      "classification_description": "Candidate river confluence: Kanh River & Khan tributary intersection candidate.",
+      "lat": 22.746302,
+      "lon": 75.86486,
+      "utm_x": 588799.31,
+      "utm_y": 2515695.07,
+      "intersecting_ways": [
+        "way/191774911",
+        "way/191817154"
+      ],
+      "intersecting_features": [
+        "Kanh River",
+        "Khan tributary"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "UNVERIFIED_PHYSICAL_CONFLUENCE"
+    }
+  ],
+  "continuity_junctions": [
+    {
+      "junction_id": "JUNCTION_0f723398",
+      "name": "Junction 3: Saraswathi & Saraswati",
+      "junction_type": "CONTINUITY_JUNCTION",
+      "classification_description": "Saraswati upper/lower reach connection: CONTINUITY_JUNCTION (continuous channel reach transition, not a separate river confluence).",
+      "lat": 22.704294,
+      "lon": 75.848709,
+      "utm_x": 587167.54,
+      "utm_y": 2511035.0,
+      "intersecting_ways": [
+        "way/169028701",
+        "way/169028702"
+      ],
+      "intersecting_features": [
+        "Saraswathi",
+        "Saraswati"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "CONTINUOUS_CHANNEL_JOINT"
+    }
+  ],
+  "junction_candidates": [
+    {
+      "junction_id": "JUNCTION_3e6e1736",
+      "name": "Junction 1: Kanh River & Saraswathi",
+      "junction_type": "RIVER_CONFLUENCE_CANDIDATE",
+      "classification_description": "Candidate river confluence: Kanh River & Saraswathi intersection candidate.",
+      "lat": 22.718464,
+      "lon": 75.858849,
+      "utm_x": 588199.99,
+      "utm_y": 2512609.68,
+      "intersecting_ways": [
+        "way/169028701",
+        "way/191817154"
+      ],
+      "intersecting_features": [
+        "Kanh River",
+        "Saraswathi"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "UNVERIFIED_PHYSICAL_CONFLUENCE"
+    },
+    {
+      "junction_id": "JUNCTION_a5bb96a9",
+      "name": "Junction 2: Kanh River & Khan tributary",
+      "junction_type": "RIVER_CONFLUENCE_CANDIDATE",
+      "classification_description": "Candidate river confluence: Kanh River & Khan tributary intersection candidate.",
+      "lat": 22.746302,
+      "lon": 75.86486,
+      "utm_x": 588799.31,
+      "utm_y": 2515695.07,
+      "intersecting_ways": [
+        "way/191774911",
+        "way/191817154"
+      ],
+      "intersecting_features": [
+        "Kanh River",
+        "Khan tributary"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "UNVERIFIED_PHYSICAL_CONFLUENCE"
+    },
+    {
+      "junction_id": "JUNCTION_0f723398",
+      "name": "Junction 3: Saraswathi & Saraswati",
+      "junction_type": "CONTINUITY_JUNCTION",
+      "classification_description": "Saraswati upper/lower reach connection: CONTINUITY_JUNCTION (continuous channel reach transition, not a separate river confluence).",
+      "lat": 22.704294,
+      "lon": 75.848709,
+      "utm_x": 587167.54,
+      "utm_y": 2511035.0,
+      "intersecting_ways": [
+        "way/169028701",
+        "way/169028702"
+      ],
+      "intersecting_features": [
+        "Saraswathi",
+        "Saraswati"
+      ],
+      "provenance": "DERIVED_GEOMETRIC_INTERSECTION",
+      "hydraulic_status": "CONTINUOUS_CHANNEL_JOINT"
+    }
+  ],
+  "disconnected_mapped_segments": [
+    {
+      "component_index": 2,
+      "node_count": 2,
+      "edge_count": 1,
+      "total_length_km": 3.529,
+      "osm_ways": [
+        "way/191774909"
+      ],
+      "is_isolated_segment": true,
+      "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+    },
+    {
+      "component_index": 3,
+      "node_count": 2,
+      "edge_count": 1,
+      "total_length_km": 1.032,
+      "osm_ways": [
+        "way/852094968"
+      ],
+      "is_isolated_segment": true,
+      "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+    },
+    {
+      "component_index": 4,
+      "node_count": 2,
+      "edge_count": 1,
+      "total_length_km": 0.75,
+      "osm_ways": [
+        "way/852094971"
+      ],
+      "is_isolated_segment": true,
+      "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+    }
+  ],
+  "possible_subsurface_connections": [
+    {
+      "connection_id": "POSSIBLE_GAP_PIPLIYAHANA_TRIBUTARY",
+      "from_feature": "way/191774909",
+      "from_feature_name": "Pipliyahana Drain Feeder (Culverted Reach)",
+      "to_feature": "way/191774911",
+      "to_feature_name": "Khan tributary",
+      "gap_distance_m": 53.83,
+      "status": "POSSIBLE_SUBSURFACE_CONNECTION_UNVERIFIED",
+      "spatial_disconnection_maintained": true,
+      "scientific_justification": "An approximately 53.8m spatial gap exists between the mapped terminus of Pipliyahana Drain Feeder and the Khan tributary in OpenStreetMap surface geometry. The segments are kept strictly disconnected in the spatial graph; no underground culvert or conduit connection is assumed without official municipal documentation."
+    }
+  ],
+  "hydraulic_direction_status": "UNVERIFIED_ALL_SPATIAL_EDGES",
+  "connected_components": {
+    "total_connected_components": 4,
+    "isolated_reaches_count": 3,
+    "components": [
+      {
+        "component_index": 1,
+        "node_count": 7,
+        "edge_count": 6,
+        "total_length_km": 36.044,
+        "osm_ways": [
+          "way/191817154",
+          "way/191817154",
+          "way/191817154",
+          "way/169028701",
+          "way/169028702",
+          "way/191774911"
+        ],
+        "is_isolated_segment": false,
+        "connectivity_description": "Connected network: Multi-reach continuous river network."
+      },
+      {
+        "component_index": 2,
+        "node_count": 2,
+        "edge_count": 1,
+        "total_length_km": 3.529,
+        "osm_ways": [
+          "way/191774909"
+        ],
+        "is_isolated_segment": true,
+        "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+      },
+      {
+        "component_index": 3,
+        "node_count": 2,
+        "edge_count": 1,
+        "total_length_km": 1.032,
+        "osm_ways": [
+          "way/852094968"
+        ],
+        "is_isolated_segment": true,
+        "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+      },
+      {
+        "component_index": 4,
+        "node_count": 2,
+        "edge_count": 1,
+        "total_length_km": 0.75,
+        "osm_ways": [
+          "way/852094971"
+        ],
+        "is_isolated_segment": true,
+        "connectivity_description": "Isolated reach: Disconnected from main river trunk in surface OSM geometry."
+      }
+    ]
+  },
+  "monitoring_stations_snapping": {
+    "snapping_tolerance_m": 50.0,
+    "classification_counts": {
+      "ON_CHANNEL": 0,
+      "NEAR_CHANNEL": 1,
+      "OFF_CHANNEL": 6
+    },
+    "station_evaluations": {
+      "NODE_RAU": {
+        "node_id": "NODE_RAU",
+        "station_name": "Rau Headwaters",
+        "original_coordinates": {
+          "lat": 22.645,
+          "lon": 75.818,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.66427,
+          "lon": 75.832039,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 2575.21,
+        "nearest_waterway_id": "way/169028702",
+        "nearest_waterway_name": "Saraswati",
+        "nearest_river_system": "Saraswati River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 2575.2m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_BHANWARKUAN": {
+        "node_id": "NODE_BHANWARKUAN",
+        "station_name": "Bhanwarkuan Storm Junction",
+        "original_coordinates": {
+          "lat": 22.6891,
+          "lon": 75.8653,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.692699,
+          "lon": 75.850999,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 1522.1,
+        "nearest_waterway_id": "way/169028702",
+        "nearest_waterway_name": "Saraswati",
+        "nearest_river_system": "Saraswati River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 1522.1m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_RAMBAGH": {
+        "node_id": "NODE_RAMBAGH",
+        "station_name": "Rambagh Urban Drain",
+        "original_coordinates": {
+          "lat": 22.71,
+          "lon": 75.862,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.713486,
+          "lon": 75.86206,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 386.02,
+        "nearest_waterway_id": "way/191817154",
+        "nearest_waterway_name": "Kanh River",
+        "nearest_river_system": "Khan River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 386.0m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_RAJWARA": {
+        "node_id": "NODE_RAJWARA",
+        "station_name": "Rajwada / Krishnapura Confluence",
+        "original_coordinates": {
+          "lat": 22.7186,
+          "lon": 75.855,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.719665,
+          "lon": 75.85826,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 354.93,
+        "nearest_waterway_id": "way/191817154",
+        "nearest_waterway_name": "Kanh River",
+        "nearest_river_system": "Khan River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 354.9m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_PARDESHIPURA": {
+        "node_id": "NODE_PARDESHIPURA",
+        "station_name": "Pardeshipura Industrial Drain",
+        "original_coordinates": {
+          "lat": 22.741,
+          "lon": 75.875,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.740973,
+          "lon": 75.874311,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 70.79,
+        "nearest_waterway_id": "way/191774911",
+        "nearest_waterway_name": "Khan tributary",
+        "nearest_river_system": "Khan River",
+        "spatial_classification": "NEAR_CHANNEL",
+        "hydraulic_connection_status": "NEAR_CHANNEL_UNCONNECTED",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 70.8m from nearest mapped waterway geometry (25m - 150m threshold). Located in urban vicinity of river corridor; no specific drain connection or pipe invert is assumed without municipal drawings.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_VIJAY_NAGAR": {
+        "node_id": "NODE_VIJAY_NAGAR",
+        "station_name": "Vijay Nagar Eastern Sump",
+        "original_coordinates": {
+          "lat": 22.7533,
+          "lon": 75.8937,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.74108,
+          "lon": 75.874252,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 2412.01,
+        "nearest_waterway_id": "way/191774911",
+        "nearest_waterway_name": "Khan tributary",
+        "nearest_river_system": "Khan River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 2412.0m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      },
+      "NODE_KABITHEDI_STP": {
+        "node_id": "NODE_KABITHEDI_STP",
+        "station_name": "Kabithedi Main STP & Terminal Outfall",
+        "original_coordinates": {
+          "lat": 22.775,
+          "lon": 75.851,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "snapped_channel_coordinates": {
+          "lat": 22.76566,
+          "lon": 75.857354,
+          "crs": "EPSG:4326 (WGS84)"
+        },
+        "distance_to_nearest_waterway_m": 1222.57,
+        "nearest_waterway_id": "way/191817154",
+        "nearest_waterway_name": "Kanh River",
+        "nearest_river_system": "Khan River",
+        "spatial_classification": "OFF_CHANNEL",
+        "hydraulic_connection_status": "DISCONNECTED_OFF_CHANNEL",
+        "is_within_tolerance": false,
+        "snapping_tolerance_applied_m": 50.0,
+        "scientific_justification": "Station coordinate is 1222.6m from nearest mapped open river channel (> 150m threshold). Classified as OFF_CHANNEL. Station coordinates are strictly preserved; no physical channel or underground connection is assumed.",
+        "recommendation": "PRESERVE_ORIGINAL_COORDINATES: Station coordinates must be preserved. Do not automatically snap or connect OFF_CHANNEL stations to river geometry."
+      }
+    },
+    "governing_policy": "Do not silently move existing monitoring stations. Urban monitoring nodes represent road junction sumps, STP perimeters, or headwater boundaries. Both original and snapped coordinates are recorded with explicit distance metrics."
+  },
+  "spatial_graph_nodes": [
+    {
+      "node_id": "TERMINAL_ebcc4f10",
+      "node_type": "channel_endpoint",
+      "lat": 22.705027,
+      "lon": 75.877099,
+      "utm_x": 590083.03,
+      "utm_y": 2511133.07,
+      "source_osm_ways": [
+        "way/191817154"
+      ],
+      "dem_surface_elevation_m": 550.91,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "JUNCTION_3e6e1736",
+      "node_type": "confluence_junction",
+      "lat": 22.718464,
+      "lon": 75.858849,
+      "utm_x": 588199.99,
+      "utm_y": 2512609.68,
+      "source_osm_ways": [
+        "way/191817154",
+        "way/169028701"
+      ],
+      "dem_surface_elevation_m": 540.87,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "JUNCTION_a5bb96a9",
+      "node_type": "confluence_junction",
+      "lat": 22.746302,
+      "lon": 75.86486,
+      "utm_x": 588799.31,
+      "utm_y": 2515695.07,
+      "source_osm_ways": [
+        "way/191817154",
+        "way/191774911"
+      ],
+      "dem_surface_elevation_m": 534.6,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_29763e73",
+      "node_type": "channel_endpoint",
+      "lat": 22.829818,
+      "lon": 75.89758,
+      "utm_x": 592102.95,
+      "utm_y": 2524960.82,
+      "source_osm_ways": [
+        "way/191817154"
+      ],
+      "dem_surface_elevation_m": 521.37,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "JUNCTION_0f723398",
+      "node_type": "confluence_junction",
+      "lat": 22.704294,
+      "lon": 75.848709,
+      "utm_x": 587167.54,
+      "utm_y": 2511035.0,
+      "source_osm_ways": [
+        "way/169028701",
+        "way/169028702"
+      ],
+      "dem_surface_elevation_m": 552.31,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_16647a1c",
+      "node_type": "channel_endpoint",
+      "lat": 22.66427,
+      "lon": 75.832039,
+      "utm_x": 585480.18,
+      "utm_y": 2506594.51,
+      "source_osm_ways": [
+        "way/169028702"
+      ],
+      "dem_surface_elevation_m": 563.02,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_54a9baaf",
+      "node_type": "channel_endpoint",
+      "lat": 22.724572,
+      "lon": 75.886686,
+      "utm_x": 591054.8,
+      "utm_y": 2513302.64,
+      "source_osm_ways": [
+        "way/191774911"
+      ],
+      "dem_surface_elevation_m": 550.31,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_c9ed9556",
+      "node_type": "channel_endpoint",
+      "lat": 22.706186,
+      "lon": 75.906933,
+      "utm_x": 593146.61,
+      "utm_y": 2511279.82,
+      "source_osm_ways": [
+        "way/191774909"
+      ],
+      "dem_surface_elevation_m": 563.43,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_de65dc93",
+      "node_type": "channel_endpoint",
+      "lat": 22.724494,
+      "lon": 75.887203,
+      "utm_x": 591108.0,
+      "utm_y": 2513294.4,
+      "source_osm_ways": [
+        "way/191774909"
+      ],
+      "dem_surface_elevation_m": 549.8,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_e65c711d",
+      "node_type": "channel_endpoint",
+      "lat": 22.658063,
+      "lon": 75.893935,
+      "utm_x": 591843.61,
+      "utm_y": 2505944.3,
+      "source_osm_ways": [
+        "way/852094968"
+      ],
+      "dem_surface_elevation_m": 571.34,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_6b8b1940",
+      "node_type": "channel_endpoint",
+      "lat": 22.665642,
+      "lon": 75.890142,
+      "utm_x": 591448.81,
+      "utm_y": 2506780.97,
+      "source_osm_ways": [
+        "way/852094968"
+      ],
+      "dem_surface_elevation_m": 567.13,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_4fbdb003",
+      "node_type": "channel_endpoint",
+      "lat": 22.674871,
+      "lon": 75.891268,
+      "utm_x": 591558.39,
+      "utm_y": 2507803.33,
+      "source_osm_ways": [
+        "way/852094971"
+      ],
+      "dem_surface_elevation_m": 561.95,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    },
+    {
+      "node_id": "TERMINAL_39a01544",
+      "node_type": "channel_endpoint",
+      "lat": 22.679812,
+      "lon": 75.892357,
+      "utm_x": 591667.01,
+      "utm_y": 2508351.0,
+      "source_osm_ways": [
+        "way/852094971"
+      ],
+      "dem_surface_elevation_m": 559.58,
+      "provenance": "VERIFIED_OSM_GEOMETRIC_VERTEX"
+    }
+  ],
+  "spatial_graph_edges": [
+    {
+      "edge_id": "EDGE_way_191817154_reach_1",
+      "from_node": "TERMINAL_ebcc4f10",
+      "to_node": "JUNCTION_3e6e1736",
+      "osm_way_id": "way/191817154",
+      "osm_id": 191817154,
+      "name": "Kanh River (reach_1)",
+      "waterway_type": "river",
+      "length_m": 3107.85,
+      "length_km": 3.108,
+      "coordinates_count": 77,
+      "geometric_u_dem_m": 550.91,
+      "geometric_v_dem_m": 540.87,
+      "geometric_surface_drop_m": 10.04,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_191817154_reach_2",
+      "from_node": "JUNCTION_3e6e1736",
+      "to_node": "JUNCTION_a5bb96a9",
+      "osm_way_id": "way/191817154",
+      "osm_id": 191817154,
+      "name": "Kanh River (reach_2)",
+      "waterway_type": "river",
+      "length_m": 3839.81,
+      "length_km": 3.84,
+      "coordinates_count": 78,
+      "geometric_u_dem_m": 540.87,
+      "geometric_v_dem_m": 534.6,
+      "geometric_surface_drop_m": 6.27,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_191817154_reach_3",
+      "from_node": "JUNCTION_a5bb96a9",
+      "to_node": "TERMINAL_29763e73",
+      "osm_way_id": "way/191817154",
+      "osm_id": 191817154,
+      "name": "Kanh River (reach_3)",
+      "waterway_type": "river",
+      "length_m": 14706.45,
+      "length_km": 14.706,
+      "coordinates_count": 304,
+      "geometric_u_dem_m": 534.6,
+      "geometric_v_dem_m": 521.37,
+      "geometric_surface_drop_m": 13.23,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_169028701_main",
+      "from_node": "JUNCTION_0f723398",
+      "to_node": "JUNCTION_3e6e1736",
+      "osm_way_id": "way/169028701",
+      "osm_id": 169028701,
+      "name": "Saraswathi",
+      "waterway_type": "river",
+      "length_m": 3149.49,
+      "length_km": 3.149,
+      "coordinates_count": 44,
+      "geometric_u_dem_m": 552.31,
+      "geometric_v_dem_m": 540.87,
+      "geometric_surface_drop_m": 11.44,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_169028702_main",
+      "from_node": "TERMINAL_16647a1c",
+      "to_node": "JUNCTION_0f723398",
+      "osm_way_id": "way/169028702",
+      "osm_id": 169028702,
+      "name": "Saraswati",
+      "waterway_type": "river",
+      "length_m": 6306.74,
+      "length_km": 6.307,
+      "coordinates_count": 160,
+      "geometric_u_dem_m": 563.02,
+      "geometric_v_dem_m": 552.31,
+      "geometric_surface_drop_m": 10.71,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_191774911_main",
+      "from_node": "TERMINAL_54a9baaf",
+      "to_node": "JUNCTION_a5bb96a9",
+      "osm_way_id": "way/191774911",
+      "osm_id": 191774911,
+      "name": "Khan tributary",
+      "waterway_type": "stream",
+      "length_m": 4934.02,
+      "length_km": 4.934,
+      "coordinates_count": 172,
+      "geometric_u_dem_m": 550.31,
+      "geometric_v_dem_m": 534.6,
+      "geometric_surface_drop_m": 15.71,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_191774909_main",
+      "from_node": "TERMINAL_c9ed9556",
+      "to_node": "TERMINAL_de65dc93",
+      "osm_way_id": "way/191774909",
+      "osm_id": 191774909,
+      "name": "Pipliyahana Drain Feeder (Culverted Reach)",
+      "waterway_type": "stream",
+      "length_m": 3529.06,
+      "length_km": 3.529,
+      "coordinates_count": 137,
+      "geometric_u_dem_m": 563.43,
+      "geometric_v_dem_m": 549.8,
+      "geometric_surface_drop_m": 13.63,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_852094968_main",
+      "from_node": "TERMINAL_e65c711d",
+      "to_node": "TERMINAL_6b8b1940",
+      "osm_way_id": "way/852094968",
+      "osm_id": 852094968,
+      "name": "Khan River",
+      "waterway_type": "stream",
+      "length_m": 1032.0,
+      "length_km": 1.032,
+      "coordinates_count": 41,
+      "geometric_u_dem_m": 571.34,
+      "geometric_v_dem_m": 567.13,
+      "geometric_surface_drop_m": 4.21,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    },
+    {
+      "edge_id": "EDGE_way_852094971_main",
+      "from_node": "TERMINAL_4fbdb003",
+      "to_node": "TERMINAL_39a01544",
+      "osm_way_id": "way/852094971",
+      "osm_id": 852094971,
+      "name": "Khan River",
+      "waterway_type": "stream",
+      "length_m": 749.55,
+      "length_km": 0.75,
+      "coordinates_count": 20,
+      "geometric_u_dem_m": 561.95,
+      "geometric_v_dem_m": 559.58,
+      "geometric_surface_drop_m": 2.37,
+      "direction_status": "GEOMETRIC_DIGITIZATION_ORDER_HYDRAULIC_UNVERIFIED",
+      "hydraulic_validation_status": "UNVERIFIED",
+      "data_provenance": "OSM_MAPPED_GEOMETRY"
+    }
+  ]
+}
