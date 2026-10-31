@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   
   <!-- Custom Modern Design System -->
-  <link rel="stylesheet" href="/static/css/style.css?v=4.3.2">
+  <link rel="stylesheet" href="/static/css/style.css?v=4.3.4">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
 </head>
@@ -2033,22 +2033,25 @@
                 </div>
               </div>
 
-              <!-- Radar Scientific Availability Banner (ZERO FABRICATION POLICY) -->
-              <div class="wr-radar-status-banner">
-                <div class="wr-rsb-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <!-- Compact Radar Data Source Strip (Neutral Cyan / Dark Navy Glassmorphism) -->
+              <div class="wr-radar-source-strip">
+                <div class="wr-rss-left">
+                  <div class="wr-rss-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 6a6 6 0 0 1 6 6"/><circle cx="12" cy="12" r="2"/></svg>
+                  </div>
+                  <div class="wr-rss-content">
+                    <div class="wr-rss-main">
+                      <span class="wr-rss-label">RADAR DATA SOURCE</span>
+                      <span class="wr-rss-val">Ground rain-gauge telemetry + Live NWP weather forecast</span>
+                    </div>
+                    <div class="wr-rss-sub">
+                      Quantitative Doppler radar observations are not currently integrated.
+                      <span class="wr-rss-dim">• Ingest Protocols Ready: ODIM_H5 • NetCDF-4 • BUFR/GRIB2</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="wr-rsb-body">
-                  <div class="wr-rsb-head">
-                    <strong>DOPPLER RADAR REFLECTIVITY: UNAVAILABLE</strong>
-                    <span class="wr-rsb-tag">ZERO FABRICATION POLICY</span>
-                  </div>
-                  <p class="wr-rsb-desc">
-                    No raw Doppler radar volume scan files (IMD HDF5/GRIB2 polar coordinates or NEXRAD Level II NetCDF-4) are present on disk. Strictly adhering to scientific integrity, <strong>no simulated or decorative radar grids are rendered</strong>. Showing verified ground rain gauge telemetry stations and live NWP atmospheric forcing.
-                  </p>
-                  <div class="wr-rsb-specs">
-                    <span><strong>Ingest Protocols Ready:</strong> ODIM_H5 (EUMETNET) • NetCDF-4 (CF-1.7) • BUFR/GRIB2</span>
-                  </div>
+                <div class="wr-rss-right">
+                  <span class="wr-rss-badge">TELEMETRY GROUNDED</span>
                 </div>
               </div>
 
@@ -3687,7 +3690,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
   <!-- Main Client Application JS -->
-  <script src="/static/js/app.js?v=4.3.3"></script>
+  <script src="/static/js/app.js?v=4.3.4"></script>
 
   <!-- Cinematic ZIP-Based Scroll Animation JS -->
   <script src="/static/js/hero_scroll_animation.js?v=1.1"></script>
