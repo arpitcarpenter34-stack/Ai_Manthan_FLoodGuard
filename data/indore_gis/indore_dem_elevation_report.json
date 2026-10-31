@@ -1,6 +1,6 @@
 {
   "title": "HYDRO-GUARD AI — Phase 1 Copernicus DEM GLO-30 Elevation Audit",
-  "audit_timestamp": "2026-10-30T05:15:01.062724+00:00",
+  "audit_timestamp": "2026-10-31T10:40:22.039485+00:00",
   "geography": {
     "city": "Indore, Madhya Pradesh, India",
     "river_basin": "Khan & Saraswati Rivers",
@@ -51,7 +51,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062629+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039251+00:00"
     },
     "NODE_BHANWARKUAN": {
       "node_id": "NODE_BHANWARKUAN",
@@ -74,7 +74,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062640+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039277+00:00"
     },
     "NODE_RAMBAGH": {
       "node_id": "NODE_RAMBAGH",
@@ -97,7 +97,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062644+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039291+00:00"
     },
     "NODE_RAJWARA": {
       "node_id": "NODE_RAJWARA",
@@ -120,7 +120,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062649+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039302+00:00"
     },
     "NODE_PARDESHIPURA": {
       "node_id": "NODE_PARDESHIPURA",
@@ -143,7 +143,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062654+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039313+00:00"
     },
     "NODE_VIJAY_NAGAR": {
       "node_id": "NODE_VIJAY_NAGAR",
@@ -166,7 +166,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062658+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039324+00:00"
     },
     "NODE_KABITHEDI_STP": {
       "node_id": "NODE_KABITHEDI_STP",
@@ -189,7 +189,7 @@
       "elevation_source": "Copernicus DEM GLO-30 (ESA / Airbus via AWS Open Data)",
       "spatial_resolution": "1 arc-second (~30m)",
       "vertical_datum": "EGM2008",
-      "retrieval_timestamp": "2026-10-30T05:15:01.062665+00:00"
+      "retrieval_timestamp": "2026-10-31T10:40:22.039334+00:00"
     }
   },
   "edges_hydraulic_validation": [

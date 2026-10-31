@@ -14,6 +14,11 @@ venv/
 env/
 ENV/
 
+# Environment secrets & credentials
+.env
+.env.*
+!.env.example
+
 # Testing & Coverage
 .pytest_cache/
 .coverage
@@ -23,6 +28,16 @@ htmlcov/
 *.log
 *.tmp
 *.temp
+logs/
+
+# Temporary audit reports, test screenshots & run artifacts
+reports/
+scratch/
+
+# Temporary uploads & local runtime artifacts
+uploads/
+data/uploads/
+*.bak
 
 # IDEs & OS files
 .vscode/
@@ -30,4 +45,3 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
-

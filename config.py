@@ -150,3 +150,24 @@ WEATHER_CACHE_TTL_SEC = 300  # 5-minute cache
 TELEMETRY_INTERVAL_SEC = 2.0
 BUFFER_SIZE = 120  # Keeps trailing 4 minutes of 2-second points
 
+# Cross-Origin Resource Sharing (CORS) Configuration
+# Supports comma-separated origin list from environment variable ALLOWED_ORIGINS or CORS_ALLOWED_ORIGINS.
+# Falls back to safe local development origins if not set.
+import os
+
+CORS_ORIGINS_ENV = os.getenv("ALLOWED_ORIGINS", os.getenv("CORS_ALLOWED_ORIGINS", "")).strip()
+if CORS_ORIGINS_ENV and CORS_ORIGINS_ENV != "*":
+    ALLOWED_ORIGINS = [orig.strip() for orig in CORS_ORIGINS_ENV.split(",") if orig.strip()]
+elif CORS_ORIGINS_ENV == "*":
+    ALLOWED_ORIGINS = ["*"]
+else:
+    ALLOWED_ORIGINS = [
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+        "http://127.0.0.1:8501",
+        "http://localhost:8501",
+        "null",
+    ]
+

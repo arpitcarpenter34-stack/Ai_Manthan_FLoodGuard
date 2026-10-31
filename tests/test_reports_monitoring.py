@@ -65,7 +65,22 @@ def test_stations_report_endpoint_and_filters():
     assert s0["ph_measurement"]["display"] == "N/A"
     assert s0["tds_measurement"]["display"] == "N/A"
     assert s0["turbidity_measurement"]["is_optical_estimate"] is True
-    assert "SIMULATED" in s0["sluice_gate_action"]
+    
+    # Verify s0 (NODE_RAU - natural open headwaters canal) has NOT CONFIGURED gate status per contract
+    assert s0["sluice_gate_action"] == "NOT CONFIGURED"
+    assert s0["outlet_status"] == "NOT CONFIGURED"
+    assert s0["outlet_code"] == "NOT_CONFIGURED"
+    assert s0["outlet_is_simulated"] is False
+
+    # Verify all 7 stations adhere to the drain-wise gate status contract
+    valid_outlet_codes = {"OPEN", "CLOSED", "PARTIALLY_OPEN", "BLOCKED", "NOT_CONFIGURED", "UNKNOWN"}
+    for stn in stations:
+        assert stn["outlet_code"] in valid_outlet_codes
+        assert "outlet_status" in stn
+        assert "sluice_gate_action" in stn
+        if stn.get("outlet_is_simulated"):
+            assert "SIMULATED" in stn["outlet_status"]
+            assert "SIMULATED" in stn["sluice_gate_action"]
 
     # Test filtering by quality_status
     res_pass = client.get("/api/v1/reports/stations?quality_status=PASS")

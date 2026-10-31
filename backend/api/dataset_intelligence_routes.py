@@ -4,7 +4,7 @@ Mounted under /api/v1/data-intel.
 """
 
 from typing import Dict, Any, Optional
-from fastapi import APIRouter, Query, Path
+from fastapi import APIRouter, Query, Path, HTTPException
 from pydantic import BaseModel, Field
 
 from backend.services.dataset_intelligence_service import dataset_intel_service
@@ -62,7 +62,10 @@ def get_distributions(
     dataset_id: str = Path(..., description="Dataset ID")
 ) -> Dict[str, Any]:
     """Computes statistical quartiles (min, 25%, median, 75%, max, mean, std) and histogram bins for numeric variables."""
-    return dataset_intel_service.get_dataset_distributions(dataset_id=dataset_id)
+    dist = dataset_intel_service.get_dataset_distributions(dataset_id=dataset_id)
+    if dist is None:
+        raise HTTPException(status_code=404, detail=f"Dataset '{dataset_id}' not found in registry.")
+    return dist
 
 
 @router.get("/{dataset_id}/correlations", summary="Pairwise feature correlation matrix")

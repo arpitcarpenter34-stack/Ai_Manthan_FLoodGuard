@@ -70,11 +70,12 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Cross-Origin Resource Sharing (CORS) for Streamlit frontend and external consumers
+# Environment-based Cross-Origin Resource Sharing (CORS) configuration
+allow_creds = "*" not in config.ALLOWED_ORIGINS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=config.ALLOWED_ORIGINS,
+    allow_credentials=allow_creds,
     allow_methods=["*"],
     allow_headers=["*"],
 )

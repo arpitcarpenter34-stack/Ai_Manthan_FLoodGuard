@@ -1,10 +1,14 @@
 # HYDRO-GUARD AI: Urban Drainage, Flash Flood & Water Quality Management System
-# Production Dependencies for Indore Prototype
+# Production Dependencies for Indore Prototype & Render Cloud Deployment
 
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# Core Web & API Framework
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 pydantic>=2.6.0
 requests>=2.31.0
+python-multipart>=0.0.9
 
 # GIS, Hydrology & Network Graph
 networkx>=3.2.0
@@ -14,16 +18,17 @@ shapely>=2.0.0
 folium>=0.16.0
 streamlit-folium>=0.18.0
 
-# Scientific, Audio & Computer Vision
+# Scientific, Audio & Headless Computer Vision (Cloud-Safe)
 numpy>=1.26.0
 scipy>=1.12.0
 pandas>=2.2.0
 matplotlib>=3.8.0
-opencv-python>=4.9.0
+opencv-python-headless>=4.9.0
 librosa>=0.10.1
 soundfile>=0.12.1
 
-# Machine Learning & Model Serialization
+# Machine Learning, Deep Learning (CPU-only) & Model Serialization
+torch>=2.2.0
 scikit-learn>=1.4.0
 joblib>=1.3.0
 
@@ -32,4 +37,3 @@ streamlit>=1.32.0
 qrcode>=7.4.2
 pillow>=10.2.0
 reportlab>=4.0.0
-
