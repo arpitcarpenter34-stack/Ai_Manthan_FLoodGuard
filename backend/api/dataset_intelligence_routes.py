@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from backend.services.dataset_intelligence_service import dataset_intel_service
 from backend.services.model_intel_service import model_intel_service
+from backend.services.weather_radar_service import weather_radar_service
 
 router = APIRouter(prefix="/api/v1/data-intel", tags=["Dataset Intelligence & Model Execution"])
 
@@ -30,16 +31,21 @@ def get_registry() -> Dict[str, Any]:
     return dataset_intel_service.get_dataset_registry()
 
 
-@router.get("/weather-radar", summary="Weather Radar & Precipitation Telemetry Intelligence")
-def get_weather_radar_info() -> Dict[str, Any]:
+@router.get("/weather-radar", summary="Weather Radar & Precipitation Telemetry Intelligence Dashboard Data")
+def get_weather_radar_info(
+    region: str = Query("indore", description="Catchment region: indore, pune_cwprs, eastbourne, aroostook")
+) -> Dict[str, Any]:
     """
-    Authentic weather radar audit:
-    - Reports exact Doppler radar grid availability (none fabricated).
-    - Lists ground precipitation telemetry (CWPRS, Blue Heart, Open-Meteo, CAMELS).
-    - Outlines optical flow nowcasting requirements.
-    - Provides real CWPRS monsoon cloudburst hyetograph profile.
+    Authentic weather radar intelligence & precipitation dashboard:
+    - Dynamic 5 KPIs (current rain, 24h accumulated, 1h forecast, 6h forecast, alert classification)
+    - Doppler radar availability audit (no fabrication)
+    - Multi-scale rainfall intensity analytics (6h, 12h, 24h)
+    - Hourly forecast and hydraulic drainage impact assessment
+    - Nowcast atmospheric outlook (wind, humidity, pressure, trend)
+    - Station and data health monitoring table (CWPRS, Blue Heart, CAMELS, Open-Meteo)
+    - Real historical storm hyetograph comparison
     """
-    return dataset_intel_service.get_weather_radar_intelligence()
+    return weather_radar_service.get_weather_radar_dashboard(region_key=region)
 
 
 @router.get("/{dataset_id}/observations", summary="Get actual dataset observation rows from disk")
@@ -65,6 +71,14 @@ def get_correlations(
 ) -> Dict[str, Any]:
     """Returns Pearson correlation coefficient matrix between numeric features."""
     return dataset_intel_service.get_dataset_correlations(dataset_id=dataset_id)
+
+
+@router.get("/{dataset_id}/intelligence", summary="Comprehensive Hydrological Intelligence Package (Task 4.1)")
+def get_dataset_intelligence(
+    dataset_id: str = Path(..., description="Dataset ID (e.g. blue_heart, camels_hourly, usgs_potomac, india_cwprs, bellinge_swmm, uwo_kearney)")
+) -> Dict[str, Any]:
+    """Returns comprehensive multi-dimensional intelligence package for the 6 white-theme explorer tabs."""
+    return dataset_intel_service.get_hydrological_intelligence(dataset_id=dataset_id)
 
 
 @router.post("/{dataset_id}/inference", summary="Feed actual dataset sample into compatible trained model")

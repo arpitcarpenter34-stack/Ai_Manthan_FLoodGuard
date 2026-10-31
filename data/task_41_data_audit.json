@@ -1,0 +1,150 @@
+{
+  "blue_heart": {
+    "status": "UNKNOWN"
+  },
+  "camels_hourly": {
+    "stations": [
+      {
+        "station_id": "01015800",
+        "file": "01015800_hourly_labeled.csv",
+        "records": 300259,
+        "columns": [
+          "timestamp",
+          "station_id",
+          "streamflow_m3s",
+          "streamflow_measured_mask",
+          "water_level_m",
+          "water_level_measured_mask",
+          "source_provenance",
+          "dq_dt_m3s_per_h",
+          "dh_dt_m_per_h",
+          "label_statistical_high_flow",
+          "label_statistical_high_flow_mask",
+          "label_observed_flood",
+          "official_flood_datum_available",
+          "official_flood_stage_m",
+          "label_official_flood_observed",
+          "label_official_flood_mask",
+          "label_gauge_exceedance",
+          "label_estimated_inundation_depth_m",
+          "label_estimated_inundation_depth_mask",
+          "label_inundation_depth_m",
+          "label_noaa_reported",
+          "label_noaa_event_type",
+          "label_noaa_flood_cause",
+          "noaa_reporting_confidence",
+          "label_satellite_flood",
+          "satellite_observation_status"
+        ]
+      },
+      {
+        "station_id": "01017000",
+        "file": "01017000_hourly_labeled.csv",
+        "records": 309019,
+        "columns": [
+          "timestamp",
+          "station_id",
+          "streamflow_m3s",
+          "streamflow_measured_mask",
+          "water_level_m",
+          "water_level_measured_mask",
+          "source_provenance",
+          "dq_dt_m3s_per_h",
+          "dh_dt_m_per_h",
+          "label_statistical_high_flow",
+          "label_statistical_high_flow_mask",
+          "label_observed_flood",
+          "official_flood_datum_available",
+          "official_flood_stage_m",
+          "label_official_flood_observed",
+          "label_official_flood_mask",
+          "label_gauge_exceedance",
+          "label_estimated_inundation_depth_m",
+          "label_estimated_inundation_depth_mask",
+          "label_inundation_depth_m",
+          "label_noaa_reported",
+          "label_noaa_event_type",
+          "label_noaa_flood_cause",
+          "noaa_reporting_confidence",
+          "label_satellite_flood",
+          "satellite_observation_status"
+        ]
+      },
+      {
+        "station_id": "01017060",
+        "file": "01017060_hourly_labeled.csv",
+        "records": 140995,
+        "columns": [
+          "timestamp",
+          "station_id",
+          "streamflow_m3s",
+          "streamflow_measured_mask",
+          "water_level_m",
+          "water_level_measured_mask",
+          "source_provenance",
+          "dq_dt_m3s_per_h",
+          "dh_dt_m_per_h",
+          "label_statistical_high_flow",
+          "label_statistical_high_flow_mask",
+          "label_observed_flood",
+          "official_flood_datum_available",
+          "official_flood_stage_m",
+          "label_official_flood_observed",
+          "label_official_flood_mask",
+          "label_gauge_exceedance",
+          "label_estimated_inundation_depth_m",
+          "label_estimated_inundation_depth_mask",
+          "label_inundation_depth_m",
+          "label_noaa_reported",
+          "label_noaa_event_type",
+          "label_noaa_flood_cause",
+          "noaa_reporting_confidence",
+          "label_satellite_flood",
+          "satellite_observation_status"
+        ]
+      },
+      {
+        "station_id": "01017290",
+        "file": "01017290_hourly_labeled.csv",
+        "records": 145388,
+        "columns": [
+          "timestamp",
+          "station_id",
+          "streamflow_m3s",
+          "streamflow_measured_mask",
+          "water_level_m",
+          "water_level_measured_mask",
+          "source_provenance",
+          "dq_dt_m3s_per_h",
+          "dh_dt_m_per_h",
+          "label_statistical_high_flow",
+          "label_statistical_high_flow_mask",
+          "label_observed_flood",
+          "official_flood_datum_available",
+          "official_flood_stage_m",
+          "label_official_flood_observed",
+          "label_official_flood_mask",
+          "label_gauge_exceedance",
+          "label_estimated_inundation_depth_m",
+          "label_estimated_inundation_depth_mask",
+          "label_inundation_depth_m",
+          "label_noaa_reported",
+          "label_noaa_event_type",
+          "label_noaa_flood_cause",
+          "noaa_reporting_confidence",
+          "label_satellite_flood",
+          "satellite_observation_status"
+        ]
+      }
+    ],
+    "total_records": 895661
+  },
+  "usgs_potomac": {},
+  "bellinge_swmm": {
+    "status": "SWMM_BENCHMARK_GROUND_TRUTH",
+    "inp_models": [
+      "BellingeSWMM_v021_nopervious.inp"
+    ],
+    "file_count": 48
+  }
+}
