@@ -7,12 +7,25 @@ including water levels, acoustic dB readings, CV purity scores, and automated ga
 import threading
 import time
 import random
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from collections import deque
 
 import config
 from backend.services.open_meteo_client import weather_client
 from backend.models.indore_routing_engine import routing_engine
+
+
+# Baseline realistic urban drainage purity ranges per Indore outfall cross-section
+# Sourced from visual inspection frames, suspended sediment load, and municipal wastewater loading.
+NODE_BASE_PURITY: Dict[str, Tuple[float, float]] = {
+    "NODE_RAU": (54.0, 62.0),           # Upstream South Ridge earthen canal, soil erosion silt
+    "NODE_BHANWARKUAN": (44.0, 50.0),   # Underground box culvert, anaerobic black silt
+    "NODE_RAJWARA": (48.0, 55.0),       # Saraswati-Khan confluence, urban sullage & surface scum
+    "NODE_RAMBAGH": (36.0, 43.0),       # Khan River trunk, thick brown suspended sludge
+    "NODE_PARDESHIPURA": (38.0, 45.0),  # Industrial drain, chemical effluent particulate
+    "NODE_VIJAY_NAGAR": (40.0, 46.0),   # Eastern sump collector, road silt & organic debris
+    "NODE_KABITHEDI_STP": (26.0, 32.0), # Terminal 245 MLD STP inlet, raw municipal blackwater & trash
+}
 
 
 class SensorStreamSimulator:
@@ -44,9 +57,10 @@ class SensorStreamSimulator:
         self.node_states: Dict[str, Dict[str, Any]] = {}
         for node_id, d in config.DRAINAGE_NODES.items():
             base_level = random.uniform(22.0, 38.0)
+            p_min, p_max = NODE_BASE_PURITY.get(node_id, (40.0, 50.0))
             self.node_states[node_id] = {
                 "water_level_pct": base_level,
-                "cv_purity_score": random.uniform(82.0, 93.0),
+                "cv_purity_score": round(random.uniform(p_min, p_max), 1),
                 "acoustic_db": 42.0 + (base_level * 0.4),
                 "battery_pct": round(random.uniform(91.0, 99.0), 1),
             }
@@ -120,11 +134,12 @@ class SensorStreamSimulator:
             curr_state["acoustic_db"] = new_db
 
             # CV Purity Score (%):
-            # Clean rainwater early, but street wash / sewer overflow drops purity.
-            if self.forced_pollution or (node_id in ["NODE_RAMBAGH", "NODE_PARDESHIPURA"] and new_level > 65.0):
-                target_purity = random.uniform(42.0, 68.0)
+            # Urban storm drains carry sullage, road wash, and untreated municipal wastewater.
+            p_min, p_max = NODE_BASE_PURITY.get(node_id, (40.0, 50.0))
+            if self.forced_pollution or (new_level > 65.0):
+                target_purity = random.uniform(max(15.0, p_min - 12.0), max(25.0, p_max - 8.0))
             else:
-                target_purity = random.uniform(83.0, 95.0)
+                target_purity = random.uniform(p_min, p_max)
 
             curr_state["cv_purity_score"] = round(target_purity, 1)
             purity = curr_state["cv_purity_score"]

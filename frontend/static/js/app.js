@@ -1494,8 +1494,24 @@ function renderStationCards(stations) {
   container.innerHTML = stations.map(s => {
     const badgeClass = s.quality_status === "PASS" ? "badge-pass" : (s.quality_status === "HOLD" ? "badge-hold" : "badge-fail");
     const imgSrc = s.has_annotated_frame ? `data:image/jpeg;base64,${s.annotated_frame_b64}` : s.image_preview_url;
-    const isOutletOpen = s.sluice_gate_action.includes("OPEN");
-    const isTreatmentReq = s.treatment_route.includes("REQUIRED");
+    const isTreatmentReq = s.treatment_route === "REQUIRED";
+    const outletCode = s.outlet_code || "NOT_CONFIGURED";
+    const outletStatus = s.outlet_status || s.sluice_gate_action || "NOT CONFIGURED";
+    const outletColor = s.outlet_color || s.sluice_gate_color || "#94a3b8";
+
+    let outletIconSvg = "";
+    if (outletCode === "OPEN") {
+      outletIconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${outletColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="16 10 10 16 8 13"></polyline></svg>`;
+    } else if (outletCode === "CLOSED") {
+      outletIconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${outletColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
+    } else if (outletCode === "PARTIALLY_OPEN") {
+      outletIconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${outletColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20z" fill="${outletColor}" fill-opacity="0.3"></path><line x1="12" y1="2" x2="12" y2="22"></line></svg>`;
+    } else if (outletCode === "BLOCKED") {
+      outletIconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${outletColor}" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`;
+    } else {
+      // NOT_CONFIGURED or UNKNOWN (Grey)
+      outletIconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${outletColor}" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
+    }
 
     return `
       <div class="rm-station-card">
@@ -1527,7 +1543,7 @@ function renderStationCards(stations) {
           <div class="rm-param-col">
             <div class="rm-param-name">Turbidity</div>
             <div class="rm-param-val" style="color: ${s.quality_color};">
-              <span class="val-icon-${s.quality_status.toLowerCase()}">${s.quality_status === 'PASS' ? '✓' : '▲'}</span>
+              <span class="val-icon-${s.quality_status.toLowerCase()}">${s.quality_status === 'PASS' ? '✓' : (s.quality_status === 'HOLD' ? '⚠️' : '✗')}</span>
               ${s.turbidity_measurement.value} NTU
             </div>
             <div class="rm-param-sub">≤ 25 NTU</div>
@@ -1547,14 +1563,9 @@ function renderStationCards(stations) {
 
         <!-- Sluice Indicators -->
         <div class="rm-status-indicator-row">
-          <div class="rm-status-indicator">
-            ${isOutletOpen ? `
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="16 10 10 16 8 13"></polyline></svg>
-              <span>Main Outlet: <b style="color: #10b981;">OPEN — SIMULATED</b></span>
-            ` : `
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              <span>Main Outlet: <b style="color: #ef4444;">BLOCKED — SIMULATED</b></span>
-            `}
+          <div class="rm-status-indicator" title="${s.outlet_details || outletStatus}">
+            ${outletIconSvg}
+            <span>Main Outlet: <b style="color: ${outletColor};">${outletStatus}</b></span>
           </div>
           <div class="rm-status-indicator">
             ${isTreatmentReq ? `
@@ -1814,8 +1825,11 @@ async function openStationModal(nodeId) {
             <b>${s.river_system}</b>
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px;">
-            <span style="color: #64748b;">Sluice Gate Action:</span>
-            <b style="color: ${s.sluice_gate_color};">${s.sluice_gate_action}</b>
+            <span style="color: #64748b;">Main Outlet / Sluice:</span>
+            <b style="color: ${s.outlet_color || s.sluice_gate_color};">${s.outlet_status || s.sluice_gate_action}</b>
+          </div>
+          <div style="font-size: 11px; color: #64748b; line-height: 1.4; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px;">
+            ${s.outlet_details || 'Gate telemetry status derived from municipal configuration.'}
           </div>
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px;">
             <span style="color: #64748b;">Cleaning Maintenance:</span>
@@ -1834,7 +1848,7 @@ async function openStationModal(nodeId) {
           </div>
           <div style="background: white; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
             <div style="font-size: 10px; color: #64748b;">Optical Turbidity</div>
-            <div style="font-size: 16px; font-weight: 800; color: #0f172a;">${s.turbidity_measurement.value} NTU</div>
+            <div style="font-size: 16px; font-weight: 800; color: ${s.turbidity_measurement.is_acceptable ? '#10b981' : '#ef4444'};">${s.turbidity_measurement.value} NTU</div>
             <div style="font-size: 9.5px; color: #94a3b8;">Pixel Contrast Est.</div>
           </div>
           <div style="background: white; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
@@ -1850,7 +1864,7 @@ async function openStationModal(nodeId) {
         </div>
       </div>
 
-      <div style="margin-top: 14px; font-size: 12px; line-height: 1.5; color: #334155; padding: 12px; background: #eff6ff; border-left: 4px solid #0084ff; border-radius: 6px;">
+      <div style="margin-top: 14px; font-size: 12px; line-height: 1.5; color: #334155; padding: 12px; background: #eff6ff; border-left: 4px solid ${s.quality_color}; border-radius: 6px;">
         <b>AI Assessment Verdict:</b> ${s.ai_assessment}
       </div>
 

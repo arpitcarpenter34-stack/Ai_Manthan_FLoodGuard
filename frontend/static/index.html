@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   
   <!-- Custom Modern Design System -->
-  <link rel="stylesheet" href="/static/css/style.css?v=4.3.1">
+  <link rel="stylesheet" href="/static/css/style.css?v=4.3.2">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
 </head>
@@ -1266,9 +1266,13 @@
             </select>
 
             <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
-              <option value="ALL">Route Status</option>
-              <option value="OPEN">Main Outlet: OPEN</option>
-              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+              <option value="ALL">All Gate / Outlet States</option>
+              <option value="OPEN">OPEN (Green)</option>
+              <option value="CLOSED">CLOSED (Blue)</option>
+              <option value="PARTIALLY_OPEN">PARTIALLY OPEN (Amber)</option>
+              <option value="BLOCKED">BLOCKED (Red)</option>
+              <option value="NOT_CONFIGURED">NOT CONFIGURED (Grey)</option>
+              <option value="UNKNOWN">STATUS UNKNOWN (Grey)</option>
             </select>
 
             <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
@@ -3061,9 +3065,13 @@
             </select>
 
             <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
-              <option value="ALL">Route Status</option>
-              <option value="OPEN">Main Outlet: OPEN</option>
-              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+              <option value="ALL">All Gate / Outlet States</option>
+              <option value="OPEN">OPEN (Green)</option>
+              <option value="CLOSED">CLOSED (Blue)</option>
+              <option value="PARTIALLY_OPEN">PARTIALLY OPEN (Amber)</option>
+              <option value="BLOCKED">BLOCKED (Red)</option>
+              <option value="NOT_CONFIGURED">NOT CONFIGURED (Grey)</option>
+              <option value="UNKNOWN">STATUS UNKNOWN (Grey)</option>
             </select>
 
             <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
@@ -3321,9 +3329,13 @@
             </select>
 
             <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
-              <option value="ALL">Route Status</option>
-              <option value="OPEN">Main Outlet: OPEN</option>
-              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+              <option value="ALL">All Gate / Outlet States</option>
+              <option value="OPEN">OPEN (Green)</option>
+              <option value="CLOSED">CLOSED (Blue)</option>
+              <option value="PARTIALLY_OPEN">PARTIALLY OPEN (Amber)</option>
+              <option value="BLOCKED">BLOCKED (Red)</option>
+              <option value="NOT_CONFIGURED">NOT CONFIGURED (Grey)</option>
+              <option value="UNKNOWN">STATUS UNKNOWN (Grey)</option>
             </select>
 
             <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
@@ -3581,9 +3593,13 @@
             </select>
 
             <select id="rm-filter-route" class="rm-select" onchange="onReportsFilterChange()">
-              <option value="ALL">Route Status</option>
-              <option value="OPEN">Main Outlet: OPEN</option>
-              <option value="BLOCKED">Main Outlet: BLOCKED</option>
+              <option value="ALL">All Gate / Outlet States</option>
+              <option value="OPEN">OPEN (Green)</option>
+              <option value="CLOSED">CLOSED (Blue)</option>
+              <option value="PARTIALLY_OPEN">PARTIALLY OPEN (Amber)</option>
+              <option value="BLOCKED">BLOCKED (Red)</option>
+              <option value="NOT_CONFIGURED">NOT CONFIGURED (Grey)</option>
+              <option value="UNKNOWN">STATUS UNKNOWN (Grey)</option>
             </select>
 
             <input type="date" id="rm-filter-date" class="rm-select" onchange="onReportsFilterChange()" title="Filter by Inspection Date">
@@ -3671,7 +3687,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
   <!-- Main Client Application JS -->
-  <script src="/static/js/app.js?v=4.3.1"></script>
+  <script src="/static/js/app.js?v=4.3.3"></script>
 
   <!-- Cinematic ZIP-Based Scroll Animation JS -->
   <script src="/static/js/hero_scroll_animation.js?v=1.1"></script>
