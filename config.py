@@ -178,6 +178,7 @@ else:
         "http://localhost:3000",
         "http://127.0.0.1:8501",
         "http://localhost:8501",
+        "https://ai-manthan-floodguard.onrender.com",
         "null",
     ]
 

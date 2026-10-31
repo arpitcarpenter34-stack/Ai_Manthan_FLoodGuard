@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://ai-manthan-floodguard.onrender.com/api/:match*"
+    },
+    {
+      "source": "/samples/:match*",
+      "destination": "https://ai-manthan-floodguard.onrender.com/samples/:match*"
+    },
+    {
+      "source": "/health",
+      "destination": "https://ai-manthan-floodguard.onrender.com/health"
+    },
+    {
+      "source": "/static/(.*)",
+      "destination": "/$1"
+    },
+    {
+      "source": "/app",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -75,6 +75,7 @@ allow_creds = "*" not in config.ALLOWED_ORIGINS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config.ALLOWED_ORIGINS,
+    allow_origin_regex=r"^https?:\/\/.*\.vercel\.app$",
     allow_credentials=allow_creds,
     allow_methods=["*"],
     allow_headers=["*"],

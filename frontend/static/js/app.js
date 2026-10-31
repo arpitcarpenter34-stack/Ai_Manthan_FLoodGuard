@@ -5,7 +5,46 @@
  * Tailored for Indore Municipal Corporation (IMC)
  */
 
-const API_BASE = "";
+/**
+ * Dynamic API Base URL resolution:
+ * - In local development (localhost / 127.0.0.1 on port 8000), use same-origin ("").
+ * - In local dev with separate dev servers (e.g. port 3000, 5173), fallback to "http://127.0.0.1:8000".
+ * - In production (e.g., hosted on Vercel or external domain), connect to live Render FastAPI backend.
+ * - Allows explicit override via window.__API_BASE__.
+ */
+const getApiBaseUrl = () => {
+  if (typeof window !== "undefined" && window.__API_BASE__) {
+    return window.__API_BASE__.replace(/\/+$/, "");
+  }
+  if (typeof window !== "undefined" && window.location) {
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1" || hostname === "0.0.0.0" || !hostname;
+    if (isLocal) {
+      if (port === "8000") {
+        return ""; // Served directly by local FastAPI
+      }
+      return "http://127.0.0.1:8000"; // Local dev server pointing to local backend
+    }
+  }
+  return "https://ai-manthan-floodguard.onrender.com";
+};
+
+const API_BASE = getApiBaseUrl();
+
+/**
+ * Resolves backend asset paths (e.g. /samples/audio/..., /samples/images/...).
+ * Ensures asset URLs load from Render in production or local backend in development.
+ */
+function resolveBackendUrl(url) {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:") || url.startsWith("blob:")) {
+    return url;
+  }
+  const base = (typeof API_BASE !== "undefined" && API_BASE) ? API_BASE : "";
+  if (!base) return url;
+  return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
+}
 
 // Global Application State
 const appState = {
@@ -275,7 +314,7 @@ function initAudioPlayer() {
   appState.audioElement = document.getElementById("native-audio-player");
   if (!appState.audioElement) return;
 
-  appState.audioElement.src = "/samples/audio/moderate_surge_60pct.wav";
+  appState.audioElement.src = resolveBackendUrl("/samples/audio/moderate_surge_60pct.wav");
 
   appState.audioElement.addEventListener("timeupdate", () => {
     if (!appState.audioElement.duration) return;
@@ -496,7 +535,7 @@ function renderAcousticResult(data, filename) {
 
 function resetSoundTester() {
   document.getElementById("input-audio-upload").value = "";
-  loadSampleAudio("sample_medium.mp3", 60.0, "/samples/audio/moderate_surge_60pct.wav");
+  loadSampleAudio("sample_medium.mp3", 60.0, resolveBackendUrl("/samples/audio/moderate_surge_60pct.wav"));
 }
 
 // ==============================================================================
@@ -507,7 +546,7 @@ function loadSampleImage(sampleKey, filename, imagePath) {
   document.getElementById("purity-preview-filename").textContent = filename;
   
   const imgEl = document.getElementById("purity-preview-img");
-  if (imgEl) imgEl.src = imagePath;
+  if (imgEl) imgEl.src = resolveBackendUrl(imagePath);
 
   runImageAnalysisWithSample(sampleKey, filename);
 }
@@ -610,7 +649,7 @@ function renderPurityResult(data, filename) {
 
 function resetImageTester() {
   document.getElementById("input-image-upload").value = "";
-  loadSampleImage("clean_rainwater", "clean_rainwater.jpg", "/samples/images/clean_rainwater.jpg");
+  loadSampleImage("clean_rainwater", "clean_rainwater.jpg", resolveBackendUrl("/samples/images/clean_rainwater.jpg"));
 }
 
 // ==============================================================================
@@ -644,7 +683,7 @@ function initLeafletMap() {
   }, 250);
 
   // Fetch real OpenStreetMap waterways GeoJSON from backend
-  fetch("/api/v1/flood/topology")
+  fetch(`${API_BASE}/api/v1/flood/topology`)
     .then((res) => res.json())
     .then((data) => {
       // 1. Render Verified Real OSM Waterways
@@ -1493,7 +1532,7 @@ function renderStationCards(stations) {
 
   container.innerHTML = stations.map(s => {
     const badgeClass = s.quality_status === "PASS" ? "badge-pass" : (s.quality_status === "HOLD" ? "badge-hold" : "badge-fail");
-    const imgSrc = s.has_annotated_frame ? `data:image/jpeg;base64,${s.annotated_frame_b64}` : s.image_preview_url;
+    const imgSrc = s.has_annotated_frame ? `data:image/jpeg;base64,${s.annotated_frame_b64}` : resolveBackendUrl(s.image_preview_url);
     const isTreatmentReq = s.treatment_route === "REQUIRED";
     const outletCode = s.outlet_code || "NOT_CONFIGURED";
     const outletStatus = s.outlet_status || s.sluice_gate_action || "NOT CONFIGURED";
@@ -1523,7 +1562,7 @@ function renderStationCards(stations) {
 
         <!-- 16:9 Image Preview -->
         <div class="rm-card-img-wrap" onclick="openStationModal('${s.node_id}')">
-          <img src="${imgSrc}" class="rm-card-img" alt="${s.station_name}" onerror="this.src='/samples/images/clean_rainwater.jpg'">
+          <img src="${imgSrc}" class="rm-card-img" alt="${s.station_name}" onerror="this.src='${resolveBackendUrl('/samples/images/clean_rainwater.jpg')}'">
           <div class="rm-img-badge">${s.has_annotated_frame ? 'Annotated Frame' : 'Sample Image'}</div>
         </div>
 
@@ -1683,7 +1722,7 @@ function renderFiltrationCards(facilities) {
       </div>
 
       <div class="rm-card-img-wrap" style="height: 150px;">
-        <img src="${f.image_url}" class="rm-card-img" alt="${f.name}" onerror="this.src='/samples/images/clean_rainwater.jpg'">
+        <img src="${resolveBackendUrl(f.image_url)}" class="rm-card-img" alt="${f.name}" onerror="this.src='${resolveBackendUrl('/samples/images/clean_rainwater.jpg')}'">
         <div class="rm-img-badge">${f.facility_type}</div>
       </div>
 
@@ -1793,7 +1832,7 @@ async function openStationModal(nodeId) {
     const s = data.station;
     if (titleEl) titleEl.textContent = `${s.display_code} • ${s.station_name} (Inspection Certificate)`;
 
-    const imgSrc = s.has_annotated_frame ? `data:image/jpeg;base64,${s.annotated_frame_b64}` : s.image_preview_url;
+    const imgSrc = s.has_annotated_frame ? `data:image/jpeg;base64,${s.annotated_frame_b64}` : resolveBackendUrl(s.image_preview_url);
 
     bodyEl.innerHTML = `
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -2121,26 +2160,26 @@ async function loadModelIntelligenceDashboard() {
   try {
     // 1. Fetch Lineage
     if (!window.miState.lineageData) {
-      const resp = await fetch("/api/v1/model-intel/lineage");
+      const resp = await fetch(`${API_BASE}/api/v1/model-intel/lineage`);
       if (resp.ok) window.miState.lineageData = await resp.json();
     }
     renderLineageSection(window.miState.lineageData);
 
     // 2. Fetch Training Curves
     if (!window.miState.trainingData) {
-      const resp = await fetch("/api/v1/model-intel/training-curves");
+      const resp = await fetch(`${API_BASE}/api/v1/model-intel/training-curves`);
       if (resp.ok) window.miState.trainingData = await resp.json();
     }
 
     // 3. Fetch Evaluation & Residuals
     if (!window.miState.evalData) {
-      const resp = await fetch("/api/v1/model-intel/evaluation");
+      const resp = await fetch(`${API_BASE}/api/v1/model-intel/evaluation`);
       if (resp.ok) window.miState.evalData = await resp.json();
     }
 
     // 4. Fetch Feature Importance & XAI
     if (!window.miState.importanceData) {
-      const resp = await fetch("/api/v1/model-intel/feature-importance");
+      const resp = await fetch(`${API_BASE}/api/v1/model-intel/feature-importance`);
       if (resp.ok) window.miState.importanceData = await resp.json();
     }
 
@@ -2151,7 +2190,7 @@ async function loadModelIntelligenceDashboard() {
 
     // 6. Dataset Explorer Data
     if (!window.miState.explorerData) {
-      const resp = await fetch("/api/v1/model-intel/dataset-explorer");
+      const resp = await fetch(`${API_BASE}/api/v1/model-intel/dataset-explorer`);
       if (resp.ok) window.miState.explorerData = await resp.json();
     }
 
@@ -2659,7 +2698,7 @@ function renderExplainabilitySection(data) {
 // -----------------------------------------------------------------------------
 async function fetchWhatIfData(rain, sat, pumps, cumul) {
   try {
-    const resp = await fetch("/api/v1/model-intel/what-if", {
+    const resp = await fetch(`${API_BASE}/api/v1/model-intel/what-if`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -2884,7 +2923,7 @@ async function loadDatasetExplorer(datasetId) {
   try {
     let intel = window.deState.cachedIntel[dsId];
     if (!intel) {
-      const res = await fetch(`/api/v1/data-intel/${dsId}/intelligence`);
+      const res = await fetch(`${API_BASE}/api/v1/data-intel/${dsId}/intelligence`);
       if (!res.ok) throw new Error("Failed to fetch dataset intelligence");
       intel = await res.json();
       window.deState.cachedIntel[dsId] = intel;
@@ -3850,7 +3889,7 @@ async function runLiveCheckpointInference() {
   area.innerHTML = `<div style="padding:16px; color:#0284c7; text-align:center;">Executing neural inference on sample sequence #${sIdx}...</div>`;
 
   try {
-    const res = await fetch(`/api/v1/data-intel/${dsId}/inference`, {
+    const res = await fetch(`${API_BASE}/api/v1/data-intel/${dsId}/inference`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sample_index: sIdx })
@@ -3908,7 +3947,7 @@ window.wrState = {
 async function loadWeatherRadarIntelligence() {
   try {
     const region = window.wrState.activeRegion || "indore";
-    const res = await fetch(`/api/v1/data-intel/weather-radar?region=${region}`);
+    const res = await fetch(`${API_BASE}/api/v1/data-intel/weather-radar?region=${region}`);
     if (!res.ok) return;
     const data = await res.json();
     window.wrState.cachedData = data;
