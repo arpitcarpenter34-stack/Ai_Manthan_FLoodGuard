@@ -7,7 +7,9 @@ Uses Python's standard library `sqlite3` with parameterized queries and graceful
 
 import json
 import logging
+import shutil
 import sqlite3
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,22 +18,59 @@ from typing import Dict, Any, List, Optional, Tuple
 import config
 
 logger = logging.getLogger("hydro_guard.db")
+_init_lock = threading.Lock()
 
 
 class DatabaseManager:
     """Thread-safe SQLite database manager for HYDRO-GUARD AI."""
 
     def __init__(self, db_path: Optional[Path] = None):
-        self.db_path = db_path or config.DB_PATH
-        # Ensure parent directory exists
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        self.db_path = Path(db_path) if db_path else config.DB_PATH
+        self._ensure_database_ready()
         self.init_db()
 
+    def _ensure_database_ready(self) -> None:
+        """
+        Thread-safe verification and initialization of the database file.
+        If a persistent storage path is configured (different from seed) and the target
+        database does not exist yet, atomically initialize it from the repository seed database.
+        Never overwrites an existing persistent database on restart or redeployment.
+        """
+        with _init_lock:
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
+
+            target_abs = str(self.db_path.absolute())
+            seed_abs = str(config.SEED_DB_PATH.absolute())
+
+            # Only copy seed if target is at a different location and does not exist yet
+            if target_abs != seed_abs and not self.db_path.exists():
+                if config.SEED_DB_PATH.exists():
+                    logger.info(
+                        f"Initializing persistent database at {self.db_path} from seed {config.SEED_DB_PATH}"
+                    )
+                    temp_init = self.db_path.with_suffix(".tmp_init")
+                    try:
+                        shutil.copy2(str(config.SEED_DB_PATH), str(temp_init))
+                        temp_init.replace(self.db_path)
+                        logger.info(f"Successfully initialized persistent database at {self.db_path}")
+                    except Exception as e:
+                        logger.error(f"Failed to copy seed database to {self.db_path}: {e}")
+                        if temp_init.exists():
+                            try:
+                                temp_init.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+                else:
+                    logger.warning(
+                        f"Seed database not found at {config.SEED_DB_PATH}. Will initialize clean schema."
+                    )
+
     def _get_connection(self) -> sqlite3.Connection:
-        """Create a new SQLite connection with foreign keys enabled and row factory."""
-        conn = sqlite3.connect(str(self.db_path), timeout=10.0, check_same_thread=False)
+        """Create a new SQLite connection with foreign keys enabled, busy timeout, and row factory."""
+        conn = sqlite3.connect(str(self.db_path), timeout=30.0, check_same_thread=False)
         conn.row_factory = sqlite3.Row
         conn.execute("PRAGMA foreign_keys = ON;")
+        conn.execute("PRAGMA busy_timeout = 30000;")
         return conn
 
     def init_db(self) -> None:
@@ -320,12 +359,17 @@ class DatabaseManager:
 
                 file_size_bytes = self.db_path.stat().st_size if self.db_path.exists() else 0
 
+                target_abs = str(self.db_path.absolute())
+                seed_abs = str(config.SEED_DB_PATH.absolute())
+
                 return {
                     "database_file": str(self.db_path),
+                    "seed_database_file": str(config.SEED_DB_PATH),
                     "file_exists": self.db_path.exists(),
                     "file_size_bytes": file_size_bytes,
                     "total_analysis_records": analyses_count,
                     "total_telemetry_records": telemetry_count,
+                    "is_persistent_custom_path": target_abs != seed_abs,
                     "status": "HEALTHY",
                 }
         except Exception as e:

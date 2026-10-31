@@ -4,6 +4,7 @@ Models Indore's south-to-north elevation drop, hydrological parameters, river to
 and operational threshold rules.
 """
 
+import os
 from pathlib import Path
 
 # Base Paths
@@ -12,10 +13,19 @@ DATA_DIR = BASE_DIR / "data"
 GIS_DIR = DATA_DIR / "indore_gis"
 SAMPLE_AUDIO_DIR = DATA_DIR / "sample_audio"
 SAMPLE_IMAGE_DIR = DATA_DIR / "sample_images"
-DB_PATH = DATA_DIR / "hydro_guard.db"
 
-# Ensure data directories exist
-for path in [DATA_DIR, GIS_DIR, SAMPLE_AUDIO_DIR, SAMPLE_IMAGE_DIR]:
+# Centralized SQLite Database Path Configuration
+# Default: data/hydro_guard.db (repository seed database)
+# Persistent Mount (e.g. Render Persistent Disk): Set HYDRO_GUARD_DB_PATH=/var/data/hydro_guard.db
+SEED_DB_PATH = DATA_DIR / "hydro_guard.db"
+_env_db_path = os.getenv("HYDRO_GUARD_DB_PATH", "").strip()
+if _env_db_path:
+    DB_PATH = Path(_env_db_path)
+else:
+    DB_PATH = SEED_DB_PATH
+
+# Ensure data directories and database parent directory exist
+for path in [DATA_DIR, GIS_DIR, SAMPLE_AUDIO_DIR, SAMPLE_IMAGE_DIR, DB_PATH.parent]:
     path.mkdir(parents=True, exist_ok=True)
 
 # Geographic Coordinates & Topography for Indore, Madhya Pradesh

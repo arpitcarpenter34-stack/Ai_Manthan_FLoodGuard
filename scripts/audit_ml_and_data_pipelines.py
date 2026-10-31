@@ -216,8 +216,8 @@ def audit_ml_and_data():
         results["datasets"].append(d_info)
 
     # 6. Database Audit (SQLite)
-    print("\n--- Auditing SQLite Database (data/hydro_guard.db) ---")
-    db_path = PROJECT_ROOT / "data" / "hydro_guard.db"
+    print(f"\n--- Auditing SQLite Database ({config.DB_PATH}) ---")
+    db_path = config.DB_PATH
     if db_path.exists():
         db_size_mb = round(db_path.stat().st_size / (1024 * 1024), 2)
         try:
