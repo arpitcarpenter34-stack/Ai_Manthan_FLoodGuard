@@ -64,24 +64,12 @@ const SCREEN_TITLES = {
     subtitle: "Computer vision colorimetric screening enforcing the 80% Khan River Purity Rule before discharge"
   },
   map: {
-    title: "Indore Flood Map View",
-    subtitle: "Interactive GIS topological drainage and river reaches across Indore's 45m elevation gradient"
-  },
-  prediction: {
-    title: "Dual-Engine Flood Prediction",
-    subtitle: "Simulate urban runoff using physics-based Manning routing coupled with Random Forest ML"
-  },
-  simulator: {
-    title: "Smart Pump & Sluice Gate Simulator",
-    subtitle: "Simulate urban storm surge mitigation and automated dual-gate Khan River diversion"
+    title: "Spatial Drainage GIS View",
+    subtitle: "Interactive GIS topological drainage and river reaches across the elevation gradient"
   },
   reports: {
     title: "Reports & Monitoring",
     subtitle: "Water Quality • Drainage • Filtration • Area Intelligence"
-  },
-  history: {
-    title: "History & Persistent Audit Logs",
-    subtitle: "Query persistent SQLite analysis history permanently stored in data/hydro_guard.db"
   },
   'model-intel': {
     title: "AI Model Intelligence & Scientific Explainability",
@@ -150,7 +138,7 @@ function navigateToHome(updateHash = true) {
 }
 
 function navigateTo(screenId, updateHash = true) {
-  if (!SCREEN_TITLES[screenId]) screenId = "sound";
+  if (!SCREEN_TITLES[screenId]) screenId = "explorer";
   
   appState.currentView = "app";
   appState.currentScreen = screenId;
@@ -197,13 +185,6 @@ function navigateTo(screenId, updateHash = true) {
     setTimeout(loadStreetInundationPanel, 200);
   } else if (screenId === "reports") {
     loadReportsAndMonitoring();
-  } else if (screenId === "history") {
-    fetchHistoryLogs();
-    fetchDbStats();
-  } else if (screenId === "prediction") {
-    runDualPrediction();
-  } else if (screenId === "simulator") {
-    loadSimulatorOptimization();
   } else if (screenId === "model-intel") {
     loadModelIntelligenceDashboard();
   } else if (screenId === "explorer") {

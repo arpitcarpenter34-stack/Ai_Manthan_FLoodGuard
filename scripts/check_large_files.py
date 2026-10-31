@@ -18,3 +18,4 @@ large_files.sort(key=lambda x: x[1], reverse=True)
 print(f"Total files > 10MB: {len(large_files)}")
 for fname, sz in large_files[:20]:
     print(f"  {sz:.2f} MB : {fname}")
+
