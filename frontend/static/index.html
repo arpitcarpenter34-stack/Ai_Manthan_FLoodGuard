@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   
   <!-- Custom Modern Design System -->
-  <link rel="stylesheet" href="/static/css/style.css?v=4.3.4">
+  <link rel="stylesheet" href="/static/css/style.css?v=4.3.5">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
 </head>
@@ -198,17 +198,17 @@
          FEATURE SELECTION SECTION (7 Core Features Options)
          ========================================================================= -->
     <section id="features-section" class="homepage-features-section">
-      <div class="section-head">
+      <div class="section-head hero-panel">
         <span class="section-head-badge">Operational System Suite</span>
         <h2 class="section-head-title">Select an Application Module to Open</h2>
         <p class="section-head-subtitle">
-          Seamlessly choose from real-time GIS spatial mapping, dual-engine flood prediction, edge CV water purity screening, dark sewer acoustic analysis, or SQLite audit history.
+          Seamlessly choose from real-time GIS spatial mapping, AI model intelligence, edge CV water purity screening, dark sewer acoustic analysis, or SQLite audit history.
         </p>
       </div>
 
       <div class="feature-cards-grid">
         <!-- Feature 1: Overview Dashboard -->
-        <div class="feature-launch-card" onclick="navigateTo('sound')">
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateToHome()">
           <div class="flc-header">
             <div class="flc-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -233,8 +233,108 @@
           </div>
         </div>
 
-        <!-- Feature 2: Indore Flood Map -->
-        <div class="feature-launch-card" onclick="navigateTo('map')">
+        <!-- Feature 2: Dataset Explorer -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('explorer')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <span class="flc-badge">8 Datasets & DL</span>
+          </div>
+          <h3 class="flc-title">Dataset Explorer</h3>
+          <p class="flc-desc">
+            Multi-basin telemetry datasets, ground-truth observations, statistical distributions, and direct deep learning inference.
+          </p>
+          <div class="flc-action">
+            <span>Open Explorer</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 3: Weather & Rainfall Monitoring -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('weather-radar')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+                <line x1="12" y1="2" x2="12" y2="6"></line>
+                <line x1="12" y1="18" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <span class="flc-badge">Doppler & Hyetograph</span>
+          </div>
+          <h3 class="flc-title">Weather & Rainfall Monitoring</h3>
+          <p class="flc-desc">
+            Real-time atmospheric polling, Doppler radar audit, cloudburst hyetograph simulation, and ground rain telemetry.
+          </p>
+          <div class="flc-action">
+            <span>Open Weather Radar</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 4: Flood Risk Drivers & Explainable AI -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('drivers')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <span class="flc-badge">Hydrological XAI</span>
+          </div>
+          <h3 class="flc-title">Flood Risk Drivers & Explainable AI</h3>
+          <p class="flc-desc">
+            Hydrological feature attribution, permutation importance, temporal lag decay, and spatio-temporal Jacobian sensitivity.
+          </p>
+          <div class="flc-action">
+            <span>Analyze Drivers</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 5: AI Model Intelligence -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('model-intel')">
+          <div class="flc-header">
+            <div class="flc-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <span class="flc-badge">ST-GNN Architecture</span>
+          </div>
+          <h3 class="flc-title">AI Model Intelligence</h3>
+          <p class="flc-desc">
+            Dataset lineage, training dynamics, loss convergence, residual diagnostics, permutation XAI, and what-if simulation lab.
+          </p>
+          <div class="flc-action">
+            <span>Inspect AI Models</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Feature 6: Spatial Drainage GIS -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('map')">
           <div class="flc-header">
             <div class="flc-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -245,12 +345,12 @@
             </div>
             <span class="flc-badge">GIS Topography</span>
           </div>
-          <h3 class="flc-title">Indore Flood Map</h3>
+          <h3 class="flc-title">Spatial Drainage GIS</h3>
           <p class="flc-desc">
-            Interactive Leaflet GIS map illustrating the natural 45m gravity elevation drop (Rau 560m to Kabithedi 515m) and 7 real-time monitored drainage sump nodes.
+            Interactive Leaflet GIS map illustrating the natural 45m gravity elevation drop and 7 real-time monitored drainage sump nodes.
           </p>
           <div class="flc-action">
-            <span>Open Map View</span>
+            <span>Open GIS Map</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -258,31 +358,8 @@
           </div>
         </div>
 
-        <!-- Feature 3: Flood Prediction -->
-        <div class="feature-launch-card" onclick="navigateTo('prediction')">
-          <div class="flc-header">
-            <div class="flc-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <span class="flc-badge">Physics + ML (92.7%)</span>
-          </div>
-          <h3 class="flc-title">Flood Prediction</h3>
-          <p class="flc-desc">
-            Dual-engine hydraulic forecast: Manning channel routing calculates travel lag times while a Random Forest model predicts deluge inundation probabilities.
-          </p>
-          <div class="flc-action">
-            <span>Run Prediction</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Feature 4: Water Image Purity Tester -->
-        <div class="feature-launch-card" onclick="navigateTo('purity')">
+        <!-- Feature 7: Water Quality & Purity Analysis -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('purity')">
           <div class="flc-header">
             <div class="flc-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -293,12 +370,12 @@
             </div>
             <span class="flc-badge">OpenCV 80% Rule</span>
           </div>
-          <h3 class="flc-title">Water Image Purity Tester</h3>
+          <h3 class="flc-title">Water Quality & Purity Analysis</h3>
           <p class="flc-desc">
-            Computer vision colorimetric and turbidity screening. Enforces the mandatory 80% Khan River Purity Rule to divert toxic sludge to the 245 MLD STP.
+            Computer vision colorimetric screening enforcing the mandatory 80% Khan River Purity Rule before environmental discharge.
           </p>
           <div class="flc-action">
-            <span>Open Purity Tester</span>
+            <span>Analyze Water Quality</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -306,8 +383,8 @@
           </div>
         </div>
 
-        <!-- Feature 5: Sound Level Tester -->
-        <div class="feature-launch-card" onclick="navigateTo('sound')">
+        <!-- Feature 8: Acoustic Sewer Monitoring -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('sound')">
           <div class="flc-header">
             <div class="flc-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -317,14 +394,14 @@
                 <line x1="8" y1="23" x2="16" y2="23"></line>
               </svg>
             </div>
-            <span class="flc-badge">Acoustic AI</span>
+            <span class="flc-badge">Acoustic Audio AI</span>
           </div>
-          <h3 class="flc-title">Sound Level Tester</h3>
+          <h3 class="flc-title">Acoustic Sewer Monitoring</h3>
           <p class="flc-desc">
-            Upload and analyze drain/sewer hydrophone audio recordings to estimate water levels in dark underground culverts where optical cameras fail.
+            Analyze hydrophone drain and sewer audio to estimate water stage in dark underground culverts where optical cameras fail.
           </p>
           <div class="flc-action">
-            <span>Open Sound Tester</span>
+            <span>Monitor Sewer Audio</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -332,32 +409,8 @@
           </div>
         </div>
 
-        <!-- Feature 6: Pump & Sluice Gate Simulator -->
-        <div class="feature-launch-card" onclick="navigateTo('simulator')">
-          <div class="flc-header">
-            <div class="flc-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
-              </svg>
-            </div>
-            <span class="flc-badge">Gate Actuation</span>
-          </div>
-          <h3 class="flc-title">Pump & Sluice Simulator</h3>
-          <p class="flc-desc">
-            Simulate monsoonal cloudbursts, surge multipliers, and test automated sluice gate diversion to protect the historic Rajwada confluence and Khan River.
-          </p>
-          <div class="flc-action">
-            <span>Open Simulator</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Feature 7: History & Logs -->
-        <div class="feature-launch-card" onclick="navigateTo('history')">
+        <!-- Feature 9: Reports & Audit -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('reports')">
           <div class="flc-header">
             <div class="flc-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -368,14 +421,14 @@
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
             </div>
-            <span class="flc-badge">SQLite Persistence</span>
+            <span class="flc-badge">Audit & Monitoring</span>
           </div>
-          <h3 class="flc-title">History & Logs</h3>
+          <h3 class="flc-title">Reports & Audit</h3>
           <p class="flc-desc">
-            Review permanent SQLite database records stored in data/hydro_guard.db. Audit all past image and audio analyses with one-click CSV export.
+            Comprehensive municipal reports, station water quality metrics, filtration units, and permanent SQLite audit log verification.
           </p>
           <div class="flc-action">
-            <span>View Audit Logs</span>
+            <span>View Reports & Audit</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>

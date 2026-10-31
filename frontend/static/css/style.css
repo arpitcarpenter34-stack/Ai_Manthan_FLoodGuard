@@ -540,13 +540,14 @@ a {
   position: relative;
 }
 
-.section-head {
+.section-head,
+.hero-panel {
   text-align: center;
   margin-bottom: 36px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 24px;
   padding: 26px 32px;
   max-width: 840px;
@@ -591,11 +592,15 @@ a {
   gap: 24px;
 }
 
+/* Dashboard glass cards */
+.dashboard-card,
+.module-card,
+.hero-panel,
 .feature-launch-card {
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-lg);
   padding: 28px 24px;
   cursor: pointer;
@@ -619,10 +624,13 @@ a {
   transition: opacity 0.3s ease;
 }
 
-.feature-launch-card:hover {
+.feature-launch-card:hover,
+.dashboard-card:hover,
+.module-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0, 132, 255, 0.4);
-  box-shadow: 0 16px 36px rgba(0, 132, 255, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(0, 132, 255, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 132, 255, 0.14);
 }
 
 .feature-launch-card:hover::before {
@@ -640,8 +648,8 @@ a {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: rgba(239, 246, 255, 0.75);
+  border: 1px solid rgba(191, 219, 254, 0.8);
   color: #0084ff;
   display: flex;
   align-items: center;
@@ -658,9 +666,9 @@ a {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 50px;
-  background: #f1f5f9;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: rgba(241, 245, 249, 0.75);
+  color: #334155;
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .flc-title {
@@ -672,7 +680,7 @@ a {
 
 .flc-desc {
   font-size: 13.5px;
-  color: #64748b;
+  color: #475569;
   line-height: 1.6;
   margin-bottom: 22px;
   flex-grow: 1;
