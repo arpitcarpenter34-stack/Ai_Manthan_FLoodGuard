@@ -79,3 +79,4 @@ for filename, col_idx, ys, ye in card_names:
     print(f"Extracted {filename}: [{y1}:{y2}, {x1}:{x2}] -> saved {out_path} ({upscaled.shape})")
 
 print("All 8 drain photographs extracted successfully!")
+

@@ -1,0 +1,713 @@
+{
+  "camelsh_netcdf": {
+    "01013500_hourly.nc": {
+      "size_bytes": 3427098,
+      "size_mb": 3.27,
+      "variables": {
+        "time": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float64",
+          "units": "hours since 1980-01-01 00:00:00",
+          "min": 0.0,
+          "max": 394487.0
+        },
+        "streamflow": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m3 s-1",
+          "nan_count": 184644,
+          "valid_count": 209844
+        },
+        "water_level": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "nan_count": 281067,
+          "valid_count": 113421
+        }
+      },
+      "duplicate_timestamps": 0,
+      "is_real_observations": true
+    },
+    "01015800_hourly.nc": {
+      "size_bytes": 3479617,
+      "size_mb": 3.32,
+      "variables": {
+        "time": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float64",
+          "units": "hours since 1980-01-01 00:00:00",
+          "min": 0.0,
+          "max": 394487.0
+        },
+        "streamflow": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m3 s-1",
+          "nan_count": 218333,
+          "valid_count": 176155
+        },
+        "water_level": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "nan_count": 294756,
+          "valid_count": 99732
+        }
+      },
+      "duplicate_timestamps": 0,
+      "is_real_observations": true
+    },
+    "01017000_hourly.nc": {
+      "size_bytes": 3531966,
+      "size_mb": 3.37,
+      "variables": {
+        "time": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float64",
+          "units": "hours since 1980-01-01 00:00:00",
+          "min": 0.0,
+          "max": 394487.0
+        },
+        "streamflow": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m3 s-1",
+          "nan_count": 214167,
+          "valid_count": 180321
+        },
+        "water_level": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "nan_count": 244917,
+          "valid_count": 149571
+        }
+      },
+      "duplicate_timestamps": 0,
+      "is_real_observations": true
+    },
+    "01017060_hourly.nc": {
+      "size_bytes": 3390984,
+      "size_mb": 3.23,
+      "variables": {
+        "time": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float64",
+          "units": "hours since 1980-01-01 00:00:00",
+          "min": 0.0,
+          "max": 394487.0
+        },
+        "streamflow": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m3 s-1",
+          "nan_count": 303363,
+          "valid_count": 91125
+        },
+        "water_level": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "nan_count": 260008,
+          "valid_count": 134480
+        }
+      },
+      "duplicate_timestamps": 0,
+      "is_real_observations": true
+    },
+    "01017290_hourly.nc": {
+      "size_bytes": 3389094,
+      "size_mb": 3.23,
+      "variables": {
+        "time": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float64",
+          "units": "hours since 1980-01-01 00:00:00",
+          "min": 0.0,
+          "max": 394487.0
+        },
+        "streamflow": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m3 s-1",
+          "nan_count": 299985,
+          "valid_count": 94503
+        },
+        "water_level": {
+          "shape": [
+            394488
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "nan_count": 252448,
+          "valid_count": 142040
+        }
+      },
+      "duplicate_timestamps": 0,
+      "is_real_observations": true
+    }
+  },
+  "camelsh_info": {
+    "size_bytes": 1162939,
+    "shape": [
+      9008,
+      47
+    ],
+    "columns": [
+      "STAID",
+      "data_availability [hrs]",
+      "1980",
+      "1981",
+      "1982",
+      "1983",
+      "1984",
+      "1985",
+      "1986",
+      "1987"
+    ],
+    "total_columns": 47,
+    "unique_staids": 9008,
+    "is_metadata": true
+  },
+  "camelsh_attributes": {
+    "attributes_gageii_BasinID.csv": {
+      "size_bytes": 968879,
+      "columns": [
+        "STAID",
+        "STANAME",
+        "DRAIN_SQKM",
+        "HUC02",
+        "LAT_GAGE",
+        "LNG_GAGE",
+        "STATE",
+        "BOUND_SOURCE"
+      ],
+      "total_columns": 15
+    },
+    "attributes_gageii_Bas_Classif.csv": {
+      "size_bytes": 1514318,
+      "columns": [
+        "STAID",
+        "CLASS",
+        "AGGECOREGION",
+        "HYDRO_DISTURB_INDX",
+        "WR_REPORT_REMARKS",
+        "ADR_CITATION",
+        "SCREENING_COMMENTS"
+      ],
+      "total_columns": 7
+    },
+    "attributes_gageii_Bas_Morph.csv": {
+      "size_bytes": 520758,
+      "columns": [
+        "STAID",
+        "BAS_COMPACTNESS",
+        "LAT_CENT",
+        "LONG_CENT"
+      ],
+      "total_columns": 4
+    },
+    "attributes_gageii_Bound_QA.csv": {
+      "size_bytes": 480497,
+      "columns": [
+        "STAID",
+        "BASIN_BOUNDARY_CONFIDENCE",
+        "DRAIN_SQKM",
+        "NWIS_DRAIN_SQKM",
+        "PCT_DIFF_NWIS",
+        "HUC10_CHECK"
+      ],
+      "total_columns": 6
+    },
+    "attributes_gageii_Climate.csv": {
+      "size_bytes": 3660117,
+      "columns": [
+        "STAID",
+        "PPTAVG_BASIN",
+        "PPTAVG_SITE",
+        "T_AVG_BASIN",
+        "T_AVG_SITE",
+        "T_MAX_BASIN",
+        "T_MAXSTD_BASIN",
+        "T_MAX_SITE"
+      ],
+      "total_columns": 50
+    },
+    "attributes_gageii_Climate_Ppt_Annual.csv": {
+      "size_bytes": 4891887,
+      "columns": [
+        "STAID",
+        "PPT1950_AVG",
+        "PPT1951_AVG",
+        "PPT1952_AVG",
+        "PPT1953_AVG",
+        "PPT1954_AVG",
+        "PPT1955_AVG",
+        "PPT1956_AVG"
+      ],
+      "total_columns": 61
+    },
+    "attributes_gageii_Climate_Tmp_Annual.csv": {
+      "size_bytes": 4898675,
+      "columns": [
+        "STAID",
+        "TMP1950_AVG",
+        "TMP1951_AVG",
+        "TMP1952_AVG",
+        "TMP1953_AVG",
+        "TMP1954_AVG",
+        "TMP1955_AVG",
+        "TMP1956_AVG"
+      ],
+      "total_columns": 61
+    },
+    "attributes_gageii_FlowRec.csv": {
+      "size_bytes": 2224268,
+      "columns": [
+        "STAID",
+        "FLOW_PCT_EST_VALUES",
+        "ACTIVE09",
+        "FLOWYRS_1900_2009",
+        "FLOWYRS_1950_2009",
+        "FLOWYRS_1990_2009",
+        "wy1900",
+        "wy1901"
+      ],
+      "total_columns": 116
+    },
+    "attributes_gageii_Geology.csv": {
+      "size_bytes": 1063610,
+      "columns": [
+        "STAID",
+        "GEOL_REEDBUSH_DOM",
+        "GEOL_REEDBUSH_DOM_PCT",
+        "GEOL_REEDBUSH_SITE",
+        "GEOL_HUNT_DOM_CODE",
+        "GEOL_HUNT_DOM_PCT",
+        "GEOL_HUNT_DOM_DESC",
+        "GEOL_HUNT_SITE_CODE"
+      ],
+      "total_columns": 8
+    },
+    "attributes_gageii_Hydro.csv": {
+      "size_bytes": 3140005,
+      "columns": [
+        "STAID",
+        "STREAMS_KM_SQ_KM",
+        "STRAHLER_MAX",
+        "MAINSTEM_SINUOUSITY",
+        "REACHCODE",
+        "ARTIFPATH_PCT",
+        "ARTIFPATH_MAINSTEM_PCT",
+        "HIRES_LENTIC_PCT"
+      ],
+      "total_columns": 34
+    },
+    "attributes_gageii_HydroMod_Dams.csv": {
+      "size_bytes": 2244971,
+      "columns": [
+        "STAID",
+        "NDAMS_2009",
+        "DDENS_2009",
+        "STOR_NID_2009",
+        "STOR_NOR_2009",
+        "MAJ_NDAMS_2009",
+        "MAJ_DDENS_2009",
+        "pre1940_NDAMS"
+      ],
+      "total_columns": 29
+    },
+    "attributes_gageii_HydroMod_Other.csv": {
+      "size_bytes": 738073,
+      "columns": [
+        "STAID",
+        "CANALS_PCT",
+        "RAW_DIS_NEAREST_CANAL",
+        "RAW_AVG_DIS_ALLCANALS",
+        "CANALS_MAINSTEM_PCT",
+        "NPDES_MAJ_DENS",
+        "RAW_DIS_NEAREST_MAJ_NPDES",
+        "RAW_AVG_DIS_ALL_MAJ_NPDES"
+      ],
+      "total_columns": 13
+    },
+    "attributes_gageii_Landscape_Pat.csv": {
+      "size_bytes": 512287,
+      "columns": [
+        "STAID",
+        "FRAGUN_BASIN",
+        "HIRES_LENTIC_NUM",
+        "HIRES_LENTIC_DENS",
+        "HIRES_LENTIC_MEANSIZ"
+      ],
+      "total_columns": 5
+    },
+    "attributes_gageii_LC06_Basin.csv": {
+      "size_bytes": 1565444,
+      "columns": [
+        "STAID",
+        "DEVNLCD06",
+        "FORESTNLCD06",
+        "PLANTNLCD06",
+        "WATERNLCD06",
+        "SNOWICENLCD06",
+        "DEVOPENNLCD06",
+        "DEVLOWNLCD06"
+      ],
+      "total_columns": 20
+    },
+    "attributes_gageii_LC06_Mains100.csv": {
+      "size_bytes": 1371390,
+      "columns": [
+        "STAID",
+        "MAINS100_DEV",
+        "MAINS100_FOREST",
+        "MAINS100_PLANT",
+        "MAINS100_11",
+        "MAINS100_12",
+        "MAINS100_21",
+        "MAINS100_22"
+      ],
+      "total_columns": 20
+    },
+    "attributes_gageii_LC06_Mains800.csv": {
+      "size_bytes": 1463959,
+      "columns": [
+        "STAID",
+        "MAINS800_DEV",
+        "MAINS800_FOREST",
+        "MAINS800_PLANT",
+        "MAINS800_11",
+        "MAINS800_12",
+        "MAINS800_21",
+        "MAINS800_22"
+      ],
+      "total_columns": 20
+    },
+    "attributes_gageii_LC06_Rip100.csv": {
+      "size_bytes": 1495321,
+      "columns": [
+        "STAID",
+        "RIP100_DEV",
+        "RIP100_FOREST",
+        "RIP100_PLANT",
+        "RIP100_11",
+        "RIP100_12",
+        "RIP100_21",
+        "RIP100_22"
+      ],
+      "total_columns": 20
+    },
+    "attributes_gageii_LC06_Rip800.csv": {
+      "size_bytes": 1550745,
+      "columns": [
+        "STAID",
+        "RIP800_DEV",
+        "RIP800_FOREST",
+        "RIP800_PLANT",
+        "RIP800_11",
+        "RIP800_12",
+        "RIP800_21",
+        "RIP800_22"
+      ],
+      "total_columns": 20
+    },
+    "attributes_gageii_LC_Crops.csv": {
+      "size_bytes": 1204412,
+      "columns": [
+        "STAID",
+        "CDL_CORN",
+        "CDL_COTTON",
+        "CDL_RICE",
+        "CDL_SORGHUM",
+        "CDL_SOYBEANS",
+        "CDL_SUNFLOWERS",
+        "CDL_PEANUTS"
+      ],
+      "total_columns": 23
+    },
+    "attributes_gageii_Nutrient_App.csv": {
+      "size_bytes": 250470,
+      "columns": [
+        "STAID",
+        "NITR_APP_KG_SQKM",
+        "PHOS_APP_KG_SQKM"
+      ],
+      "total_columns": 3
+    },
+    "attributes_gageii_Pest_App.csv": {
+      "size_bytes": 169009,
+      "columns": [
+        "STAID",
+        "PESTAPP_KG_SQKM"
+      ],
+      "total_columns": 2
+    },
+    "attributes_gageii_Pop_Infrastr.csv": {
+      "size_bytes": 926748,
+      "columns": [
+        "STAID",
+        "PDEN_2000_BLOCK",
+        "PDEN_DAY_LANDSCAN_2007",
+        "PDEN_NIGHT_LANDSCAN_2007",
+        "ROADS_KM_SQ_KM",
+        "RD_STR_INTERS",
+        "IMPNLCD06",
+        "NLCD01_06_DEV"
+      ],
+      "total_columns": 8
+    },
+    "attributes_gageii_Prot_Areas.csv": {
+      "size_bytes": 253642,
+      "columns": [
+        "STAID",
+        "PADCAT1_PCT_BASIN",
+        "PADCAT2_PCT_BASIN",
+        "PADCAT3_PCT_BASIN"
+      ],
+      "total_columns": 4
+    },
+    "attributes_gageii_Regions.csv": {
+      "size_bytes": 649449,
+      "columns": [
+        "STAID",
+        "ECO3_SITE",
+        "HLR100M_SITE",
+        "HUC8_SITE",
+        "NUTR_ECO_SITE",
+        "USDA_LRR_SITE",
+        "ECO2_BAS_DOM",
+        "ECO3_BAS_DOM"
+      ],
+      "total_columns": 15
+    },
+    "attributes_gageii_Soils.csv": {
+      "size_bytes": 1695031,
+      "columns": [
+        "STAID",
+        "HGA",
+        "HGB",
+        "HGAD",
+        "HGC",
+        "HGD",
+        "HGAC",
+        "HGBD"
+      ],
+      "total_columns": 25
+    },
+    "attributes_gageii_Topo.csv": {
+      "size_bytes": 1203006,
+      "columns": [
+        "STAID",
+        "ELEV_MEAN_M_BASIN",
+        "ELEV_MAX_M_BASIN",
+        "ELEV_MIN_M_BASIN",
+        "ELEV_MEDIAN_M_BASIN",
+        "ELEV_STD_M_BASIN",
+        "ELEV_SITE_M",
+        "RRMEAN"
+      ],
+      "total_columns": 13
+    },
+    "attributes_hydroATLAS.csv": {
+      "size_bytes": 13254754,
+      "columns": [
+        "STAID\tdis_m3_pyr\tdis_m3_pmn\tdis_m3_pmx\trun_mm_syr\tinu_pc_smn\tinu_pc_smx\tinu_pc_slt\tlka_pc_use\tlkv_mc_usu\trev_mc_usu\tdor_pc_pva\tria_ha_usu\triv_tc_usu\tgwt_cm_sav\tele_mt_sav\tele_mt_smn\tele_mt_smx\tslp_dg_uav\tsgr_dk_sav\tclz_cl_smj\tcls_cl_smj\ttmp_dc_syr\ttmp_dc_smn\ttmp_dc_smx\ttmp_dc_s01\ttmp_dc_s02\ttmp_dc_s03\ttmp_dc_s04\ttmp_dc_s05\ttmp_dc_s06\ttmp_dc_s07\ttmp_dc_s08\ttmp_dc_s09\ttmp_dc_s10\ttmp_dc_s11\ttmp_dc_s12\tpre_mm_syr\tpre_mm_s01\tpre_mm_s02\tpre_mm_s03\tpre_mm_s04\tpre_mm_s05\tpre_mm_s06\tpre_mm_s07\tpre_mm_s08\tpre_mm_s09\tpre_mm_s10\tpre_mm_s11\tpre_mm_s12\tpet_mm_syr\tpet_mm_s01\tpet_mm_s02\tpet_mm_s03\tpet_mm_s04\tpet_mm_s05\tpet_mm_s06\tpet_mm_s07\tpet_mm_s08\tpet_mm_s09\tpet_mm_s10\tpet_mm_s11\tpet_mm_s12\taet_mm_syr\taet_mm_s01\taet_mm_s02\taet_mm_s03\taet_mm_s04\taet_mm_s05\taet_mm_s06\taet_mm_s07\taet_mm_s08\taet_mm_s09\taet_mm_s10\taet_mm_s11\taet_mm_s12\tari_ix_uav\tcmi_ix_syr\tcmi_ix_s01\tcmi_ix_s02\tcmi_ix_s03\tcmi_ix_s04\tcmi_ix_s05\tcmi_ix_s06\tcmi_ix_s07\tcmi_ix_s08\tcmi_ix_s09\tcmi_ix_s10\tcmi_ix_s11\tcmi_ix_s12\tsnw_pc_syr\tsnw_pc_smx\tsnw_pc_s01\tsnw_pc_s02\tsnw_pc_s03\tsnw_pc_s04\tsnw_pc_s05\tsnw_pc_s06\tsnw_pc_s07\tsnw_pc_s08\tsnw_pc_s09\tsnw_pc_s10\tsnw_pc_s11\tsnw_pc_s12\tglc_cl_smj\tglc_pc_u01\tglc_pc_u02\tglc_pc_u03\tglc_pc_u04\tglc_pc_u05\tglc_pc_u06\tglc_pc_u07\tglc_pc_u08\tglc_pc_u09\tglc_pc_u10\tglc_pc_u11\tglc_pc_u12\tglc_pc_u13\tglc_pc_u14\tglc_pc_u15\tglc_pc_u16\tglc_pc_u17\tglc_pc_u18\tglc_pc_u19\tglc_pc_u20\tglc_pc_u21\tglc_pc_u22\tpnv_cl_smj\tpnv_pc_u01\tpnv_pc_u02\tpnv_pc_u03\tpnv_pc_u04\tpnv_pc_u05\tpnv_pc_u06\tpnv_pc_u07\tpnv_pc_u08\tpnv_pc_u09\tpnv_pc_u10\tpnv_pc_u11\tpnv_pc_u12\tpnv_pc_u13\tpnv_pc_u14\tpnv_pc_u15\twet_cl_smj\twet_pc_ug1\twet_pc_ug2\twet_pc_u01\twet_pc_u02\twet_pc_u03\twet_pc_u04\twet_pc_u05\twet_pc_u06\twet_pc_u07\twet_pc_u08\twet_pc_u09\tfor_pc_use\tcrp_pc_use\tpst_pc_use\tire_pc_use\tgla_pc_use\tprm_pc_use\tpac_pc_use\ttbi_cl_smj\ttec_cl_smj\tfmh_cl_smj\tfec_cl_smj\tcly_pc_uav\tslt_pc_uav\tsnd_pc_uav\tsoc_th_uav\tswc_pc_syr\tswc_pc_s01\tswc_pc_s02\tswc_pc_s03\tswc_pc_s04\tswc_pc_s05\tswc_pc_s06\tswc_pc_s07\tswc_pc_s08\tswc_pc_s09\tswc_pc_s10\tswc_pc_s11\tswc_pc_s12\tlit_cl_smj\tkar_pc_use\tero_kh_uav\tpop_ct_usu\tppd_pk_uav\turb_pc_use\tnli_ix_uav\trdd_mk_uav\thft_ix_u93\thft_ix_u09\tgad_id_smj\tgdp_ud_usu\thdi_ix_sav"
+      ],
+      "total_columns": 1
+    },
+    "attributes_nldas2_climate.csv": {
+      "size_bytes": 1482520,
+      "columns": [
+        "STAID",
+        "p_mean",
+        "pet_mean",
+        "aridity_index",
+        "p_seasonality",
+        "frac_snow",
+        "high_prec_freq",
+        "high_prec_dur"
+      ],
+      "total_columns": 10
+    }
+  },
+  "usgs_observations": {
+    "size_bytes": 3792320,
+    "total_rows": 24800,
+    "columns": [
+      "site_code",
+      "site_name",
+      "latitude",
+      "longitude",
+      "variable_code",
+      "variable_name",
+      "unit",
+      "timestamp",
+      "value",
+      "qualifiers"
+    ],
+    "dtypes": {
+      "site_code": "int64",
+      "site_name": "str",
+      "latitude": "float64",
+      "longitude": "float64",
+      "variable_code": "int64",
+      "variable_name": "str",
+      "unit": "str",
+      "timestamp": "str",
+      "value": "float64",
+      "qualifiers": "str"
+    },
+    "sites": [
+      1638500,
+      1643000,
+      1644000,
+      1646500,
+      1647600
+    ],
+    "site_names": [
+      "POTOMAC RIVER AT POINT OF ROCKS, MD",
+      "MONOCACY RIVER AT JUG BRIDGE NEAR FREDERICK, MD",
+      "GOOSE CREEK NEAR LEESBURG, VA",
+      "POTOMAC RIVER NEAR WASH, DC LITTLE FALLS PUMP STA",
+      "POTOMAC RIVER AT WISCONSIN AVE, WASHINGTON, DC"
+    ],
+    "variable_codes": [
+      60,
+      65
+    ],
+    "variable_names": [
+      "Discharge, cubic feet per second",
+      "Gage height, feet"
+    ],
+    "units": [
+      "ft3/s",
+      "ft"
+    ],
+    "min_timestamp": "2026-10-17T08:20:00.000-04:00",
+    "max_timestamp": "2026-10-31T07:55:00.000-04:00",
+    "null_counts": {
+      "site_code": 0,
+      "site_name": 0,
+      "latitude": 0,
+      "longitude": 0,
+      "variable_code": 0,
+      "variable_name": 0,
+      "unit": 0,
+      "timestamp": 0,
+      "value": 0,
+      "qualifiers": 0
+    },
+    "duplicate_rows": 0,
+    "is_real_observations": true
+  },
+  "noaa_floods": {
+    "size_bytes": 7548971,
+    "total_rows": 6684,
+    "event_types": {
+      "Flash Flood": 3625,
+      "Flood": 2846,
+      "Coastal Flood": 210,
+      "Lakeshore Flood": 3
+    },
+    "min_begin_date": "01-APR-23 00:00:00",
+    "max_begin_date": "31-OCT-23 07:10:00",
+    "null_counts": {
+      "EVENT_TYPE": 0,
+      "BEGIN_DATE_TIME": 0,
+      "END_DATE_TIME": 0,
+      "BEGIN_LAT": 213,
+      "BEGIN_LON": 213,
+      "DAMAGE_PROPERTY": 41,
+      "FLOOD_CAUSE": 213
+    },
+    "unique_events": 6684,
+    "is_real_event_reports": true
+  },
+  "era5_sample": {
+    "size_bytes": 214082,
+    "total_rows": 1488,
+    "columns": [
+      "time",
+      "temperature_2m",
+      "relative_humidity_2m",
+      "precipitation",
+      "rain",
+      "surface_pressure",
+      "wind_speed_10m",
+      "soil_moisture_0_to_7cm",
+      "soil_moisture_7_to_28cm",
+      "site_name",
+      "latitude",
+      "longitude",
+      "description"
+    ],
+    "dtypes": {
+      "time": "str",
+      "temperature_2m": "float64",
+      "relative_humidity_2m": "int64",
+      "precipitation": "float64",
+      "rain": "float64",
+      "surface_pressure": "float64",
+      "wind_speed_10m": "float64",
+      "soil_moisture_0_to_7cm": "float64",
+      "soil_moisture_7_to_28cm": "float64",
+      "site_name": "str",
+      "latitude": "float64",
+      "longitude": "float64",
+      "description": "str"
+    },
+    "sites": [
+      "potomac_usgs_01646500",
+      "aroostook_camelsh_01017000"
+    ],
+    "min_time": "2023-07-01T00:00",
+    "max_time": "2023-07-31T23:00",
+    "null_counts": {
+      "time": 0,
+      "temperature_2m": 0,
+      "relative_humidity_2m": 0,
+      "precipitation": 0,
+      "rain": 0,
+      "surface_pressure": 0,
+      "wind_speed_10m": 0,
+      "soil_moisture_0_to_7cm": 0,
+      "soil_moisture_7_to_28cm": 0,
+      "site_name": 0,
+      "latitude": 0,
+      "longitude": 0,
+      "description": 0
+    },
+    "duplicate_rows": 0,
+    "is_reanalysis": true
+  }
+}

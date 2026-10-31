@@ -1,0 +1,82 @@
+{
+  "sensors": [
+    "ESH5B_Star Rd",
+    "ESH6A_Cornfield",
+    "ESH7C_Sheen Rd",
+    "ESH8D_Terminus Rd",
+    "JBA11A_Aylesbury",
+    "JBA12A_Hereward Rd",
+    "JBA13C_Slindon",
+    "JBA15A_Montague Way",
+    "JBA16A_Castle dr",
+    "JBA17A_Timberlaine Road",
+    "JBA18A_Swanley",
+    "JBA3A_Channel view Rd",
+    "JBA5A_Pevensey Rd",
+    "JBA6A_Hampden",
+    "JBA9C_Bourne St"
+  ],
+  "total_sensors": 15,
+  "coordinates": {
+    "ESH5B_Star Rd": [
+      50.773442,
+      0.268037
+    ],
+    "ESH6A_Cornfield": [
+      50.768412,
+      0.283728
+    ],
+    "ESH7C_Sheen Rd": [
+      50.773853,
+      0.29506
+    ],
+    "ESH8D_Terminus Rd": [
+      50.768473,
+      0.285292
+    ],
+    "JBA11A_Aylesbury": [
+      50.79145,
+      0.315462
+    ],
+    "JBA12A_Hereward Rd": [
+      50.794305,
+      0.320627
+    ],
+    "JBA13C_Slindon": [
+      50.795724,
+      0.317501
+    ],
+    "JBA15A_Montague Way": [
+      50.81619,
+      0.326561
+    ],
+    "JBA16A_Castle dr": [
+      50.810805,
+      0.345609
+    ],
+    "JBA17A_Timberlaine Road": [
+      50.808512,
+      0.341903
+    ],
+    "JBA18A_Swanley": [
+      50.801746,
+      0.305695
+    ],
+    "JBA3A_Channel view Rd": [
+      50.780593,
+      0.302437
+    ],
+    "JBA5A_Pevensey Rd": [
+      50.821407,
+      0.256636
+    ],
+    "JBA6A_Hampden": [
+      50.797702,
+      0.28052
+    ],
+    "JBA9C_Bourne St": [
+      50.771884,
+      0.290576
+    ]
+  }
+}

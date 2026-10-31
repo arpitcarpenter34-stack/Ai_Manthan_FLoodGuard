@@ -1,0 +1,240 @@
+{
+  "audit_timestamp": "2026-10-31T06:33:00Z",
+  "auditor": "HYDRO-GUARD AI Scientific Leakage Audit Engine",
+  "files_audited": {
+    "aroostook_sequences_w12_h3.npz": {
+      "total_sequences": 14624,
+      "input_tensor_shape": [
+        14624,
+        12,
+        4,
+        6
+      ],
+      "target_tensor_shape": [
+        14624,
+        4
+      ],
+      "window_hours": 12,
+      "horizon_hours": 3,
+      "split_counts": {
+        "train": 10236,
+        "val": 2193,
+        "test": 2187
+      },
+      "index_boundaries": {
+        "max_train_idx": 10235,
+        "min_val_idx": 10240,
+        "max_val_idx": 12432,
+        "min_test_idx": 12437,
+        "gap_train_val_steps": 5,
+        "gap_val_test_steps": 5
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    },
+    "aroostook_sequences_w6_h1.npz": {
+      "total_sequences": 14635,
+      "input_tensor_shape": [
+        14635,
+        6,
+        4,
+        6
+      ],
+      "target_tensor_shape": [
+        14635,
+        4
+      ],
+      "window_hours": 6,
+      "horizon_hours": 1,
+      "split_counts": {
+        "train": 10244,
+        "val": 2195,
+        "test": 2188
+      },
+      "index_boundaries": {
+        "max_train_idx": 10243,
+        "min_val_idx": 10248,
+        "max_val_idx": 12442,
+        "min_test_idx": 12447,
+        "gap_train_val_steps": 5,
+        "gap_val_test_steps": 5
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    },
+    "aroostook_sequences_w24_h6.npz": {
+      "total_sequences": 14559,
+      "input_tensor_shape": [
+        14559,
+        24,
+        4,
+        6
+      ],
+      "target_tensor_shape": [
+        14559,
+        4
+      ],
+      "window_hours": 24,
+      "horizon_hours": 6,
+      "split_counts": {
+        "train": 10191,
+        "val": 2183,
+        "test": 2177
+      },
+      "index_boundaries": {
+        "max_train_idx": 10190,
+        "min_val_idx": 10195,
+        "max_val_idx": 12377,
+        "min_test_idx": 12382,
+        "gap_train_val_steps": 5,
+        "gap_val_test_steps": 5
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    },
+    "potomac_sequences_w12_h3.npz": {
+      "total_sequences": 322,
+      "input_tensor_shape": [
+        322,
+        12,
+        5,
+        6
+      ],
+      "target_tensor_shape": [
+        322,
+        5
+      ],
+      "window_hours": 12,
+      "horizon_hours": 3,
+      "split_counts": {
+        "train": 225,
+        "val": 48,
+        "test": 25
+      },
+      "index_boundaries": {
+        "max_train_idx": 224,
+        "min_val_idx": 237,
+        "max_val_idx": 284,
+        "min_test_idx": 297,
+        "gap_train_val_steps": 13,
+        "gap_val_test_steps": 13
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    },
+    "potomac_sequences_w6_h1.npz": {
+      "total_sequences": 330,
+      "input_tensor_shape": [
+        330,
+        6,
+        5,
+        6
+      ],
+      "target_tensor_shape": [
+        330,
+        5
+      ],
+      "window_hours": 6,
+      "horizon_hours": 1,
+      "split_counts": {
+        "train": 230,
+        "val": 49,
+        "test": 27
+      },
+      "index_boundaries": {
+        "max_train_idx": 229,
+        "min_val_idx": 242,
+        "max_val_idx": 290,
+        "min_test_idx": 303,
+        "gap_train_val_steps": 13,
+        "gap_val_test_steps": 13
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    },
+    "potomac_sequences_w24_h6.npz": {
+      "total_sequences": 307,
+      "input_tensor_shape": [
+        307,
+        24,
+        5,
+        6
+      ],
+      "target_tensor_shape": [
+        307,
+        5
+      ],
+      "window_hours": 24,
+      "horizon_hours": 6,
+      "split_counts": {
+        "train": 214,
+        "val": 46,
+        "test": 23
+      },
+      "index_boundaries": {
+        "max_train_idx": 213,
+        "min_val_idx": 226,
+        "max_val_idx": 271,
+        "min_test_idx": 284,
+        "gap_train_val_steps": 13,
+        "gap_val_test_steps": 13
+      },
+      "leakage_checks": {
+        "train_val_intersection_empty": true,
+        "val_test_intersection_empty": true,
+        "train_test_intersection_empty": true,
+        "strict_chronological_ordering": true,
+        "purge_buffer_enforced": true,
+        "future_information_in_input": false,
+        "train_val_event_straddling": false,
+        "val_test_event_straddling": false
+      },
+      "leakage_verdict": "CLEAN_ZERO_LEAKAGE"
+    }
+  }
+}

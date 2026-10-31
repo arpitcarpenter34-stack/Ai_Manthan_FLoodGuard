@@ -1,0 +1,57 @@
+{
+  "dataset_name": "Potomac_River_ST_GNN_Sequences",
+  "num_nodes": 5,
+  "node_ids": [
+    "01638500",
+    "01643000",
+    "01644000",
+    "01647600",
+    "01646500"
+  ],
+  "window_hours": 6,
+  "horizon_hours": 1,
+  "stride_hours": 1,
+  "total_sequences": 330,
+  "tensor_shape_X": [
+    330,
+    6,
+    5,
+    6
+  ],
+  "tensor_shape_Y": [
+    330,
+    5
+  ],
+  "feature_names": [
+    "streamflow_m3s",
+    "water_level_m",
+    "dq_dt_m3s_per_h",
+    "dh_dt_m_per_h",
+    "streamflow_measured_mask",
+    "water_level_measured_mask"
+  ],
+  "target_names": [
+    "label_statistical_high_flow",
+    "label_official_flood_observed",
+    "future_streamflow_m3s",
+    "future_estimated_inundation_depth_m"
+  ],
+  "split_strategy": {
+    "train_indices": [
+      0,
+      230
+    ],
+    "val_indices": [
+      242,
+      291
+    ],
+    "test_indices": [
+      303,
+      330
+    ],
+    "train_count": 230,
+    "val_count": 49,
+    "test_count": 27,
+    "purge_buffer_hours": 12
+  }
+}

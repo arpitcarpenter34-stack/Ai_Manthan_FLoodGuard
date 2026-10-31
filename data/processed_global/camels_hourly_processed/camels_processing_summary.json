@@ -1,0 +1,50 @@
+{
+  "01015800": {
+    "total_timesteps": 300259,
+    "active_start": "1990-10-01 05:00:00+00:00",
+    "active_end": "2024-12-31 23:00:00+00:00",
+    "valid_streamflow_hours": 176155,
+    "streamflow_missing_pct": 41.33,
+    "valid_water_level_hours": 99732,
+    "water_level_missing_pct": 66.78,
+    "streamflow_mean": 53.087,
+    "streamflow_p95": 210.111,
+    "streamflow_p99": 376.613
+  },
+  "01017000": {
+    "total_timesteps": 309019,
+    "active_start": "1989-10-01 05:00:00+00:00",
+    "active_end": "2024-12-31 23:00:00+00:00",
+    "valid_streamflow_hours": 180321,
+    "streamflow_missing_pct": 41.65,
+    "valid_water_level_hours": 149571,
+    "water_level_missing_pct": 51.6,
+    "streamflow_mean": 96.983,
+    "streamflow_p95": 387.94,
+    "streamflow_p99": 671.108
+  },
+  "01017060": {
+    "total_timesteps": 140995,
+    "active_start": "2008-12-01 05:00:00+00:00",
+    "active_end": "2024-12-31 23:00:00+00:00",
+    "valid_streamflow_hours": 91125,
+    "streamflow_missing_pct": 35.37,
+    "valid_water_level_hours": 134480,
+    "water_level_missing_pct": 4.62,
+    "streamflow_mean": 0.313,
+    "streamflow_p95": 1.144,
+    "streamflow_p99": 2.752
+  },
+  "01017290": {
+    "total_timesteps": 145388,
+    "active_start": "2008-06-01 04:00:00+00:00",
+    "active_end": "2024-12-31 23:00:00+00:00",
+    "valid_streamflow_hours": 94503,
+    "streamflow_missing_pct": 35.0,
+    "valid_water_level_hours": 142040,
+    "water_level_missing_pct": 2.3,
+    "streamflow_mean": 15.027,
+    "streamflow_p95": 63.43,
+    "streamflow_p99": 107.032
+  }
+}

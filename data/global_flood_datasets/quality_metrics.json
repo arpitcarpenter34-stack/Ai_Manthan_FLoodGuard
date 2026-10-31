@@ -1,0 +1,101 @@
+{
+  "camelsh_hourly": {
+    "01013500_hourly.nc": {
+      "total_timesteps": 394488,
+      "streamflow_missing_pct": 46.81,
+      "water_level_missing_pct": 71.25,
+      "streamflow_min": 0.878,
+      "streamflow_max": 518.197,
+      "streamflow_mean": 53.93
+    },
+    "01015800_hourly.nc": {
+      "total_timesteps": 394488,
+      "streamflow_missing_pct": 55.35,
+      "water_level_missing_pct": 74.72,
+      "streamflow_min": 0.827,
+      "streamflow_max": 832.514,
+      "streamflow_mean": 53.087
+    },
+    "01017000_hourly.nc": {
+      "total_timesteps": 394488,
+      "streamflow_missing_pct": 54.29,
+      "water_level_missing_pct": 62.08,
+      "streamflow_min": 2.019,
+      "streamflow_max": 1398.85,
+      "streamflow_mean": 96.983
+    },
+    "01017060_hourly.nc": {
+      "total_timesteps": 394488,
+      "streamflow_missing_pct": 76.9,
+      "water_level_missing_pct": 65.91,
+      "streamflow_min": 0.001,
+      "streamflow_max": 14.243,
+      "streamflow_mean": 0.313
+    },
+    "01017290_hourly.nc": {
+      "total_timesteps": 394488,
+      "streamflow_missing_pct": 76.04,
+      "water_level_missing_pct": 63.99,
+      "streamflow_min": 0.286,
+      "streamflow_max": 269.576,
+      "streamflow_mean": 15.027
+    }
+  },
+  "camelsh_attributes": {
+    "attributes_gageii_BasinID.csv": {
+      "rows": 9008,
+      "columns": 15,
+      "overall_null_pct": 30.73
+    },
+    "attributes_gageii_Topo.csv": {
+      "rows": 9008,
+      "columns": 13,
+      "overall_null_pct": 0.0
+    },
+    "attributes_gageii_Climate.csv": {
+      "rows": 9008,
+      "columns": 50,
+      "overall_null_pct": 0.0
+    },
+    "attributes_gageii_Soils.csv": {
+      "rows": 9008,
+      "columns": 25,
+      "overall_null_pct": 0.0
+    }
+  },
+  "usgs": {
+    "total_rows": 24800,
+    "value_missing_pct": 0.0,
+    "station_count": 5,
+    "variables": {
+      "Gage height, feet": 14078,
+      "Discharge, cubic feet per second": 10722
+    }
+  },
+  "noaa": {
+    "total_flood_events": 6684,
+    "begin_lat_missing_pct": 3.19,
+    "end_lat_missing_pct": 3.19,
+    "flood_cause_missing_pct": 3.19,
+    "property_damage_missing_pct": 0.61,
+    "narrative_missing_pct": 1.09
+  },
+  "era5": {
+    "total_rows": 1488,
+    "missing_pct_per_col": {
+      "time": 0.0,
+      "temperature_2m": 0.0,
+      "relative_humidity_2m": 0.0,
+      "precipitation": 0.0,
+      "rain": 0.0,
+      "surface_pressure": 0.0,
+      "wind_speed_10m": 0.0,
+      "soil_moisture_0_to_7cm": 0.0,
+      "soil_moisture_7_to_28cm": 0.0,
+      "site_name": 0.0,
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "description": 0.0
+    }
+  }
+}

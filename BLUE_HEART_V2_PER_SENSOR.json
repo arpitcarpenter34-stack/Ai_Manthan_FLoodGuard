@@ -1,0 +1,824 @@
+{
+  "Persistence": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0015,
+      "rmse_m": 0.0207,
+      "nse": 0.0721,
+      "r2": 0.0771,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0062,
+      "rmse_m": 0.0154,
+      "nse": 0.7,
+      "r2": 0.7232,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0044,
+      "rmse_m": 0.0589,
+      "nse": -0.0062,
+      "r2": 0.0002,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.0028,
+      "rmse_m": 0.0225,
+      "nse": 0.0457,
+      "r2": 0.052,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0065,
+      "rmse_m": 0.0136,
+      "nse": 0.8643,
+      "r2": 0.8733,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1439,
+      "rmse_m": 0.2618,
+      "nse": -0.4297,
+      "r2": 0.1665,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0003,
+      "rmse_m": 0.0009,
+      "nse": 0.8953,
+      "r2": 0.8978,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0063,
+      "rmse_m": 0.0483,
+      "nse": -0.0082,
+      "r2": 0.0085,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0015,
+      "rmse_m": 0.0211,
+      "nse": 0.3083,
+      "r2": 0.3107,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0002,
+      "rmse_m": 0.0006,
+      "nse": 0.9963,
+      "r2": 0.9964,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0009,
+      "rmse_m": 0.0092,
+      "nse": 0.3391,
+      "r2": 0.3495,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0119,
+      "rmse_m": 0.0619,
+      "nse": -0.0702,
+      "r2": 0.1718,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0015,
+      "rmse_m": 0.0147,
+      "nse": 0.189,
+      "r2": 0.1917,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.02,
+      "rmse_m": 0.0757,
+      "nse": 0.4612,
+      "r2": 0.534,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0032,
+      "rmse_m": 0.0108,
+      "nse": 0.8752,
+      "r2": 0.8779,
+      "valid_count": 1089
+    }
+  ],
+  "Residual_Ridge": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0163,
+      "rmse_m": 0.0283,
+      "nse": -0.7483,
+      "r2": 0.0001,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0143,
+      "rmse_m": 0.019,
+      "nse": 0.5473,
+      "r2": 0.5798,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0155,
+      "rmse_m": 0.0619,
+      "nse": -0.1088,
+      "r2": 0.0,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.0251,
+      "rmse_m": 0.0331,
+      "nse": -1.0655,
+      "r2": 0.004,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0396,
+      "rmse_m": 0.0429,
+      "nse": -0.3547,
+      "r2": 0.7559,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1896,
+      "rmse_m": 0.2263,
+      "nse": -0.0683,
+      "r2": 0.0138,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0468,
+      "rmse_m": 0.0483,
+      "nse": -290.3609,
+      "r2": 0.0077,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0815,
+      "rmse_m": 0.0955,
+      "nse": -2.9383,
+      "r2": 0.0004,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0074,
+      "rmse_m": 0.0238,
+      "nse": 0.1166,
+      "r2": 0.1646,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.009,
+      "rmse_m": 0.0108,
+      "nse": -0.1489,
+      "r2": 0.5002,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0178,
+      "rmse_m": 0.02,
+      "nse": -2.1565,
+      "r2": 0.1032,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0171,
+      "rmse_m": 0.0554,
+      "nse": 0.1418,
+      "r2": 0.1695,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0099,
+      "rmse_m": 0.0196,
+      "nse": -0.4326,
+      "r2": 0.0319,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0798,
+      "rmse_m": 0.1128,
+      "nse": -0.1975,
+      "r2": 0.3929,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0263,
+      "rmse_m": 0.0282,
+      "nse": 0.1451,
+      "r2": 0.8541,
+      "valid_count": 1089
+    }
+  ],
+  "Res_Temporal_GRU": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0017,
+      "rmse_m": 0.0206,
+      "nse": 0.0734,
+      "r2": 0.0764,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0104,
+      "rmse_m": 0.0173,
+      "nse": 0.6231,
+      "r2": 0.7176,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0047,
+      "rmse_m": 0.0589,
+      "nse": -0.0062,
+      "r2": 0.0001,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.003,
+      "rmse_m": 0.0225,
+      "nse": 0.0467,
+      "r2": 0.0497,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0066,
+      "rmse_m": 0.0135,
+      "nse": 0.8662,
+      "r2": 0.8736,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.149,
+      "rmse_m": 0.261,
+      "nse": -0.4213,
+      "r2": 0.1893,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0004,
+      "rmse_m": 0.0009,
+      "nse": 0.8972,
+      "r2": 0.8995,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0064,
+      "rmse_m": 0.0482,
+      "nse": -0.0049,
+      "r2": 0.0077,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0017,
+      "rmse_m": 0.0211,
+      "nse": 0.308,
+      "r2": 0.3109,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0004,
+      "rmse_m": 0.0007,
+      "nse": 0.9949,
+      "r2": 0.9964,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0011,
+      "rmse_m": 0.0091,
+      "nse": 0.3484,
+      "r2": 0.3544,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0118,
+      "rmse_m": 0.0599,
+      "nse": -0.0022,
+      "r2": 0.1718,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0016,
+      "rmse_m": 0.0147,
+      "nse": 0.189,
+      "r2": 0.1903,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0207,
+      "rmse_m": 0.0734,
+      "nse": 0.4936,
+      "r2": 0.5306,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0033,
+      "rmse_m": 0.0107,
+      "nse": 0.8776,
+      "r2": 0.8781,
+      "valid_count": 1089
+    }
+  ],
+  "Res_DCRNN": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0029,
+      "rmse_m": 0.0208,
+      "nse": 0.0587,
+      "r2": 0.0652,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0078,
+      "rmse_m": 0.0159,
+      "nse": 0.6828,
+      "r2": 0.728,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0073,
+      "rmse_m": 0.0589,
+      "nse": -0.0052,
+      "r2": 0.0,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.0032,
+      "rmse_m": 0.0225,
+      "nse": 0.0463,
+      "r2": 0.0482,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0062,
+      "rmse_m": 0.0133,
+      "nse": 0.8692,
+      "r2": 0.8734,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1445,
+      "rmse_m": 0.2614,
+      "nse": -0.4257,
+      "r2": 0.0155,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0045,
+      "rmse_m": 0.0046,
+      "nse": -1.6363,
+      "r2": 0.8779,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.012,
+      "rmse_m": 0.0485,
+      "nse": -0.018,
+      "r2": 0.0099,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0027,
+      "rmse_m": 0.0211,
+      "nse": 0.3101,
+      "r2": 0.311,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.003,
+      "rmse_m": 0.0031,
+      "nse": 0.9021,
+      "r2": 0.9946,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.003,
+      "rmse_m": 0.0093,
+      "nse": 0.3212,
+      "r2": 0.3453,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0142,
+      "rmse_m": 0.0599,
+      "nse": -0.0033,
+      "r2": 0.1737,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0024,
+      "rmse_m": 0.0147,
+      "nse": 0.1866,
+      "r2": 0.1902,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0233,
+      "rmse_m": 0.0732,
+      "nse": 0.4964,
+      "r2": 0.5325,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0036,
+      "rmse_m": 0.0107,
+      "nse": 0.8775,
+      "r2": 0.8784,
+      "valid_count": 1089
+    }
+  ],
+  "Adaptive_Gated_DCRNN": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0019,
+      "rmse_m": 0.0207,
+      "nse": 0.069,
+      "r2": 0.0735,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0158,
+      "rmse_m": 0.0243,
+      "nse": 0.2589,
+      "r2": 0.6831,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0048,
+      "rmse_m": 0.0589,
+      "nse": -0.0051,
+      "r2": 0.0002,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.0029,
+      "rmse_m": 0.0225,
+      "nse": 0.0435,
+      "r2": 0.0495,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0063,
+      "rmse_m": 0.0135,
+      "nse": 0.8671,
+      "r2": 0.8725,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1447,
+      "rmse_m": 0.262,
+      "nse": -0.4323,
+      "r2": 0.0519,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0011,
+      "rmse_m": 0.0014,
+      "nse": 0.7554,
+      "r2": 0.8911,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.008,
+      "rmse_m": 0.0479,
+      "nse": 0.0084,
+      "r2": 0.0116,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.021,
+      "nse": 0.3114,
+      "r2": 0.3115,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0008,
+      "rmse_m": 0.001,
+      "nse": 0.9897,
+      "r2": 0.9953,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0016,
+      "rmse_m": 0.0089,
+      "nse": 0.3748,
+      "r2": 0.3751,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0127,
+      "rmse_m": 0.0625,
+      "nse": -0.0907,
+      "r2": 0.0318,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0016,
+      "rmse_m": 0.0147,
+      "nse": 0.1886,
+      "r2": 0.1906,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0202,
+      "rmse_m": 0.0736,
+      "nse": 0.4906,
+      "r2": 0.5172,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0032,
+      "rmse_m": 0.0106,
+      "nse": 0.8793,
+      "r2": 0.8794,
+      "valid_count": 1089
+    }
+  ],
+  "Graph_WaveNet": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.0207,
+      "nse": 0.068,
+      "r2": 0.0715,
+      "valid_count": 1089
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0086,
+      "rmse_m": 0.0163,
+      "nse": 0.6667,
+      "r2": 0.7258,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0095,
+      "rmse_m": 0.0596,
+      "nse": -0.0278,
+      "r2": 0.0002,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.0032,
+      "rmse_m": 0.0225,
+      "nse": 0.0484,
+      "r2": 0.0504,
+      "valid_count": 965
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0075,
+      "rmse_m": 0.0136,
+      "nse": 0.8635,
+      "r2": 0.8742,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1453,
+      "rmse_m": 0.2613,
+      "nse": -0.4241,
+      "r2": 0.4024,
+      "valid_count": 10
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0015,
+      "rmse_m": 0.0018,
+      "nse": 0.6023,
+      "r2": 0.8929,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0081,
+      "rmse_m": 0.0482,
+      "nse": -0.0017,
+      "r2": 0.0088,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0018,
+      "rmse_m": 0.0211,
+      "nse": 0.3095,
+      "r2": 0.3112,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0007,
+      "rmse_m": 0.0009,
+      "nse": 0.9921,
+      "r2": 0.9957,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0016,
+      "rmse_m": 0.0091,
+      "nse": 0.3488,
+      "r2": 0.3495,
+      "valid_count": 1087
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0121,
+      "rmse_m": 0.0594,
+      "nse": 0.0129,
+      "r2": 0.1718,
+      "valid_count": 1090
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.0147,
+      "nse": 0.1907,
+      "r2": 0.1915,
+      "valid_count": 1091
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0205,
+      "rmse_m": 0.0728,
+      "nse": 0.502,
+      "r2": 0.5341,
+      "valid_count": 1093
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0036,
+      "rmse_m": 0.0106,
+      "nse": 0.8789,
+      "r2": 0.8797,
+      "valid_count": 1089
+    }
+  ]
+}

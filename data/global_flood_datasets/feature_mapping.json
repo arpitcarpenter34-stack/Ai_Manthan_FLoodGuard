@@ -1,0 +1,825 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Standardized hydrological and flood feature mapping across global datasets for HYDRO-GUARD AI ST-GNN pipeline",
+    "target_features_count": 16,
+    "evaluated_datasets": [
+      "CAMELSH_Hourly",
+      "CAMELSH_Attributes",
+      "ERA5_Hourly",
+      "ERA5_Land",
+      "USGS_NWIS",
+      "NOAA_Storm_Events",
+      "Global_Flood_DB"
+    ]
+  },
+  "features": {
+    "precipitation_mm": {
+      "description": "Total liquid and frozen water equivalent reaching the ground over time interval",
+      "target_unit": "mm",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input",
+      "sources": {
+        "CAMELSH_Hourly": {
+          "source_field": "precipitation (in timeseries.7z forcing) / PPTAVG_BASIN (climatological annual average in attributes)",
+          "source_unit": "mm/h or cm/year",
+          "conversion_to_target": "Direct (for hourly forcing) or monthly/annual rate",
+          "status": "Available in full timeseries.7z / Attributes contain climatological baselines",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "precipitation / tp (Total precipitation)",
+          "source_unit": "mm (or m in GRIB)",
+          "conversion_to_target": "x 1000 if in meters, else direct",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "tp (Total precipitation)",
+          "source_unit": "m",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "00045 (Precipitation, cumulative) on select rain gauges",
+          "source_unit": "inches",
+          "conversion_to_target": "val * 25.4",
+          "status": "Sparse / Missing on pure streamflow stations",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None (Qualitative narrative text only)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None (Satellite inundation extent)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "rainfall_intensity": {
+      "description": "Rate of precipitation per unit time",
+      "target_unit": "mm/h",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input",
+      "sources": {
+        "CAMELSH_Hourly": {
+          "source_field": "Hourly precipitation rate in forcing timeseries",
+          "source_unit": "mm/h",
+          "conversion_to_target": "Direct",
+          "status": "Available in forcing archive",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "precipitation",
+          "source_unit": "mm/h",
+          "conversion_to_target": "Direct (hourly total = mm/h rate)",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "tp",
+          "source_unit": "m/h",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "streamflow_m3s": {
+      "description": "Volumetric rate of water flow through river/drainage cross-section",
+      "target_unit": "m3/s",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_target_and_feature",
+      "sources": {
+        "CAMELSH_Hourly": {
+          "source_field": "streamflow (in Hourly2/<STAID>_hourly.nc)",
+          "source_unit": "m3 s-1",
+          "conversion_to_target": "Direct (native SI units)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "dis_m3_pyr (HydroATLAS annual discharge), dis_m3_pmn (min), dis_m3_pmx (max)",
+          "source_unit": "m3/s",
+          "conversion_to_target": "Direct",
+          "status": "Available (Climatological)",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "None directly in standard single levels (requires GloFAS river discharge coupling)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable in single levels",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None directly (produces runoff, not channel discharge)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "00060 (Streamflow, mean daily or instantaneous)",
+          "source_unit": "ft3/s (cfs)",
+          "conversion_to_target": "val * 0.028316846592",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "water_level_m": {
+      "description": "Height of water surface relative to local gauge datum or channel bed",
+      "target_unit": "m",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_target_and_feature",
+      "sources": {
+        "CAMELSH_Hourly": {
+          "source_field": "water_level (in Hourly2/<STAID>_hourly.nc)",
+          "source_unit": "m",
+          "conversion_to_target": "Direct (native SI units)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "00065 (Gage height)",
+          "source_unit": "ft",
+          "conversion_to_target": "val * 0.3048",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "MAGNITUDE (crest level reported for select river flood events)",
+          "source_unit": "ft",
+          "conversion_to_target": "val * 0.3048",
+          "status": "Sparse (<5% reporting)",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "temperature_c": {
+      "description": "Ambient air temperature at 2 meters above ground",
+      "target_unit": "\u00b0C",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input_or_static_attribute",
+      "sources": {
+        "ERA5_Hourly": {
+          "source_field": "temperature_2m",
+          "source_unit": "\u00b0C (or K)",
+          "conversion_to_target": "val - 273.15 if in Kelvin else direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "2t (2 metre temperature)",
+          "source_unit": "K",
+          "conversion_to_target": "val - 273.15",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "T_AVG_BASIN, T_AVG_SITE, T_MAX_BASIN, T_MIN_BASIN",
+          "source_unit": "\u00b0C",
+          "conversion_to_target": "Direct (Climatological static attribute)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "00010 (Water temperature) / 00020 (Air temperature) on select stations",
+          "source_unit": "\u00b0C",
+          "conversion_to_target": "Direct",
+          "status": "Sparse across hydrometric network",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "humidity_pct": {
+      "description": "Relative humidity of ambient air",
+      "target_unit": "%",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input_or_static_attribute",
+      "sources": {
+        "ERA5_Hourly": {
+          "source_field": "relative_humidity_2m",
+          "source_unit": "%",
+          "conversion_to_target": "Direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "RH_BASIN, RH_SITE",
+          "source_unit": "%",
+          "conversion_to_target": "Direct (Climatological static attribute)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "Derived from 2t (temperature) and 2d (dewpoint temperature)",
+          "source_unit": "Calculated via Tetens formula",
+          "conversion_to_target": "100.0 * (exp((17.27 * td) / (td + 237.3)) / exp((17.27 * t) / (t + 237.3)))",
+          "status": "Computable",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "wind_speed_ms": {
+      "description": "Wind speed at 10 meters above surface",
+      "target_unit": "m/s",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input",
+      "sources": {
+        "ERA5_Hourly": {
+          "source_field": "wind_speed_10m / sqrt(10u^2 + 10v^2)",
+          "source_unit": "m/s",
+          "conversion_to_target": "Direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "10u, 10v (u and v components of 10m wind)",
+          "source_unit": "m/s",
+          "conversion_to_target": "sqrt(u^2 + v^2)",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "CAMELSH_Hourly": {
+          "source_field": "None in Hourly2 / Available in NLDAS2 forcing archive",
+          "source_unit": "m/s",
+          "conversion_to_target": "Direct",
+          "status": "Available in full timeseries.7z",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "MAGNITUDE (knots, on thunderstorm wind events only)",
+          "source_unit": "knots",
+          "conversion_to_target": "val * 0.514444",
+          "status": "Unavailable on flood events",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "surface_pressure_hpa": {
+      "description": "Atmospheric surface pressure at station/pixel elevation",
+      "target_unit": "hPa",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input",
+      "sources": {
+        "ERA5_Hourly": {
+          "source_field": "surface_pressure",
+          "source_unit": "hPa (or Pa)",
+          "conversion_to_target": "val / 100.0 if in Pa else direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "sp (Surface pressure)",
+          "source_unit": "Pa",
+          "conversion_to_target": "val / 100.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "CAMELSH_Hourly": {
+          "source_field": "NLDAS2 atmospheric pressure in full forcing",
+          "source_unit": "Pa",
+          "conversion_to_target": "val / 100.0",
+          "status": "Available in full timeseries.7z",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "soil_moisture": {
+      "description": "Volumetric water content of topsoil",
+      "target_unit": "m3/m3 (or % volume)",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input_or_static_attribute",
+      "sources": {
+        "ERA5_Land": {
+          "source_field": "soil_moisture_0_to_7cm (swvl1), soil_moisture_7_to_28cm (swvl2)",
+          "source_unit": "m3/m3",
+          "conversion_to_target": "Direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "AWCAVE (Available water capacity), swc_pc_syr (HydroATLAS soil water content)",
+          "source_unit": "ratio / %",
+          "conversion_to_target": "Direct (Climatological static attribute)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "swvl1 (Volumetric soil water layer 1)",
+          "source_unit": "m3/m3",
+          "conversion_to_target": "Direct",
+          "status": "Available in ERA5 land surface components",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "None on standard stream gauges",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "surface_runoff": {
+      "description": "Precipitation that flows overland rather than infiltrating into soil",
+      "target_unit": "mm",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input_or_static_attribute",
+      "sources": {
+        "ERA5_Land": {
+          "source_field": "sro (Surface runoff) / ro (Runoff)",
+          "source_unit": "m",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "run_mm_syr (Annual runoff in mm from HydroATLAS)",
+          "source_unit": "mm/year",
+          "conversion_to_target": "Direct (annual rate)",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "ro (Total runoff)",
+          "source_unit": "m",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available in CDS",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "None (USGS measures total channel streamflow, not isolated surface overland runoff)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "snow_water_equivalent": {
+      "description": "Liquid water depth obtained if the entire snowpack melted instantaneously",
+      "target_unit": "mm",
+      "data_type": "continuous_float",
+      "role": "dynamic_temporal_input_or_static_attribute",
+      "sources": {
+        "ERA5_Land": {
+          "source_field": "sd (Snow depth water equivalent)",
+          "source_unit": "m of water equivalent",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "sd (Snow depth water equivalent)",
+          "source_unit": "m of water equivalent",
+          "conversion_to_target": "val * 1000.0",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "CAMELSH_Attributes": {
+          "source_field": "SNOW_PCT_PRECIP (% precipitation falling as snow), snw_pc_syr (HydroATLAS annual snow cover %)",
+          "source_unit": "%",
+          "conversion_to_target": "Direct (fractional static proxy)",
+          "status": "Available (Acquired)",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "elevation_m": {
+      "description": "Ground surface elevation above mean sea level",
+      "target_unit": "m",
+      "data_type": "continuous_float",
+      "role": "static_spatial_node_attribute",
+      "sources": {
+        "CAMELSH_Attributes": {
+          "source_field": "ELEV_SITE_M (gauge elevation), ELEV_MEAN_M_BASIN (mean basin elevation)",
+          "source_unit": "m",
+          "conversion_to_target": "Direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "alt_va (Altitude / Gauge Datum elevation) in site service",
+          "source_unit": "ft",
+          "conversion_to_target": "val * 0.3048",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "ERA5_Hourly": {
+          "source_field": "z (Geopotential) / 9.80665",
+          "source_unit": "m",
+          "conversion_to_target": "Direct",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "ERA5_Land": {
+          "source_field": "z (Geopotential) / 9.80665",
+          "source_unit": "m",
+          "conversion_to_target": "Direct",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "Global_Flood_DB": {
+          "source_field": "SRTM / HydroSHEDS DEM layer in GEE",
+          "source_unit": "m",
+          "conversion_to_target": "Direct",
+          "status": "Available via GEE spatial join",
+          "is_direct_match": true
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "catchment_area_km2": {
+      "description": "Total contributing drainage area upstream of monitoring point",
+      "target_unit": "km2",
+      "data_type": "continuous_float",
+      "role": "static_spatial_node_attribute",
+      "sources": {
+        "CAMELSH_Attributes": {
+          "source_field": "DRAIN_SQKM (in attributes_gageii_BasinID.csv)",
+          "source_unit": "km2",
+          "conversion_to_target": "Direct",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "USGS_NWIS": {
+          "source_field": "drain_area_va (Drainage Area)",
+          "source_unit": "sq mi",
+          "conversion_to_target": "val * 2.58998811",
+          "status": "Available",
+          "is_direct_match": true
+        },
+        "Global_Flood_DB": {
+          "source_field": "flooded pixel count * 0.0625 km2 (Inundation area)",
+          "source_unit": "km2",
+          "conversion_to_target": "Direct",
+          "status": "Available (Event inundation area, not watershed area)",
+          "is_direct_match": false
+        },
+        "ERA5_Hourly": {
+          "source_field": "None (Grid-based atmospheric reanalysis)",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "flood_event": {
+      "description": "Binary ground-truth indicator of whether a flood condition occurred",
+      "target_unit": "binary (0 or 1)",
+      "data_type": "categorical_binary",
+      "role": "supervision_target_label",
+      "sources": {
+        "NOAA_Storm_Events": {
+          "source_field": "EVENT_TYPE in ['Flood', 'Flash Flood', 'Coastal Flood', 'Lakeshore Flood']",
+          "source_unit": "binary indicator",
+          "conversion_to_target": "1 if EVENT_TYPE contains Flood else 0",
+          "status": "Available (Acquired - 6,684 positive flood events in 2023)",
+          "is_direct_match": true
+        },
+        "Global_Flood_DB": {
+          "source_field": "flooded (Satellite observed inundation pixel)",
+          "source_unit": "binary mask (0 or 1)",
+          "conversion_to_target": "Direct",
+          "status": "Available in GEE",
+          "is_direct_match": true
+        },
+        "CAMELSH_Hourly": {
+          "source_field": "Derived by thresholding streamflow against historical 95th/99th percentile or flood action stage",
+          "source_unit": "binary (derived)",
+          "conversion_to_target": "1 if streamflow > Q_flood_threshold else 0",
+          "status": "Computable from streamflow time series",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "Derived by comparing gage height (00065) with NWS Minor Flood Stage",
+          "source_unit": "binary (derived)",
+          "conversion_to_target": "1 if gage_height >= flood_stage else 0",
+          "status": "Computable from stage time series",
+          "is_direct_match": false
+        },
+        "ERA5_Hourly": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "flood_type": {
+      "description": "Classification of the physical flood mechanism",
+      "target_unit": "categorical_string (Flash Flood, Riverine Flood, Urban Drainage, Coastal)",
+      "data_type": "categorical_nominal",
+      "role": "supervision_target_label",
+      "sources": {
+        "NOAA_Storm_Events": {
+          "source_field": "EVENT_TYPE (Flash Flood, Flood, Coastal Flood) and FLOOD_CAUSE (Heavy Rain, Dam Break, Snowmelt)",
+          "source_unit": "categorical text",
+          "conversion_to_target": "Direct categorization",
+          "status": "Available (Acquired)",
+          "is_direct_match": true
+        },
+        "Global_Flood_DB": {
+          "source_field": "DFO Causality (Heavy rain, Tropical cyclone, Monsoonal, Dam break)",
+          "source_unit": "categorical text",
+          "conversion_to_target": "Direct mapping",
+          "status": "Available in GEE metadata",
+          "is_direct_match": true
+        },
+        "CAMELSH_Hourly": {
+          "source_field": "Derived from hydrograph steepness (dQ/dt) and time to peak",
+          "source_unit": "derived category",
+          "conversion_to_target": "Flash Flood if peak_time < 6h, else Riverine Flood",
+          "status": "Computable",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "Derived from hydrograph steepness",
+          "source_unit": "derived category",
+          "conversion_to_target": "Flash Flood if peak_time < 6h, else Riverine Flood",
+          "status": "Computable",
+          "is_direct_match": false
+        },
+        "ERA5_Hourly": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    },
+    "inundation_depth_m": {
+      "description": "Water depth above ground level in inundated areas",
+      "target_unit": "m",
+      "data_type": "continuous_float",
+      "role": "hydraulic_physics_and_st_gnn_target",
+      "sources": {
+        "CAMELSH_Hourly": {
+          "source_field": "Derived: water_level - bankfull_height",
+          "source_unit": "m",
+          "conversion_to_target": "max(0.0, water_level - bankfull_stage)",
+          "status": "Computable from water_level",
+          "is_direct_match": false
+        },
+        "USGS_NWIS": {
+          "source_field": "Derived: gage_height - flood_stage",
+          "source_unit": "ft -> m",
+          "conversion_to_target": "max(0.0, (gage_height - flood_stage) * 0.3048)",
+          "status": "Computable from gage_height",
+          "is_direct_match": false
+        },
+        "NOAA_Storm_Events": {
+          "source_field": "Extracted from EVENT_NARRATIVE (e.g. 'water up to 3 feet deep')",
+          "source_unit": "feet (text)",
+          "conversion_to_target": "NLP regex extraction * 0.3048",
+          "status": "Sparse (~12% text coverage)",
+          "is_direct_match": false
+        },
+        "Global_Flood_DB": {
+          "source_field": "None directly (2D binary flood extent; height estimated via HAND model in literature)",
+          "source_unit": "None",
+          "conversion_to_target": "HAND terrain intersection",
+          "status": "Model-derived only",
+          "is_direct_match": false
+        },
+        "ERA5_Hourly": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        },
+        "ERA5_Land": {
+          "source_field": "None",
+          "source_unit": "None",
+          "conversion_to_target": "N/A",
+          "status": "Unavailable",
+          "is_direct_match": false
+        }
+      }
+    }
+  }
+}

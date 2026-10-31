@@ -1,0 +1,32 @@
+{
+  "dataset_name": "ERA5 & ERA5-Land Hourly Reanalysis",
+  "provider": "ECMWF Copernicus Climate Change Service (C3S) / Open-Meteo Historical Archive",
+  "spatial_resolution": "0.25\u00b0 (ERA5 Atmospheric) / 0.1\u00b0 (ERA5-Land)",
+  "temporal_resolution": "Hourly",
+  "sample_period": "2023-07-01 to 2023-07-31",
+  "total_hourly_records": 1488,
+  "variables_acquired": [
+    "temperature_2m",
+    "relative_humidity_2m",
+    "precipitation",
+    "rain",
+    "surface_pressure",
+    "wind_speed_10m",
+    "soil_moisture_0_to_7cm",
+    "soil_moisture_7_to_28cm"
+  ],
+  "sites_sampled": [
+    {
+      "name": "potomac_usgs_01646500",
+      "lat": 38.9498,
+      "lon": -77.1276,
+      "desc": "Potomac River Little Falls Pump Station (USGS)"
+    },
+    {
+      "name": "aroostook_camelsh_01017000",
+      "lat": 46.7773,
+      "lon": -68.1572,
+      "desc": "Aroostook River at Washburn, ME (CAMELSH)"
+    }
+  ]
+}

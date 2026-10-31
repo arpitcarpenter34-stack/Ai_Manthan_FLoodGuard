@@ -1,0 +1,93 @@
+{
+  "station_count": 5,
+  "total_records": 24800,
+  "date_min": "2026-10-17 08:20:00-04:00",
+  "date_max": "2026-10-31 07:55:00-04:00",
+  "stations": {
+    "01638500": {
+      "site_code": "01638500",
+      "site_name": "POTOMAC RIVER AT POINT OF ROCKS, MD",
+      "latitude": 39.2735833,
+      "longitude": -77.5431111,
+      "variables": [
+        {
+          "code": "00060",
+          "desc": "Discharge, cubic feet per second",
+          "unit": "ft3/s"
+        },
+        {
+          "code": "00065",
+          "desc": "Gage height, feet",
+          "unit": "ft"
+        }
+      ]
+    },
+    "01643000": {
+      "site_code": "01643000",
+      "site_name": "MONOCACY RIVER AT JUG BRIDGE NEAR FREDERICK, MD",
+      "latitude": 39.4028333,
+      "longitude": -77.3660833,
+      "variables": [
+        {
+          "code": "00060",
+          "desc": "Discharge, cubic feet per second",
+          "unit": "ft3/s"
+        },
+        {
+          "code": "00065",
+          "desc": "Gage height, feet",
+          "unit": "ft"
+        }
+      ]
+    },
+    "01644000": {
+      "site_code": "01644000",
+      "site_name": "GOOSE CREEK NEAR LEESBURG, VA",
+      "latitude": 39.01955309,
+      "longitude": -77.5774918,
+      "variables": [
+        {
+          "code": "00060",
+          "desc": "Discharge, cubic feet per second",
+          "unit": "ft3/s"
+        },
+        {
+          "code": "00065",
+          "desc": "Gage height, feet",
+          "unit": "ft"
+        }
+      ]
+    },
+    "01646500": {
+      "site_code": "01646500",
+      "site_name": "POTOMAC RIVER NEAR WASH, DC LITTLE FALLS PUMP STA",
+      "latitude": 38.94977778,
+      "longitude": -77.12763889,
+      "variables": [
+        {
+          "code": "00060",
+          "desc": "Discharge, cubic feet per second",
+          "unit": "ft3/s"
+        },
+        {
+          "code": "00065",
+          "desc": "Gage height, feet",
+          "unit": "ft"
+        }
+      ]
+    },
+    "01647600": {
+      "site_code": "01647600",
+      "site_name": "POTOMAC RIVER AT WISCONSIN AVE, WASHINGTON, DC",
+      "latitude": 38.9033611,
+      "longitude": -77.0676667,
+      "variables": [
+        {
+          "code": "00065",
+          "desc": "Gage height, feet",
+          "unit": "ft"
+        }
+      ]
+    }
+  }
+}

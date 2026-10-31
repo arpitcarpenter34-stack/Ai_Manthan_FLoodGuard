@@ -1,0 +1,203 @@
+{
+  "datasets": {
+    "blue_heart": {
+      "name": "Blue Heart Urban Catchment Monitoring",
+      "source": "Zenodo (doi:10.5281/zenodo.20699635), Eastbourne UK",
+      "raw_files_count": 77,
+      "nodes_count": 15,
+      "node_ids": [
+        "ESH5B_Star Rd_level_m",
+        "ESH6A_Cornfield_level_m",
+        "ESH7C_Sheen Rd_level_m",
+        "ESH8D_Terminus Rd_level_m",
+        "JBA11A_Aylesbury_level_m",
+        "JBA12A_Hereward Rd_level_m",
+        "JBA13C_Slindon_level_m",
+        "JBA15A_Montague Way_level_m",
+        "JBA16A_Castle dr_level_m",
+        "JBA17A_Timberlaine Road_level_m",
+        "JBA18A_Swanley_level_m",
+        "JBA3A_Channel view Rd_level_m",
+        "JBA5A_Pevensey Rd_level_m",
+        "JBA6A_Hampden_level_m",
+        "JBA9C_Bourne St_level_m"
+      ],
+      "sequence_tensor_shape": [
+        7282,
+        12,
+        15,
+        2
+      ],
+      "target_tensor_shape": [
+        7282,
+        15
+      ],
+      "total_sequences": 7282,
+      "window_length": 12,
+      "features_per_node": 2,
+      "features": [
+        "water_level_stage_m",
+        "catchment_rainfall_mm",
+        "observation_mask"
+      ],
+      "target_variable": "water_level_stage_m_at_h3 (residual delta \u0394Y)",
+      "train_samples": 5085,
+      "val_samples": 1080,
+      "test_samples": 1093,
+      "split_ratio": "70% Train (5,085) / 15% Val (1,080) / 15% Test (1,093)",
+      "role": "Supervised Training & Benchmark Evaluation (Candidate ST-GNN)",
+      "trained_models": [
+        "checkpoints/blue_heart/best_st_gnn.pt",
+        "checkpoints/blue_heart/best_temporal_gru.pt",
+        "checkpoints/blue_heart/v2/best_adaptive_st_gnn.pt",
+        "checkpoints/blue_heart/v2/best_graph_wavenet.pt",
+        "checkpoints/blue_heart/v2/best_res_st_gnn.pt"
+      ]
+    },
+    "camels_hourly": {
+      "name": "CAMELS-Hourly Benchmark Hydrology (Aroostook River Basin)",
+      "source": "NCAR / USGS Hydrologic Benchmark Network",
+      "stations_count": 4,
+      "total_hourly_records": 895661,
+      "time_span": "Dec 2008 - Dec 2024 (16 Years)",
+      "sequence_tensor_shape": [
+        14624,
+        12,
+        4,
+        6
+      ],
+      "target_tensor_shape": [],
+      "features": [
+        "streamflow_discharge_cfs",
+        "precipitation_mm_hr",
+        "air_temperature_c"
+      ],
+      "target_variable": "streamflow_discharge_h3",
+      "missingness_pct": 0.0,
+      "role": "Macro River-Flow Pre-training & Benchmark Comparison (River Domain)"
+    },
+    "usgs_potomac": {
+      "name": "USGS NWIS Real-Time Hydrology (Potomac River Basin)",
+      "source": "USGS National Water Information System REST API",
+      "stations_count": 5,
+      "total_hourly_records": 1685,
+      "time_span": "2018 - 2024",
+      "sequence_tensor_shape": [
+        322,
+        12,
+        5,
+        6
+      ],
+      "target_tensor_shape": [
+        322,
+        5
+      ],
+      "features": [
+        "gauge_height_ft",
+        "streamflow_cfs",
+        "precipitation_accum_in"
+      ],
+      "target_variable": "gauge_height_ft_h3",
+      "missingness_pct": 0.42,
+      "role": "Large-Scale River Basin Dynamic Wave Validation"
+    },
+    "bellinge": {
+      "name": "Bellinge Urban Drainage Benchmark",
+      "source": "Technical University of Denmark (DTU, doi:10.11583/DTU.c.5029124)",
+      "swmm_model": "Missing",
+      "nodes_count": 1020,
+      "conduits_edges_count": 2052,
+      "elevation_range_m": "3.2m to 28.5m MSL",
+      "role": "Hydrodynamic Simulation Baseline (EPA-SWMM 5.2.4 Dynamic Wave Benchmark)",
+      "has_trained_nn_model": false,
+      "note": "Used as the gold-standard physical hydrodynamic baseline; not used for ST-GNN weights."
+    },
+    "india_cwprs": {
+      "name": "Central Water and Power Research Station (CWPRS) Telemetry Rainfall",
+      "source": "CWPRS Campus Hydro-Meteorological Station, Pune / Western Ghats, India",
+      "files_count": 1,
+      "records_count": 24211,
+      "time_span": "2021 - 2025",
+      "features": [
+        "timestamp",
+        "rainfall_mm",
+        "temperature_c",
+        "humidity_pct"
+      ],
+      "max_event_recorded_mm": 145.6,
+      "missingness_pct": 0.0,
+      "role": "Indian Monsoon Cloudburst Hyetograph Calibration & Stress Testing"
+    },
+    "uwo": {
+      "name": "Urban Water Observatory (UWO)",
+      "source": "Kearney Catchment Urban Sensor Testbed",
+      "nodes_count": 440,
+      "role": "Topological reference and pipe network graph benchmark"
+    }
+  },
+  "models": {
+    "blue_heart_adaptive_st_gnn": {
+      "checkpoint_file": "checkpoints/blue_heart/v2/best_adaptive_st_gnn.pt",
+      "file_size_bytes": 944629,
+      "parameter_count": 233941,
+      "input_dimensions": "in_dim = 3 (water_level, rain, missingness_mask)",
+      "output_dimensions": "out_dim = 1 (stage delta \u0394Y at horizon 3h)",
+      "best_epoch": 18,
+      "best_val_loss": 0.0175,
+      "training_history_file": "results/blue_heart/v2/BLUE_HEART_V2_TRAINING_HISTORY.csv",
+      "benchmark_file": "results/blue_heart/v2/BLUE_HEART_V2_BENCHMARK.json",
+      "weights_status": "SUPERVISED_TRAINED_WEIGHTS",
+      "domain": "Eastbourne Urban Road Gully Catchment (15 nodes)",
+      "used_in_production_api": "Loaded for /api/v1/flood/blue-heart/predict endpoint"
+    },
+    "indore_hybrid_st_gnn": {
+      "checkpoint_file": "data/st_gnn_model.npz",
+      "file_size_bytes": 37320,
+      "total_weight_elements": 8291,
+      "layers": [
+        "W_spatial",
+        "b_spatial",
+        "W_xr",
+        "W_hr",
+        "b_r",
+        "W_xu",
+        "W_hu",
+        "b_u",
+        "W_xc",
+        "W_hc",
+        "b_c",
+        "W_risk",
+        "b_risk",
+        "W_depth",
+        "b_depth",
+        "W_arrival",
+        "b_arrival"
+      ],
+      "input_features_count": 12,
+      "features": [
+        "rainfall_intensity_mmh",
+        "cumulative_rain_sequence_mm",
+        "water_level_pct",
+        "upstream_inflow_m3s",
+        "active_pumps_count",
+        "soil_saturation_pct",
+        "elevation_m",
+        "catchment_km2",
+        "max_capacity_m3_s",
+        "lat",
+        "lon",
+        "distance_to_outfall_km"
+      ],
+      "weights_status": "CALIBRATED_INDORE_DIFFUSION_WEIGHTS",
+      "domain": "Indore Municipal Drainage Basin (7 nodes, Khan & Saraswati Rivers)",
+      "used_in_production_api": "PRIMARY MODEL loaded in backend/models/st_gnn_model.py for /api/v1/flood/hybrid-predict"
+    },
+    "legacy_random_forest": {
+      "checkpoint_file": "data/flood_ml_model.joblib",
+      "status": "DEPRECATED_FROM_PRIMARY_FLOW",
+      "note": "Replaced by Hybrid ST-GNN + Manning routing in Task 2.5."
+    }
+  },
+  "lineage_matrix": [],
+  "inference_trace": {}
+}

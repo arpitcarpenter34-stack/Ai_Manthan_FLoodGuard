@@ -1,0 +1,108 @@
+{
+  "graph_name": "Potomac_River_Basin",
+  "hydrologic_region": "HUC02-02 (Mid-Atlantic)",
+  "num_nodes": 5,
+  "node_ordering": [
+    "01638500",
+    "01643000",
+    "01644000",
+    "01647600",
+    "01646500"
+  ],
+  "nodes": [
+    {
+      "index": 0,
+      "station_id": "01638500",
+      "name": "Potomac River at Point of Rocks, MD",
+      "role": "UPSTREAM_MAINSTEM",
+      "latitude": 39.2736,
+      "longitude": -77.5431,
+      "drainage_area_km2": 24993.0,
+      "elevation_m": 61.0
+    },
+    {
+      "index": 1,
+      "station_id": "01643000",
+      "name": "Monocacy River at Jug Bridge, MD",
+      "role": "MAJOR_TRIBUTARY",
+      "latitude": 39.4007,
+      "longitude": -77.3664,
+      "drainage_area_km2": 2116.0,
+      "elevation_m": 68.0
+    },
+    {
+      "index": 2,
+      "station_id": "01644000",
+      "name": "Seneca Creek at Dawsonville, MD",
+      "role": "LATERAL_TRIBUTARY",
+      "latitude": 39.1297,
+      "longitude": -77.3308,
+      "drainage_area_km2": 262.0,
+      "elevation_m": 64.0
+    },
+    {
+      "index": 3,
+      "station_id": "01647600",
+      "name": "NW Branch Anacostia River, Hyattsville, MD",
+      "role": "URBAN_TRIBUTARY",
+      "latitude": 39.9536,
+      "longitude": -76.9658,
+      "drainage_area_km2": 128.0,
+      "elevation_m": 15.0
+    },
+    {
+      "index": 4,
+      "station_id": "01646500",
+      "name": "Potomac River near Little Falls Pump Sta, DC",
+      "role": "DOWNSTREAM_TERMINAL",
+      "latitude": 38.9498,
+      "longitude": -77.1276,
+      "drainage_area_km2": 29940.0,
+      "elevation_m": 11.0
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 4,
+      "from_staid": "01638500",
+      "to_staid": "01646500",
+      "length_km": 42.7,
+      "drop_m": 50.0,
+      "weight": 0.2923
+    },
+    {
+      "from_node": 1,
+      "to_node": 4,
+      "from_staid": "01643000",
+      "to_staid": "01646500",
+      "length_km": 38.1,
+      "drop_m": 57.0,
+      "weight": 0.1073
+    },
+    {
+      "from_node": 2,
+      "to_node": 4,
+      "from_staid": "01644000",
+      "to_staid": "01646500",
+      "length_km": 19.4,
+      "drop_m": 53.0,
+      "weight": 0.0739
+    },
+    {
+      "from_node": 3,
+      "to_node": 4,
+      "from_staid": "01647600",
+      "to_staid": "01646500",
+      "length_km": 12.0,
+      "drop_m": 4.0,
+      "weight": 0.0598
+    }
+  ],
+  "static_feature_names": [
+    "drainage_area_km2",
+    "elevation_m",
+    "latitude",
+    "longitude"
+  ]
+}

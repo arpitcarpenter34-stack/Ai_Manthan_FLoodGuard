@@ -1,0 +1,231 @@
+{
+  "tests_passed": 45,
+  "tests_failed": 0,
+  "details": [
+    {
+      "test": "File Existence: camels_hourly_processed/01015800_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\camels_hourly_processed/01015800_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: camels_hourly_processed/01017000_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\camels_hourly_processed/01017000_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: camels_hourly_processed/01017060_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\camels_hourly_processed/01017060_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: camels_hourly_processed/01017290_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\camels_hourly_processed/01017290_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: camels_hourly_processed/catchment_attributes_standardized.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\camels_hourly_processed/catchment_attributes_standardized.csv"
+    },
+    {
+      "test": "File Existence: usgs_processed/01638500_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\usgs_processed/01638500_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: usgs_processed/01646500_hourly_labeled.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\usgs_processed/01646500_hourly_labeled.csv"
+    },
+    {
+      "test": "File Existence: noaa_flood_events_processed/noaa_floods_2023_standardized.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\noaa_flood_events_processed/noaa_floods_2023_standardized.csv"
+    },
+    {
+      "test": "File Existence: era5_processed/era5_hourly_standardized.csv",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\era5_processed/era5_hourly_standardized.csv"
+    },
+    {
+      "test": "File Existence: graph_data/aroostook_adjacency.npy",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\graph_data/aroostook_adjacency.npy"
+    },
+    {
+      "test": "File Existence: graph_data/potomac_adjacency.npy",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\graph_data/potomac_adjacency.npy"
+    },
+    {
+      "test": "File Existence: graph_data/disjoint_combined_adjacency.npy",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\graph_data/disjoint_combined_adjacency.npy"
+    },
+    {
+      "test": "File Existence: temporal_sequences/aroostook_sequences_w12_h3.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/aroostook_sequences_w12_h3.npz"
+    },
+    {
+      "test": "File Existence: temporal_sequences/aroostook_sequences_w6_h1.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/aroostook_sequences_w6_h1.npz"
+    },
+    {
+      "test": "File Existence: temporal_sequences/aroostook_sequences_w24_h6.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/aroostook_sequences_w24_h6.npz"
+    },
+    {
+      "test": "File Existence: temporal_sequences/potomac_sequences_w12_h3.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/potomac_sequences_w12_h3.npz"
+    },
+    {
+      "test": "File Existence: temporal_sequences/potomac_sequences_w6_h1.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/potomac_sequences_w6_h1.npz"
+    },
+    {
+      "test": "File Existence: temporal_sequences/potomac_sequences_w24_h6.npz",
+      "status": "PASS",
+      "message": "Path: E:\\ai-manthan\\hydro_guard_indore\\data\\processed_global\\temporal_sequences/potomac_sequences_w24_h6.npz"
+    },
+    {
+      "test": "Non-negative Streamflow: CAMELSH",
+      "status": "PASS",
+      "message": "Min flow: 2.018988 m3/s"
+    },
+    {
+      "test": "Realistic Water Level: CAMELSH",
+      "status": "PASS",
+      "message": "Stage range: [0.164592, 6.41604] m"
+    },
+    {
+      "test": "Missing Mask Consistency: CAMELSH",
+      "status": "PASS",
+      "message": "streamflow_measured_mask strictly reflects unmeasured vs measured"
+    },
+    {
+      "test": "No Silent Zero-Filling: CAMELSH",
+      "status": "PASS",
+      "message": "Unmeasured streamflow rows remain NaN, never fabricated as 0.0"
+    },
+    {
+      "test": "Non-negative Streamflow: USGS",
+      "status": "PASS",
+      "message": "Min flow: 66.42660263040001 m3/s"
+    },
+    {
+      "test": "Realistic Water Level: USGS",
+      "status": "PASS",
+      "message": "Stage range: [0.883666, 1.178052] m"
+    },
+    {
+      "test": "Scientific Label Present: label_statistical_high_flow",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Scientific Label Present: label_official_flood_observed",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Scientific Label Present: label_gauge_exceedance",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Scientific Label Present: label_noaa_reported",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Scientific Label Present: label_satellite_flood",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Scientific Label Present: label_estimated_inundation_depth_m",
+      "status": "PASS",
+      "message": ""
+    },
+    {
+      "test": "Statistical High Flow Distinction in USGS",
+      "status": "PASS",
+      "message": "Distinguishes statistical Q99 anomaly from official NWS flood exceedance"
+    },
+    {
+      "test": "Unreported Period Explicitly Marked with Confidence",
+      "status": "PASS",
+      "message": "Absence of NOAA event is marked with explicit confidence, not assumed flood-free"
+    },
+    {
+      "test": "Inundation Depth Explicitly Termed Estimated",
+      "status": "PASS",
+      "message": "Estimated depth is never mislabeled as measured physical depth"
+    },
+    {
+      "test": "Aroostook Graph Dimensions (4x4)",
+      "status": "PASS",
+      "message": "Shape: (4, 4)"
+    },
+    {
+      "test": "Potomac Graph Dimensions (5x5)",
+      "status": "PASS",
+      "message": "Shape: (5, 5)"
+    },
+    {
+      "test": "Zero Self-Loops: Aroostook",
+      "status": "PASS",
+      "message": "Zero self-loops"
+    },
+    {
+      "test": "Zero Self-Loops: Potomac",
+      "status": "PASS",
+      "message": "Zero self-loops"
+    },
+    {
+      "test": "Non-negative Adjacency Weights",
+      "status": "PASS",
+      "message": "Physically non-negative"
+    },
+    {
+      "test": "Zero Cross-Basin Edges (Strict Disjoint Rule)",
+      "status": "PASS",
+      "message": "Cross-basin weight: 0.0"
+    },
+    {
+      "test": "Aroostook Sequence Dimensions (N, 12, 4, 6)",
+      "status": "PASS",
+      "message": "Aroostook Shape: (14624, 12, 4, 6)"
+    },
+    {
+      "test": "Aroostook Chronological Split Train < Val < Test",
+      "status": "PASS",
+      "message": "Strict temporal progression"
+    },
+    {
+      "test": "Aroostook Disjoint Sets",
+      "status": "PASS",
+      "message": "Zero leakage"
+    },
+    {
+      "test": "Potomac Sequence Dimensions (N, 12, 5, 6)",
+      "status": "PASS",
+      "message": "Potomac Shape: (322, 12, 5, 6)"
+    },
+    {
+      "test": "Potomac Chronological Split Train < Val < Test",
+      "status": "PASS",
+      "message": "Strict temporal progression"
+    },
+    {
+      "test": "Potomac Disjoint Sets",
+      "status": "PASS",
+      "message": "Zero leakage"
+    }
+  ]
+}

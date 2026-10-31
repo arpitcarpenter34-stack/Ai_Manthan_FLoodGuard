@@ -1,0 +1,136 @@
+{
+  "experiment_name": "blue_heart_urban_st_gnn",
+  "task": "TASK_3_1_BLUE_HEART_MODEL_TRAINING",
+  "problem_statement": "PS-11: Urban Drainage and Flash Flood Predictive Management System",
+  "dataset": "Blue Heart Urban Catchment (Eastbourne, UK)",
+  "num_nodes": 15,
+  "input_features": [
+    "water_level_m",
+    "catchment_rainfall_mm_h",
+    "observation_mask"
+  ],
+  "lookback_window_hours": 12,
+  "forecast_horizon_hours": 3,
+  "train_samples": 5085,
+  "val_samples": 1080,
+  "test_samples": 1093,
+  "total_sequences": 7282,
+  "split_strategy": "Chronological 70/15/15 with 12-hour purge buffers",
+  "architecture": {
+    "model_type": "Diffusion Convolutional Recurrent Neural Network (DCRNN)",
+    "graph_supports": "Identity + Forward Pf + Backward Pb + Pf^2 + Pb^2 (K=2 hops)",
+    "num_layers": 2,
+    "hidden_dimension": 64,
+    "dropout": 0.15,
+    "readout_head": "Linear(64, 32) -> ReLU -> Linear(32, 1)"
+  },
+  "training_hyperparameters": {
+    "loss_function": "SmoothL1Loss(beta=0.5) [Masked Huber]",
+    "optimizer": "AdamW",
+    "initial_learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 64,
+    "max_epochs": 35,
+    "early_stopping_patience": 8,
+    "best_epoch": 10,
+    "best_val_loss": 0.295012,
+    "training_duration_seconds": 534.9
+  },
+  "normalization": {
+    "sensor_wise_stage": true,
+    "mu_level": [
+      0.3861,
+      0.1257,
+      0.8639,
+      0.282,
+      0.3616,
+      0.4867,
+      0.5111,
+      1.0934,
+      0.4951,
+      0.5096,
+      0.1246,
+      0.4866,
+      0.3374,
+      1.2219,
+      0.1285
+    ],
+    "sigma_level": [
+      0.0577,
+      0.0206,
+      0.0646,
+      0.0279,
+      0.1027,
+      0.0378,
+      0.0455,
+      0.0587,
+      0.0387,
+      0.0344,
+      0.0198,
+      0.049,
+      0.0632,
+      0.0768,
+      0.0507
+    ],
+    "mu_rain": 0.1281,
+    "sigma_rain": 0.6621
+  },
+  "test_benchmark": {
+    "persistence": {
+      "mae": 0.005442280787974596,
+      "rmse": 0.0421866811811924,
+      "nse": 0.2563615063412358,
+      "r2": 0.9850271344184875
+    },
+    "ridge_ar": {
+      "mae": 0.02829865925014019,
+      "rmse": 0.08304391801357269,
+      "nse": -1.8815545628217407,
+      "r2": 0.9466249346733093
+    },
+    "temporal_gru": {
+      "mae": 0.012222430668771267,
+      "rmse": 0.04483984410762787,
+      "nse": 0.1598838209773621,
+      "r2": 0.983529269695282
+    },
+    "st_gnn_dcrnn": {
+      "mae": 0.017550542950630188,
+      "rmse": 0.05285172536969185,
+      "nse": -0.1671576000038888,
+      "r2": 0.9781105518341064
+    },
+    "high_water_test": {
+      "persistence": {
+        "mae": 0.009555002674460411,
+        "rmse": 0.0574566051363945,
+        "nse": 0.00425956331528432,
+        "r2": 0.4925856292247772
+      },
+      "ridge_ar": {
+        "mae": 0.012041128240525723,
+        "rmse": 0.03409881889820099,
+        "nse": 0.6492926778222833,
+        "r2": 0.7398894429206848
+      },
+      "temporal_gru": {
+        "mae": 0.006917017977684736,
+        "rmse": 0.03328479453921318,
+        "nse": 0.665837283553312,
+        "r2": 0.737798810005188
+      },
+      "st_gnn_dcrnn": {
+        "mae": 0.00791754201054573,
+        "rmse": 0.031785570085048676,
+        "nse": 0.6952622741251697,
+        "r2": 0.767572820186615
+      }
+    },
+    "peak_timing_error_hours": {
+      "persistence": 3.0,
+      "ridge_ar": 4.4,
+      "temporal_gru": 3.6,
+      "st_gnn_dcrnn": 2.7
+    }
+  }
+}

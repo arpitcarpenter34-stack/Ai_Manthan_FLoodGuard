@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 
 import config
-from backend.api import flood_router, sensor_router, report_router
+from backend.api import flood_router, sensor_router, report_router, model_intel_router, dataset_intel_router
 from backend.simulators.sensor_stream_sim import sensor_simulator
 from backend.models.cv_purity_detector import cv_detector
 from backend.models.acoustic_level_ai import acoustic_ai
@@ -96,6 +96,8 @@ if sample_img_dir.exists():
 app.include_router(flood_router)
 app.include_router(sensor_router)
 app.include_router(report_router)
+app.include_router(model_intel_router)
+app.include_router(dataset_intel_router)
 
 
 @app.get("/", summary="System Root & Hydrological Info")
@@ -106,7 +108,7 @@ def root_info(request: Request):
     """
     accept = request.headers.get("accept", "")
     html_file = static_dir / "index.html"
-    if "text/html" in accept and "application/json" not in accept and html_file.exists():
+    if "text/html" in accept and html_file.exists():
         return FileResponse(str(html_file))
 
     return {

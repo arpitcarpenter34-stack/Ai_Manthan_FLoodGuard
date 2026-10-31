@@ -1,0 +1,42 @@
+{
+  "01638500": {
+    "site_name": "POTOMAC RIVER AT POINT OF ROCKS, MD",
+    "total_hours": 337,
+    "valid_streamflow_hours": 335,
+    "valid_water_level_hours": 335,
+    "streamflow_mean": 90.556,
+    "water_level_mean": 0.57
+  },
+  "01643000": {
+    "site_name": "MONOCACY RIVER AT JUG BRIDGE NEAR FREDERICK, MD",
+    "total_hours": 337,
+    "valid_streamflow_hours": 336,
+    "valid_water_level_hours": 336,
+    "streamflow_mean": 6.444,
+    "water_level_mean": 0.554
+  },
+  "01644000": {
+    "site_name": "GOOSE CREEK NEAR LEESBURG, VA",
+    "total_hours": 337,
+    "valid_streamflow_hours": 336,
+    "valid_water_level_hours": 336,
+    "streamflow_mean": 3.519,
+    "water_level_mean": 0.485
+  },
+  "01646500": {
+    "site_name": "POTOMAC RIVER NEAR WASH, DC LITTLE FALLS PUMP STA",
+    "total_hours": 337,
+    "valid_streamflow_hours": 336,
+    "valid_water_level_hours": 336,
+    "streamflow_mean": 117.156,
+    "water_level_mean": 0.976
+  },
+  "01647600": {
+    "site_name": "POTOMAC RIVER AT WISCONSIN AVE, WASHINGTON, DC",
+    "total_hours": 337,
+    "valid_streamflow_hours": 0,
+    "valid_water_level_hours": 336,
+    "streamflow_mean": 0.0,
+    "water_level_mean": 0.383
+  }
+}

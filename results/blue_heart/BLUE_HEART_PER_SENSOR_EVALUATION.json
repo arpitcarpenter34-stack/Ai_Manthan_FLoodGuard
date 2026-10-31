@@ -1,0 +1,368 @@
+{
+  "st_gnn": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0036,
+      "rmse_m": 0.0238,
+      "nse": 0.0476,
+      "r2": 0.0589
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0157,
+      "rmse_m": 0.0253,
+      "nse": 0.1936,
+      "r2": 0.6083
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0065,
+      "rmse_m": 0.0641,
+      "nse": 0.0005,
+      "r2": 0.0104
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.009,
+      "rmse_m": 0.0405,
+      "nse": 0.8035,
+      "r2": 0.8084
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0263,
+      "rmse_m": 0.0286,
+      "nse": 0.4006,
+      "r2": 0.8627
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.1358,
+      "rmse_m": 0.1419,
+      "nse": -8.7425,
+      "r2": 0.2354
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0038,
+      "rmse_m": 0.004,
+      "nse": -1.0479,
+      "r2": 0.7085
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0065,
+      "rmse_m": 0.0479,
+      "nse": 0.0082,
+      "r2": 0.0094
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.003,
+      "rmse_m": 0.0212,
+      "nse": 0.2994,
+      "r2": 0.3107
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0018,
+      "rmse_m": 0.0023,
+      "nse": 0.9472,
+      "r2": 0.9903
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0022,
+      "rmse_m": 0.0097,
+      "nse": 0.3348,
+      "r2": 0.3492
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0114,
+      "rmse_m": 0.0603,
+      "nse": -0.0182,
+      "r2": 0.0048
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0017,
+      "rmse_m": 0.0149,
+      "nse": 0.1729,
+      "r2": 0.1769
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0263,
+      "rmse_m": 0.084,
+      "nse": 0.3356,
+      "r2": 0.3723
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0096,
+      "rmse_m": 0.0142,
+      "nse": 0.7828,
+      "r2": 0.839
+    }
+  ],
+  "temporal_gru": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.0214,
+      "nse": 0.2294,
+      "r2": 0.2444
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0152,
+      "rmse_m": 0.0255,
+      "nse": 0.1804,
+      "r2": 0.5296
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0057,
+      "rmse_m": 0.0622,
+      "nse": 0.0606,
+      "r2": 0.0726
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.007,
+      "rmse_m": 0.0392,
+      "nse": 0.8166,
+      "r2": 0.8195
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0084,
+      "rmse_m": 0.0138,
+      "nse": 0.8592,
+      "r2": 0.8754
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.0915,
+      "rmse_m": 0.1004,
+      "nse": -3.8779,
+      "r2": 0.2826
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0006,
+      "rmse_m": 0.0012,
+      "nse": 0.8262,
+      "r2": 0.8757
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0064,
+      "rmse_m": 0.0486,
+      "nse": -0.0234,
+      "r2": 0.0048
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.0217,
+      "nse": 0.2689,
+      "r2": 0.2811
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0005,
+      "rmse_m": 0.0009,
+      "nse": 0.9912,
+      "r2": 0.9933
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0012,
+      "rmse_m": 0.0093,
+      "nse": 0.3818,
+      "r2": 0.3881
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0121,
+      "rmse_m": 0.0605,
+      "nse": -0.0258,
+      "r2": 0.0287
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.002,
+      "rmse_m": 0.0159,
+      "nse": 0.0505,
+      "r2": 0.122
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.0245,
+      "rmse_m": 0.0801,
+      "nse": 0.3969,
+      "r2": 0.4098
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0041,
+      "rmse_m": 0.0112,
+      "nse": 0.8659,
+      "r2": 0.8704
+    }
+  ],
+  "persistence": [
+    {
+      "sensor_idx": 0,
+      "sensor_name": "ESH5B_Star Rd_level_m",
+      "mae_m": 0.0025,
+      "rmse_m": 0.0291,
+      "nse": -0.4287,
+      "r2": 0.0815
+    },
+    {
+      "sensor_idx": 1,
+      "sensor_name": "ESH6A_Cornfield_level_m",
+      "mae_m": 0.0062,
+      "rmse_m": 0.0154,
+      "nse": 0.7,
+      "r2": 0.7232
+    },
+    {
+      "sensor_idx": 2,
+      "sensor_name": "ESH7C_Sheen Rd_level_m",
+      "mae_m": 0.0083,
+      "rmse_m": 0.0831,
+      "nse": -0.6787,
+      "r2": 0.0258
+    },
+    {
+      "sensor_idx": 3,
+      "sensor_name": "ESH8D_Terminus Rd_level_m",
+      "mae_m": 0.004,
+      "rmse_m": 0.0296,
+      "nse": 0.8954,
+      "r2": 0.8982
+    },
+    {
+      "sensor_idx": 4,
+      "sensor_name": "JBA11A_Aylesbury_level_m",
+      "mae_m": 0.0065,
+      "rmse_m": 0.0136,
+      "nse": 0.8643,
+      "r2": 0.8733
+    },
+    {
+      "sensor_idx": 5,
+      "sensor_name": "JBA12A_Hereward Rd_level_m",
+      "mae_m": 0.0026,
+      "rmse_m": 0.0354,
+      "nse": 0.3946,
+      "r2": 0.4862
+    },
+    {
+      "sensor_idx": 6,
+      "sensor_name": "JBA13C_Slindon_level_m",
+      "mae_m": 0.0003,
+      "rmse_m": 0.0009,
+      "nse": 0.8953,
+      "r2": 0.8978
+    },
+    {
+      "sensor_idx": 7,
+      "sensor_name": "JBA15A_Montague Way_level_m",
+      "mae_m": 0.0083,
+      "rmse_m": 0.0675,
+      "nse": -0.9742,
+      "r2": 0.0002
+    },
+    {
+      "sensor_idx": 8,
+      "sensor_name": "JBA16A_Castle dr_level_m",
+      "mae_m": 0.0024,
+      "rmse_m": 0.0297,
+      "nse": -0.374,
+      "r2": 0.0971
+    },
+    {
+      "sensor_idx": 9,
+      "sensor_name": "JBA17A_Timberlaine Road_level_m",
+      "mae_m": 0.0002,
+      "rmse_m": 0.0006,
+      "nse": 0.9963,
+      "r2": 0.9964
+    },
+    {
+      "sensor_idx": 10,
+      "sensor_name": "JBA18A_Swanley_level_m",
+      "mae_m": 0.0015,
+      "rmse_m": 0.0125,
+      "nse": -0.119,
+      "r2": 0.1923
+    },
+    {
+      "sensor_idx": 11,
+      "sensor_name": "JBA3A_Channel view Rd_level_m",
+      "mae_m": 0.0132,
+      "rmse_m": 0.0669,
+      "nse": -0.2558,
+      "r2": 0.1385
+    },
+    {
+      "sensor_idx": 12,
+      "sensor_name": "JBA5A_Pevensey Rd_level_m",
+      "mae_m": 0.0021,
+      "rmse_m": 0.0207,
+      "nse": -0.6101,
+      "r2": 0.0375
+    },
+    {
+      "sensor_idx": 13,
+      "sensor_name": "JBA6A_Hampden_level_m",
+      "mae_m": 0.02,
+      "rmse_m": 0.0757,
+      "nse": 0.4612,
+      "r2": 0.534
+    },
+    {
+      "sensor_idx": 14,
+      "sensor_name": "JBA9C_Bourne St_level_m",
+      "mae_m": 0.0035,
+      "rmse_m": 0.0123,
+      "nse": 0.8392,
+      "r2": 0.8462
+    }
+  ]
+}

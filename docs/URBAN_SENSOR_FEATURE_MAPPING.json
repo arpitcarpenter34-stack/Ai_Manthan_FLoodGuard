@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HYDRO-GUARD AI — Urban Drainage Common Feature Mapping Specification",
+  "document_id": "HGAI-SPEC-URBAN-MAPPING-2026-10-31",
+  "version": "1.0.0",
+  "status": "APPROVED",
+  "description": "Standardized feature mapping schema across global and Indian urban drainage datasets for ST-GNN and Hydraulic Engine integration.",
+  "classification_categories": [
+    "Directly measured",
+    "Derived",
+    "Estimated",
+    "Simulated",
+    "Unavailable"
+  ],
+  "common_schema_fields": {
+    "sensor_id": {
+      "type": "string",
+      "description": "Unique alphanumeric identifier of the physical or virtual sensor node."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 formatted UTC timestamp of observation."
+    },
+    "latitude": {
+      "type": "number",
+      "description": "WGS-84 decimal latitude of sensor or asset."
+    },
+    "longitude": {
+      "type": "number",
+      "description": "WGS-84 decimal longitude of sensor or asset."
+    },
+    "water_level_m": {
+      "type": "number",
+      "unit": "meters",
+      "description": "Water depth in manhole, road gully, sewer pipe, or canal."
+    },
+    "pipe_flow_m3s": {
+      "type": "number",
+      "unit": "m^3/s",
+      "description": "Volumetric discharge flowing through the underground conduit."
+    },
+    "rainfall_mm": {
+      "type": "number",
+      "unit": "mm",
+      "description": "Cumulative rainfall depth during observation interval."
+    },
+    "rainfall_intensity_mmh": {
+      "type": "number",
+      "unit": "mm/h",
+      "description": "Rate of precipitation per hour."
+    },
+    "overflow_status": {
+      "type": "integer",
+      "enum": [0, 1],
+      "description": "Binary flag indicating surface ponding or combined sewer overflow (CSO) breach."
+    },
+    "pipe_capacity_m3s": {
+      "type": "number",
+      "unit": "m^3/s",
+      "description": "Theoretical maximum gravity discharge capacity under full-flow Manning conditions."
+    },
+    "pipe_diameter_m": {
+      "type": "number",
+      "unit": "meters",
+      "description": "Internal circular diameter or equivalent hydraulic diameter of conduit."
+    },
+    "pipe_length_m": {
+      "type": "number",
+      "unit": "meters",
+      "description": "Physical reach length between upstream and downstream junctions."
+    },
+    "manhole_elevation_m": {
+      "type": "number",
+      "unit": "meters AOD",
+      "description": "Invert or rim elevation of manhole above datum."
+    },
+    "road_elevation_m": {
+      "type": "number",
+      "unit": "meters AOD",
+      "description": "Ground surface elevation at street/catchment level."
+    },
+    "pump_status": {
+      "type": "integer",
+      "enum": [0, 1, 2],
+      "description": "Operational state of lift station pump: 0=Off, 1=On, 2=Fault/Tripped."
+    },
+    "gate_position": {
+      "type": "number",
+      "unit": "fraction [0.0 - 1.0]",
+      "description": "Fractional sluice gate or weir opening."
+    },
+    "sensor_health": {
+      "type": "string",
+      "enum": ["HEALTHY", "DEGRADED", "DROPOUT", "SUBMERGED_FAILURE"],
+      "description": "Telemetry status and signal-to-noise quality flag."
+    },
+    "source_id": {
+      "type": "string",
+      "description": "Name of contributing repository or physical instrument."
+    },
+    "observation_type": {
+      "type": "string",
+      "enum": ["IN_SITU_IOT", "RADAR_REMOTE_SENSING", "SWMM_HYDRODYNAMIC", "HYDRAULIC_CALCULATED"]
+    }
+  },
+  "dataset_mappings": {
+    "blue_heart_eastbourne": {
+      "dataset_name": "Blue Heart Urban Catchment Monitoring",
+      "doi": "10.5281/zenodo.20699635",
+      "license": "CC-BY-4.0",
+      "geographic_domain": "Eastbourne & South Downs, UK",
+      "feature_audit": {
+        "sensor_id": {"source_column": "locationName / us_node_id", "status": "Directly measured"},
+        "timestamp": {"source_column": "timestamp", "status": "Directly measured"},
+        "latitude": {"source_column": "locationLatitude", "status": "Directly measured"},
+        "longitude": {"source_column": "locationLongitude", "status": "Directly measured"},
+        "water_level_m": {"source_column": "Water Level [mm] / 1000.0", "status": "Directly measured"},
+        "pipe_flow_m3s": {"source_column": "discharge", "status": "Estimated", "notes": "Estimated from rating curve or SWMM calibration"},
+        "rainfall_mm": {"source_column": "Rainfall Depth [mm]", "status": "Directly measured"},
+        "rainfall_intensity_mmh": {"source_column": "Rainfall Depth [mm] * 4.0", "status": "Derived"},
+        "overflow_status": {"source_column": "water_level_m >= (bankLevelEstimate_mAOD - bedLevelEstimate_mAOD)", "status": "Derived"},
+        "pipe_capacity_m3s": {"source_column": "capacity", "status": "Derived", "notes": "Computed from pipe diameter, gradient and Manning roughness"},
+        "pipe_diameter_m": {"source_column": "diameter / 1000.0 or conduit_width / 1000.0", "status": "Directly measured"},
+        "pipe_length_m": {"source_column": "length", "status": "Directly measured"},
+        "manhole_elevation_m": {"source_column": "us_invert / ds_invert", "status": "Directly measured"},
+        "road_elevation_m": {"source_column": "bankLevelEstimate_mAOD", "status": "Estimated"},
+        "pump_status": {"source_column": "switch_on_level operational logic", "status": "Simulated"},
+        "gate_position": {"source_column": "opening / gate_depth", "status": "Directly measured", "notes": "Recorded for sluice structures"},
+        "sensor_health": {"source_column": "Signal-to-noise ratio [dB] & quality flags", "status": "Directly measured"},
+        "source_id": {"constant": "ZENODO_BLUE_HEART_20699635", "status": "Directly measured"},
+        "observation_type": {"constant": "IN_SITU_IOT", "status": "Directly measured"}
+      }
+    },
+    "bellinge_denmark": {
+      "dataset_name": "Dataset for Bellinge: An Urban Drainage Case Study",
+      "doi": "10.11583/DTU.c.5029124.v1",
+      "license": "CC-BY-4.0 / Open Access",
+      "geographic_domain": "Bellinge, Odense, Denmark",
+      "feature_audit": {
+        "sensor_id": {"source_column": "Location (e.g. G71F04R, G71F05R)", "status": "Directly measured"},
+        "timestamp": {"source_column": "timestamp", "status": "Directly measured"},
+        "latitude": {"source_column": "UTM32 / ETRS89 projected coordinates converted to WGS-84", "status": "Derived"},
+        "longitude": {"source_column": "UTM32 / ETRS89 projected coordinates converted to WGS-84", "status": "Derived"},
+        "water_level_m": {"source_column": "Water level telemetry (cleaned sensor database)", "status": "Directly measured"},
+        "pipe_flow_m3s": {"source_column": "Electromagnetic & Doppler flow meters (Q)", "status": "Directly measured"},
+        "rainfall_mm": {"source_column": "Tipping bucket rain gauge depth", "status": "Directly measured"},
+        "rainfall_intensity_mmh": {"source_column": "Local X-band & DMI C-band radar estimates", "status": "Directly measured"},
+        "overflow_status": {"source_column": "CSO chamber sensor & weir spill flags", "status": "Directly measured"},
+        "pipe_capacity_m3s": {"source_column": "SWMM conduit geometry & full-pipe flow", "status": "Simulated"},
+        "pipe_diameter_m": {"source_column": "Asset database Links.shp & SWMM [CONDUITS] GEOM1", "status": "Directly measured"},
+        "pipe_length_m": {"source_column": "Asset database Links.shp & SWMM [CONDUITS] LENGTH", "status": "Directly measured"},
+        "manhole_elevation_m": {"source_column": "SWMM [JUNCTIONS] ELEVATION", "status": "Directly measured"},
+        "road_elevation_m": {"source_column": "SWMM [JUNCTIONS] ELEVATION + MAXDEPTH", "status": "Directly measured"},
+        "pump_status": {"source_column": "Lift station pump operational telemetry (6 pumps)", "status": "Directly measured"},
+        "gate_position": {"source_column": "Weir / orifice settings in SWMM", "status": "Simulated"},
+        "sensor_health": {"source_column": "Quality control flag series in cleaned dataset", "status": "Directly measured"},
+        "source_id": {"constant": "DTU_BELLINGE_5029124", "status": "Directly measured"},
+        "observation_type": {"constant": "IN_SITU_IOT", "status": "Directly measured"}
+      }
+    },
+    "urban_water_observatory_fehraltorf": {
+      "dataset_name": "Urban Water Observatory (UWO)",
+      "doi": "10.25678/000C5K",
+      "license": "CC-BY-4.0",
+      "geographic_domain": "Fehraltorf, Zurich, Switzerland",
+      "feature_audit": {
+        "sensor_id": {"source_column": "source / sensor station identifier", "status": "Directly measured"},
+        "timestamp": {"source_column": "UTC time series in SQLite", "status": "Directly measured"},
+        "latitude": {"source_column": "Swiss LV95 coordinates converted to WGS-84", "status": "Derived"},
+        "longitude": {"source_column": "Swiss LV95 coordinates converted to WGS-84", "status": "Derived"},
+        "water_level_m": {"source_column": "Hydrostatic pressure and ultrasonic level sensors", "status": "Directly measured"},
+        "pipe_flow_m3s": {"source_column": "Venturi flumes and area-velocity sensors", "status": "Directly measured"},
+        "rainfall_mm": {"source_column": "Weighing rain gauge network", "status": "Directly measured"},
+        "rainfall_intensity_mmh": {"source_column": "1-minute rainfall rate", "status": "Derived"},
+        "overflow_status": {"source_column": "CSO retention basin spill monitors", "status": "Directly measured"},
+        "pipe_capacity_m3s": {"source_column": "SWMM model cross-sectional flow", "status": "Simulated"},
+        "pipe_diameter_m": {"source_column": "SWMM model conduit specification", "status": "Directly measured"},
+        "pipe_length_m": {"source_column": "SWMM model conduit specification", "status": "Directly measured"},
+        "manhole_elevation_m": {"source_column": "Cadastral sewer database elevation", "status": "Directly measured"},
+        "road_elevation_m": {"source_column": "Surface DTM at manhole coordinates", "status": "Estimated"},
+        "pump_status": {"source_column": "Wastewater pumping station telemetry", "status": "Directly measured"},
+        "gate_position": {"source_column": "Throttle valve and gate controllers", "status": "Directly measured"},
+        "sensor_health": {"source_column": "Automated QC flags (good, doubtful, bad)", "status": "Directly measured"},
+        "source_id": {"constant": "EAWAG_UWO_000C5K", "status": "Directly measured"},
+        "observation_type": {"constant": "IN_SITU_IOT", "status": "Directly measured"}
+      }
+    },
+    "cwprs_india_rainfall": {
+      "dataset_name": "Rainfall (Telemetry Hourly), CWPRS",
+      "doi": "NWIC-DATASET-2F43D9DA",
+      "license": "Government Open Data License - India (GODL)",
+      "geographic_domain": "Pune / Khadakvasla, Maharashtra, India",
+      "feature_audit": {
+        "sensor_id": {"source_column": "Station (CWPRS campus)", "status": "Directly measured"},
+        "timestamp": {"source_column": "Data Acquisition Time", "status": "Directly measured"},
+        "latitude": {"source_column": "Latitude (18.446944)", "status": "Directly measured"},
+        "longitude": {"source_column": "Longitude (73.785000)", "status": "Directly measured"},
+        "water_level_m": {"source_column": "N/A", "status": "Unavailable"},
+        "pipe_flow_m3s": {"source_column": "N/A", "status": "Unavailable"},
+        "rainfall_mm": {"source_column": "Telemetry Hourly Rainfall (mm)", "status": "Directly measured"},
+        "rainfall_intensity_mmh": {"source_column": "Telemetry Hourly Rainfall (mm)", "status": "Directly measured"},
+        "overflow_status": {"source_column": "N/A", "status": "Unavailable"},
+        "pipe_capacity_m3s": {"source_column": "N/A", "status": "Unavailable"},
+        "pipe_diameter_m": {"source_column": "N/A", "status": "Unavailable"},
+        "pipe_length_m": {"source_column": "N/A", "status": "Unavailable"},
+        "manhole_elevation_m": {"source_column": "N/A", "status": "Unavailable"},
+        "road_elevation_m": {"source_column": "SRTM / DEM elevation at station coordinates", "status": "Estimated"},
+        "pump_status": {"source_column": "N/A", "status": "Unavailable"},
+        "gate_position": {"source_column": "N/A", "status": "Unavailable"},
+        "sensor_health": {"source_column": "Quality checked telemetry stream", "status": "Directly measured"},
+        "source_id": {"constant": "NWIC_CWPRS_MAHARASHTRA", "status": "Directly measured"},
+        "observation_type": {"constant": "IN_SITU_IOT", "status": "Directly measured"}
+      }
+    },
+    "indore_smart_city_baseline": {
+      "dataset_name": "Indore Urban Drainage Network (PS-11 Prototype)",
+      "doi": "LOCAL-INDORE-PS11-001",
+      "license": "Proprietary / Smart City Mission Project Data",
+      "geographic_domain": "Indore, Madhya Pradesh, India (Kahn & Saraswati basins)",
+      "feature_audit": {
+        "sensor_id": {"source_column": "node_id (e.g., node_01_rajwada)", "status": "Directly measured"},
+        "timestamp": {"source_column": "timestamp", "status": "Directly measured"},
+        "latitude": {"source_column": "GIS coordinates", "status": "Directly measured"},
+        "longitude": {"source_column": "GIS coordinates", "status": "Directly measured"},
+        "water_level_m": {"source_column": "IoT ultrasonic sensor / simulation", "status": "Simulated", "notes": "Real IoT sensor rollout underway; simulated inputs used in baseline"},
+        "pipe_flow_m3s": {"source_column": "Manning flow calculation", "status": "Derived"},
+        "rainfall_mm": {"source_column": "Open-Meteo / IMD precipitation", "status": "Directly measured"},
+        "rainfall_intensity_mmh": {"source_column": "Precipitation rate", "status": "Directly measured"},
+        "overflow_status": {"source_column": "Inundation risk threshold exceedance", "status": "Derived"},
+        "pipe_capacity_m3s": {"source_column": "Hydraulic capacity calculation", "status": "Derived"},
+        "pipe_diameter_m": {"source_column": "IMC engineering design drawings", "status": "Estimated"},
+        "pipe_length_m": {"source_column": "OSMnx / GIS drainage network tracing", "status": "Derived"},
+        "manhole_elevation_m": {"source_column": "SRTM 30m DEM + drainage invert estimate", "status": "Estimated"},
+        "road_elevation_m": {"source_column": "SRTM / CartoDEM surface elevation", "status": "Directly measured"},
+        "pump_status": {"source_column": "Pumping station operational log", "status": "Estimated"},
+        "gate_position": {"source_column": "Sluice gate control parameter", "status": "Simulated"},
+        "sensor_health": {"source_column": "Sensor simulator ping", "status": "Simulated"},
+        "source_id": {"constant": "HYDRO_GUARD_INDORE_SYNTHETIC", "status": "Simulated"},
+        "observation_type": {"constant": "SWMM_HYDRODYNAMIC", "status": "Simulated"}
+      }
+    }
+  }
+}
+

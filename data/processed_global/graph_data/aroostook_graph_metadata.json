@@ -1,0 +1,88 @@
+{
+  "graph_name": "Aroostook_River_Basin",
+  "hydrologic_region": "HUC02-01 (New England)",
+  "num_nodes": 4,
+  "node_ordering": [
+    "01015800",
+    "01017060",
+    "01017290",
+    "01017000"
+  ],
+  "nodes": [
+    {
+      "index": 0,
+      "station_id": "01015800",
+      "name": "Aroostook River nr Masardis, ME",
+      "role": "UPSTREAM_MAINSTEM",
+      "latitude": 46.523,
+      "longitude": -68.3718,
+      "drainage_area_km2": 2313.75,
+      "elevation_m": 161.5
+    },
+    {
+      "index": 1,
+      "station_id": "01017060",
+      "name": "Hardwood Brook nr Caribou, ME",
+      "role": "TRIBUTARY_INFLOW",
+      "latitude": 46.7836,
+      "longitude": -67.9892,
+      "drainage_area_km2": 14.86,
+      "elevation_m": 140.2
+    },
+    {
+      "index": 2,
+      "station_id": "01017290",
+      "name": "Little Madawaska River nr Caribou, ME",
+      "role": "LATERAL_TRIBUTARY",
+      "latitude": 46.8886,
+      "longitude": -67.945,
+      "drainage_area_km2": 594.58,
+      "elevation_m": 121.9
+    },
+    {
+      "index": 3,
+      "station_id": "01017000",
+      "name": "Aroostook River at Washburn, ME",
+      "role": "DOWNSTREAM_CONFLUENCE",
+      "latitude": 46.7773,
+      "longitude": -68.1572,
+      "drainage_area_km2": 4278.91,
+      "elevation_m": 114.3
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 3,
+      "from_staid": "01015800",
+      "to_staid": "01017000",
+      "length_km": 38.4,
+      "drop_m": 47.2,
+      "weight": 0.2926
+    },
+    {
+      "from_node": 1,
+      "to_node": 3,
+      "from_staid": "01017060",
+      "to_staid": "01017000",
+      "length_km": 14.2,
+      "drop_m": 25.9,
+      "weight": 0.052
+    },
+    {
+      "from_node": 2,
+      "to_node": 3,
+      "from_staid": "01017290",
+      "to_staid": "01017000",
+      "length_km": 22.6,
+      "drop_m": 7.6,
+      "weight": 0.2709
+    }
+  ],
+  "static_feature_names": [
+    "drainage_area_km2",
+    "elevation_m",
+    "latitude",
+    "longitude"
+  ]
+}

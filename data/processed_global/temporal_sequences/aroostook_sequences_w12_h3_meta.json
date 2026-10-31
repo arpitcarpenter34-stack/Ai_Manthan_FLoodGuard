@@ -1,0 +1,55 @@
+{
+  "dataset_name": "Aroostook_River_ST_GNN_Sequences",
+  "num_nodes": 4,
+  "node_ids": [
+    "01015800",
+    "01017060",
+    "01017290",
+    "01017000"
+  ],
+  "window_hours": 12,
+  "horizon_hours": 3,
+  "stride_hours": 6,
+  "total_sequences": 14624,
+  "tensor_shape_X": [
+    14624,
+    12,
+    4,
+    6
+  ],
+  "tensor_shape_Y": [
+    14624,
+    4
+  ],
+  "feature_names": [
+    "streamflow_m3s",
+    "water_level_m",
+    "dq_dt_m3s_per_h",
+    "dh_dt_m_per_h",
+    "streamflow_measured_mask",
+    "water_level_measured_mask"
+  ],
+  "target_names": [
+    "label_statistical_high_flow",
+    "future_streamflow_m3s",
+    "future_estimated_inundation_depth_m"
+  ],
+  "split_strategy": {
+    "train_indices": [
+      0,
+      10236
+    ],
+    "val_indices": [
+      10240,
+      12433
+    ],
+    "test_indices": [
+      12437,
+      14624
+    ],
+    "train_count": 10236,
+    "val_count": 2193,
+    "test_count": 2187,
+    "purge_buffer_hours": 24
+  }
+}

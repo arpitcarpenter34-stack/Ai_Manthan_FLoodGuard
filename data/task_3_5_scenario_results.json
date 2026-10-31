@@ -1,0 +1,86 @@
+{
+  "Scenario A": {
+    "inputs": {
+      "rainfall_intensity_mmh": 0.0,
+      "surge_multiplier": 1.0,
+      "active_pumps_count": 0,
+      "soil_saturation_pct": 30.0,
+      "runoff_coefficient": 0.72
+    },
+    "predicted_risk": "SAFE / NORMAL FLOW",
+    "flood_probability_pct": 10.0,
+    "max_water_depth_cm": 0.0,
+    "inundated_streets_count": 0,
+    "arrival_time_min": 23,
+    "affected_locations": [],
+    "pump_recommendation": "Recommended pumps: 6 / 6",
+    "gate_recommendation": [
+      "THROTTLE_CONFLUENCE",
+      "ACTIVATE_BYPASS_DIVERT",
+      "DIVERT_TO_STP_FILTRATION"
+    ],
+    "operator_advisory": "RECOMMENDATION: Deploy 6 high-lift pumps in anticipatory pre-drawdown mode. Throttle Krishnapura Chhatri confluence sluice to 55% to safeguard Rajwada heritage core. Kabithedi gate action: DIVERT_TO_STP_FILTRATION."
+  },
+  "Scenario B": {
+    "inputs": {
+      "rainfall_intensity_mmh": 15.0,
+      "surge_multiplier": 1.0,
+      "active_pumps_count": 2,
+      "soil_saturation_pct": 65.0,
+      "runoff_coefficient": 0.72
+    },
+    "predicted_risk": "CRITICAL / SEVERE FLOOD WARNING",
+    "flood_probability_pct": 99.8,
+    "max_water_depth_cm": 29.1,
+    "inundated_streets_count": 5,
+    "arrival_time_min": 23,
+    "affected_locations": [
+      "Rau Headwaters",
+      "Bhanwarkuan Storm Junction",
+      "Rambagh Urban Drain",
+      "Rajwada / Krishnapura Confluence",
+      "Vijay Nagar Eastern Sump",
+      "Pardeshipura Industrial Drain",
+      "Kabithedi Main STP & Terminal Outfall"
+    ],
+    "pump_recommendation": "Recommended pumps: 6 / 6",
+    "gate_recommendation": [
+      "THROTTLE_CONFLUENCE",
+      "ACTIVATE_BYPASS_DIVERT",
+      "DIVERT_TO_STP_FILTRATION"
+    ],
+    "overflow_reduction": "78.0%",
+    "operator_advisory": "RECOMMENDATION: Deploy 6 high-lift pumps in anticipatory pre-drawdown mode. Throttle Krishnapura Chhatri confluence sluice to 55% to safeguard Rajwada heritage core. Kabithedi gate action: DIVERT_TO_STP_FILTRATION."
+  },
+  "Scenario C": {
+    "inputs": {
+      "rainfall_intensity_mmh": 65.0,
+      "surge_multiplier": 1.5,
+      "active_pumps_count": 2,
+      "soil_saturation_pct": 85.0,
+      "runoff_coefficient": 0.85
+    },
+    "predicted_risk": "CRITICAL / SEVERE FLOOD WARNING",
+    "flood_probability_pct": 100.0,
+    "max_water_depth_cm": 196.2,
+    "inundated_streets_count": 21,
+    "arrival_time_min": 23,
+    "affected_locations": [
+      "Rau Headwaters",
+      "Bhanwarkuan Storm Junction",
+      "Rambagh Urban Drain",
+      "Rajwada / Krishnapura Confluence",
+      "Vijay Nagar Eastern Sump",
+      "Pardeshipura Industrial Drain",
+      "Kabithedi Main STP & Terminal Outfall"
+    ],
+    "pump_recommendation": "Recommended pumps: 6 / 6 (Full mobilization)",
+    "gate_recommendation": [
+      "THROTTLE_CONFLUENCE",
+      "ACTIVATE_BYPASS_DIVERT",
+      "DIVERT_TO_STP_FILTRATION"
+    ],
+    "volume_prevented": "9,750.0 m\u00b3",
+    "operator_advisory": "RECOMMENDATION: Deploy 6 high-lift pumps in anticipatory pre-drawdown mode. Throttle Krishnapura Chhatri confluence sluice to 55% to safeguard Rajwada heritage core. Kabithedi gate action: DIVERT_TO_STP_FILTRATION."
+  }
+}

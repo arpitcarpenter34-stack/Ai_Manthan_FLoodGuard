@@ -1,0 +1,21 @@
+{
+  "total_records": 1488,
+  "sites": [
+    "potomac_usgs_01646500",
+    "aroostook_camelsh_01017000"
+  ],
+  "start_time": "2023-07-01 00:00:00+00:00",
+  "end_time": "2023-07-31 23:00:00+00:00",
+  "features_processed": [
+    "precipitation_mm",
+    "rainfall_intensity_mmh",
+    "temperature_c",
+    "relative_humidity_pct",
+    "surface_pressure_hpa",
+    "wind_speed_ms",
+    "soil_moisture_0_7cm",
+    "soil_moisture_7_28cm",
+    "precipitation_mask",
+    "meteorological_mask"
+  ]
+}
