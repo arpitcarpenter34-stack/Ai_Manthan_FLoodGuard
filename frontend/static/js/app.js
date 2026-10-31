@@ -125,6 +125,10 @@ const SCREEN_TITLES = {
   drivers: {
     title: "Feature Breakdown & Flood Driver Attribution",
     subtitle: "Hydrological Attribution • Permutation Feature Importance • Temporal Lag Decay • Spatio-Temporal Jacobian"
+  },
+  blockage: {
+    title: "Drainage Blockage Intelligence",
+    subtitle: "Topographical Drainage Mapping, Evidence-Based Blockage Hotspots & Downloadable Engineering Reports"
   }
 };
 
@@ -225,7 +229,7 @@ function navigateTo(screenId, updateHash = true) {
   // Hide general page-top-bar on dedicated dashboard screens
   const pageTopBar = document.querySelector(".page-top-bar");
   if (pageTopBar) {
-    pageTopBar.style.display = (screenId === "reports" || screenId === "model-intel" || screenId === "explorer" || screenId === "weather-radar") ? "none" : "flex";
+    pageTopBar.style.display = (screenId === "reports" || screenId === "model-intel" || screenId === "explorer" || screenId === "weather-radar" || screenId === "blockage") ? "none" : "flex";
   }
 
   // Screen-Specific Triggers
@@ -242,6 +246,8 @@ function navigateTo(screenId, updateHash = true) {
     loadWeatherRadarIntelligence();
   } else if (screenId === "drivers") {
     loadFloodDriversAnalysis();
+  } else if (screenId === "blockage") {
+    loadDrainageBlockageDashboard();
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -4692,4 +4698,548 @@ function drawTemporalLagDecayChart() {
     ctx.font = "10px sans-serif";
     ctx.fillText(l.label, x, h - padBottom + 16);
   });
+}
+
+
+// ==============================================================================
+// DRAINAGE BLOCKAGE INTELLIGENCE & TOPOGRAPHICAL MAP CONTROLLER
+// ==============================================================================
+
+window.blockageState = {
+  activeCity: "indore",
+  activeFilter: "ALL",
+  searchQuery: "",
+  segments: [],
+  selectedSegmentId: null,
+  map: null,
+  mapLayers: {
+    segments: null,
+    markers: null,
+    osmWaterways: null
+  },
+  cities: [],
+  cityMetadata: {},
+  cachedSummary: null
+};
+
+/**
+ * Main initialization entry point for the Blockage Intelligence dashboard.
+ */
+async function loadDrainageBlockageDashboard() {
+  try {
+    // 1. Fetch supported cities catalog
+    const citiesRes = await fetch(`${API_BASE}/api/v1/blockage/cities`);
+    if (citiesRes.ok) {
+      window.blockageState.cities = await citiesRes.json();
+      window.blockageState.cities.forEach(c => {
+        window.blockageState.cityMetadata[c.city_id] = c;
+      });
+    }
+
+    // 2. Fetch City Summary Scorecard
+    await fetchBlockageSummary(window.blockageState.activeCity);
+
+    // 3. Fetch Drainage Segments
+    await fetchBlockageSegments(window.blockageState.activeCity);
+
+    // 4. Initialize Leaflet Map (with slight delay for DOM rendering)
+    setTimeout(initBlockageMap, 150);
+
+  } catch (err) {
+    console.error("[BlockageIntel] Error initializing dashboard:", err);
+  }
+}
+
+/**
+ * Fetch high-level scorecard metrics for the city.
+ */
+async function fetchBlockageSummary(cityId) {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/blockage/summary?city_id=${cityId}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    window.blockageState.cachedSummary = data;
+
+    // Update Scorecard Cards
+    const elRed = document.getElementById("stat-card-red");
+    const elOrange = document.getElementById("stat-card-orange");
+    const elGreen = document.getElementById("stat-card-green");
+    const elGrey = document.getElementById("stat-card-grey");
+
+    if (elRed) elRed.textContent = data.confirmed_blockages_red;
+    if (elOrange) elOrange.textContent = data.suspected_hotspots_orange;
+    if (elGreen) elGreen.textContent = data.normal_monitored_green;
+    if (elGrey) elGrey.textContent = data.insufficient_data_grey;
+
+    // Update Filter Pill Counters
+    const cAll = document.getElementById("count-all");
+    const cRed = document.getElementById("count-red");
+    const cOrange = document.getElementById("count-orange");
+    const cGreen = document.getElementById("count-green");
+    const cGrey = document.getElementById("count-grey");
+
+    if (cAll) cAll.textContent = data.total_segments;
+    if (cRed) cRed.textContent = data.confirmed_blockages_red;
+    if (cOrange) cOrange.textContent = data.suspected_hotspots_orange;
+    if (cGreen) cGreen.textContent = data.normal_monitored_green;
+    if (cGrey) cGrey.textContent = data.insufficient_data_grey;
+
+    // Update Limitation Banner
+    const bannerText = document.getElementById("blockage-limitation-text");
+    const bannerBox = document.getElementById("blockage-limitation-banner");
+    if (bannerText && bannerBox) {
+      if (!data.has_drainage_network || !data.has_blockage_evidence) {
+        bannerBox.style.background = "#fffbeb";
+        bannerBox.style.borderColor = "#fef3c7";
+        bannerBox.style.color = "#92400e";
+      } else {
+        bannerBox.style.background = "#f0fdf4";
+        bannerBox.style.borderColor = "#bbf7d0";
+        bannerBox.style.color = "#166534";
+      }
+      bannerText.textContent = data.data_limitations || "Active municipal monitoring.";
+    }
+
+    // Update Map Title Label
+    const mapCityLbl = document.getElementById("map-city-label");
+    if (mapCityLbl) mapCityLbl.textContent = data.city_name;
+
+  } catch (err) {
+    console.error("[BlockageIntel] Error fetching summary:", err);
+  }
+}
+
+/**
+ * Fetch drainage segments for the active city.
+ */
+async function fetchBlockageSegments(cityId) {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/blockage/segments?city_id=${cityId}&status=ALL&risk=ALL`);
+    if (!res.ok) return;
+    const segments = await res.json();
+    window.blockageState.segments = segments;
+
+    // Render Table
+    renderBlockageTable(getFilteredSegments());
+
+    // Select default segment (prefer confirmed blockage DS-05 if present)
+    if (segments.length > 0) {
+      const preferred = segments.find(s => s.status === "CONFIRMED_BLOCKAGE") || segments[0];
+      selectBlockageSegment(preferred.id);
+    } else {
+      renderBlockageEmptyDetail();
+    }
+
+    // Update map if already initialized
+    if (window.blockageState.map) {
+      renderBlockageMapFeatures();
+    }
+  } catch (err) {
+    console.error("[BlockageIntel] Error fetching segments:", err);
+  }
+}
+
+/**
+ * Initialize or re-center the Leaflet Topographical Map.
+ */
+function initBlockageMap() {
+  const mapEl = document.getElementById("blockage-leaflet-map");
+  if (!mapEl) return;
+
+  const cityCenters = {
+    indore: { center: [22.7250, 75.8650], zoom: 12 },
+    eastbourne: { center: [50.7850, 0.3150], zoom: 13 },
+    pune: { center: [18.5204, 73.8567], zoom: 11 },
+    bellinge: { center: [55.3350, 10.3200], zoom: 13 }
+  };
+
+  const cityCfg = cityCenters[window.blockageState.activeCity] || cityCenters.indore;
+
+  if (!window.blockageState.map) {
+    // Create new Leaflet instance
+    const map = L.map("blockage-leaflet-map", {
+      zoomControl: true,
+      attributionControl: true
+    }).setView(cityCfg.center, cityCfg.zoom);
+
+    // Add Base Tile Layer (CartoDB Positron / OSM Topo)
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a> | DEM: Copernicus GLO-30',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Create feature group layers
+    window.blockageState.mapLayers.waterways = L.layerGroup().addTo(map);
+    window.blockageState.mapLayers.segments = L.layerGroup().addTo(map);
+    window.blockageState.mapLayers.markers = L.layerGroup().addTo(map);
+
+    window.blockageState.map = map;
+
+    // Load real OSM waterways GeoJSON background overlay for Indore
+    if (window.blockageState.activeCity === "indore") {
+      fetch(`${API_BASE}/api/v1/flood/topology`)
+        .then(res => res.json())
+        .then(topoData => {
+          if (topoData && topoData.waterways_geojson && window.blockageState.mapLayers.waterways) {
+            L.geoJSON(topoData.waterways_geojson, {
+              style: {
+                color: "#38bdf8",
+                weight: 2,
+                opacity: 0.6,
+                dashArray: "4, 4"
+              }
+            }).addTo(window.blockageState.mapLayers.waterways);
+          }
+        })
+        .catch(e => console.warn("[BlockageMap] OSM topology background optional:", e));
+    }
+  } else {
+    window.blockageState.map.setView(cityCfg.center, cityCfg.zoom);
+    window.blockageState.map.invalidateSize();
+  }
+
+  renderBlockageMapFeatures();
+}
+
+/**
+ * Render drainage network polylines and pulsing blockage markers on Leaflet map.
+ */
+function renderBlockageMapFeatures() {
+  const map = window.blockageState.map;
+  if (!map) return;
+
+  const segLayer = window.blockageState.mapLayers.segments;
+  const markerLayer = window.blockageState.mapLayers.markers;
+
+  segLayer.clearLayers();
+  markerLayer.clearLayers();
+
+  const filtered = getFilteredSegments();
+  if (filtered.length === 0) return;
+
+  const bounds = [];
+
+  filtered.forEach(s => {
+    const coords = s.coordinates && s.coordinates.length > 0
+      ? s.coordinates
+      : [[s.start_lat, s.start_lon], [s.end_lat, s.end_lon]];
+
+    coords.forEach(pt => bounds.push(pt));
+
+    // Determine color based on blockage status
+    let strokeColor = "#10b981"; // Green
+    let markerClass = "green";
+    let iconSymbol = "✓";
+
+    if (s.status === "CONFIRMED_BLOCKAGE") {
+      strokeColor = "#ef4444"; // Red
+      markerClass = "red";
+      iconSymbol = "⚠️";
+    } else if (s.status === "SUSPECTED_BLOCKAGE") {
+      strokeColor = "#f97316"; // Orange
+      markerClass = "orange";
+      iconSymbol = "⚡";
+    } else if (s.status === "INSUFFICIENT_DATA") {
+      strokeColor = "#64748b"; // Grey
+      markerClass = "grey";
+      iconSymbol = "?";
+    }
+
+    // 1. Plot Drainage Channel Polyline
+    const polyline = L.polyline(coords, {
+      color: strokeColor,
+      weight: s.status === "CONFIRMED_BLOCKAGE" ? 6 : (s.status === "SUSPECTED_BLOCKAGE" ? 5 : 4),
+      opacity: 0.85,
+      lineCap: "round",
+      lineJoin: "round"
+    }).addTo(segLayer);
+
+    polyline.on("click", () => selectBlockageSegment(s.id));
+    polyline.bindTooltip(`<b>${s.segment_code}</b>: ${s.name}<br/>Status: <b>${s.status}</b> | Elev: <b>${s.elevation_m}m</b>`, { sticky: true });
+
+    // 2. Plot Pulsing Blockage Marker at Midpoint
+    const midPoint = [s.mid_lat, s.mid_lon];
+    const markerHtml = `<div class="leaflet-blockage-marker ${markerClass}" style="width: 26px; height: 26px; font-size: 13px;">${iconSymbol}</div>`;
+
+    const customIcon = L.divIcon({
+      html: markerHtml,
+      className: "custom-blockage-div-icon",
+      iconSize: [26, 26],
+      iconAnchor: [13, 13]
+    });
+
+    const marker = L.marker(midPoint, { icon: customIcon }).addTo(markerLayer);
+    marker.on("click", () => selectBlockageSegment(s.id));
+    marker.bindTooltip(`<b>${s.segment_code} • ${s.status}</b><br/>Debris: <b>${s.debris_coverage_pct}%</b> | Silt: <b>${s.silt_depth_cm}cm</b>`, { direction: "top" });
+  });
+
+  if (bounds.length > 0) {
+    try {
+      map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+    } catch (e) {}
+  }
+}
+
+/**
+ * Filter segments based on selected status pill and text search query.
+ */
+function getFilteredSegments() {
+  const all = window.blockageState.segments || [];
+  const status = window.blockageState.activeFilter;
+  const q = window.blockageState.searchQuery.toLowerCase().trim();
+
+  return all.filter(s => {
+    const matchesStatus = (status === "ALL") || (s.status === status);
+    const matchesSearch = !q || (
+      s.segment_code.toLowerCase().includes(q) ||
+      s.name.toLowerCase().includes(q) ||
+      (s.channel_type && s.channel_type.toLowerCase().includes(q))
+    );
+    return matchesStatus && matchesSearch;
+  });
+}
+
+/**
+ * City dropdown selector change handler.
+ */
+async function onBlockageCityChange(cityId) {
+  window.blockageState.activeCity = cityId;
+  window.blockageState.activeFilter = "ALL";
+  window.blockageState.searchQuery = "";
+
+  // Reset pills active state
+  document.querySelectorAll(".blockage-pill").forEach(p => p.classList.remove("active"));
+  const allPill = document.querySelector(".blockage-pill.all");
+  if (allPill) allPill.classList.add("active");
+
+  await fetchBlockageSummary(cityId);
+  await fetchBlockageSegments(cityId);
+
+  if (window.blockageState.map) {
+    const cityCenters = {
+      indore: { center: [22.7250, 75.8650], zoom: 12 },
+      eastbourne: { center: [50.7850, 0.3150], zoom: 13 },
+      pune: { center: [18.5204, 73.8567], zoom: 11 },
+      bellinge: { center: [55.3350, 10.3200], zoom: 13 }
+    };
+    const cfg = cityCenters[cityId] || cityCenters.indore;
+    window.blockageState.map.setView(cfg.center, cfg.zoom);
+  }
+}
+
+/**
+ * Status filter pill click handler.
+ */
+function setBlockageFilter(status, pillEl) {
+  window.blockageState.activeFilter = status;
+
+  document.querySelectorAll(".blockage-pill").forEach(p => p.classList.remove("active"));
+  if (pillEl) pillEl.classList.add("active");
+
+  renderBlockageTable(getFilteredSegments());
+  renderBlockageMapFeatures();
+}
+
+/**
+ * Real-time text search filter handler.
+ */
+function onBlockageSearch(query) {
+  window.blockageState.searchQuery = query;
+  renderBlockageTable(getFilteredSegments());
+  renderBlockageMapFeatures();
+}
+
+/**
+ * Select individual drainage segment and update the right detail panel.
+ */
+async function selectBlockageSegment(segmentId) {
+  window.blockageState.selectedSegmentId = segmentId;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/blockage/segments/${segmentId}`);
+    if (!res.ok) return;
+    const segment = await res.json();
+    renderBlockageDetailPanel(segment);
+
+    // Pan map smoothly to segment midpoint
+    if (window.blockageState.map && segment.mid_lat && segment.mid_lon) {
+      window.blockageState.map.panTo([segment.mid_lat, segment.mid_lon], { animate: true, duration: 0.5 });
+    }
+  } catch (err) {
+    console.error("[BlockageIntel] Error selecting segment:", err);
+  }
+}
+
+/**
+ * Populate right detail panel with comprehensive evidence and geometry.
+ */
+function renderBlockageDetailPanel(s) {
+  if (!s) return;
+
+  const elCode = document.getElementById("bd-code");
+  const elName = document.getElementById("bd-name");
+  const elChannel = document.getElementById("bd-channel");
+  const elBadge = document.getElementById("bd-status-badge");
+
+  if (elCode) elCode.textContent = s.segment_code;
+  if (elName) elName.textContent = s.name;
+  if (elChannel) elChannel.textContent = `${s.channel_type || 'Culvert'} • Source: ${s.source_node || 'N/A'} → Target: ${s.target_node || 'N/A'}`;
+
+  // Badge Status & Styling
+  if (elBadge) {
+    elBadge.textContent = s.status.replace("_", " ");
+    elBadge.className = "blockage-metric-badge";
+    if (s.status === "CONFIRMED_BLOCKAGE") elBadge.classList.add("badge-red");
+    else if (s.status === "SUSPECTED_BLOCKAGE") elBadge.classList.add("badge-orange");
+    else if (s.status === "NORMAL_MONITORED") elBadge.classList.add("badge-green");
+    else elBadge.classList.add("badge-grey");
+  }
+
+  // Topography & Geometry
+  const elElev = document.getElementById("bd-elevation");
+  const elLength = document.getElementById("bd-length");
+  const elSlope = document.getElementById("bd-slope");
+  const elCoords = document.getElementById("bd-coords");
+
+  if (elElev) elElev.textContent = `${(s.elevation_m || 0).toFixed(1)} m`;
+  if (elLength) elLength.textContent = `${(s.length_m || 0).toFixed(0)} m`;
+  if (elSlope) elSlope.textContent = `${((s.slope || 0) * 100).toFixed(2)}%`;
+  if (elCoords) elCoords.textContent = `${s.mid_lat.toFixed(4)}°N, ${s.mid_lon.toFixed(4)}°E`;
+
+  // Diagnostics & Telemetry
+  const elDebris = document.getElementById("bd-debris");
+  const elSilt = document.getElementById("bd-silt");
+  const elFlow = document.getElementById("bd-flow");
+  const elWater = document.getElementById("bd-water-level");
+
+  if (elDebris) elDebris.textContent = `${(s.debris_coverage_pct || 0).toFixed(1)}%`;
+  if (elSilt) elSilt.textContent = `${(s.silt_depth_cm || 0).toFixed(0)} cm`;
+  if (elFlow) elFlow.textContent = `${(s.flow_velocity_pct || 100).toFixed(1)}%`;
+  if (elWater) elWater.textContent = `${(s.water_level_pct || 0).toFixed(1)}%`;
+
+  // Image Evidence Card
+  const imgWrap = document.getElementById("bd-image-wrap");
+  const imgEl = document.getElementById("bd-image");
+  const noImgNotice = document.getElementById("bd-no-image-notice");
+  const imgSource = document.getElementById("bd-img-source");
+  const imgDate = document.getElementById("bd-img-date");
+
+  const images = s.images || [];
+  if (images.length > 0) {
+    const imgRec = images[0];
+    if (imgWrap) imgWrap.style.display = "block";
+    if (noImgNotice) noImgNotice.style.display = "none";
+    if (imgEl) imgEl.src = resolveBackendUrl(imgRec.image_path);
+    if (imgSource) imgSource.textContent = imgRec.image_source || "Inspection Camera";
+    if (imgDate) imgDate.textContent = imgRec.capture_date || s.observation_date || "2026-10-31";
+  } else {
+    if (imgWrap) imgWrap.style.display = "none";
+    if (noImgNotice) noImgNotice.style.display = "block";
+  }
+
+  // Evidence Text & Recommended Action
+  const evText = document.getElementById("bd-evidence-text");
+  const actText = document.getElementById("bd-action-text");
+
+  if (evText) evText.textContent = s.evidence_summary || "No diagnostic observations recorded.";
+  if (actText) actText.textContent = s.action_recommended || "Routine visual checks.";
+}
+
+/**
+ * Fallback empty detail display when no segments match.
+ */
+function renderBlockageEmptyDetail() {
+  const elName = document.getElementById("bd-name");
+  const elCode = document.getElementById("bd-code");
+  const elEvidence = document.getElementById("bd-evidence-text");
+  const elAction = document.getElementById("bd-action-text");
+  const imgWrap = document.getElementById("bd-image-wrap");
+  const noImg = document.getElementById("bd-no-image-notice");
+
+  if (elCode) elCode.textContent = "N/A";
+  if (elName) elName.textContent = "No Drainage Segment Available";
+  if (elEvidence) elEvidence.textContent = "This geographical dataset provides rainfall telemetry only. No physical drainage segments are mapped.";
+  if (elAction) elAction.textContent = "Refer to official municipal records for ground inspection plans.";
+  if (imgWrap) imgWrap.style.display = "none";
+  if (noImg) noImg.style.display = "block";
+}
+
+/**
+ * Render bottom tabular breakdown of drainage segments.
+ */
+function renderBlockageTable(segments) {
+  const tbody = document.getElementById("blockage-table-body");
+  if (!tbody) return;
+
+  if (segments.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding: 24px; color:#64748b;">No drainage segments match the selected city and filter criteria.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = segments.map(s => {
+    let statusClass = "badge-green";
+    if (s.status === "CONFIRMED_BLOCKAGE") statusClass = "badge-red";
+    else if (s.status === "SUSPECTED_BLOCKAGE") statusClass = "badge-orange";
+    else if (s.status === "INSUFFICIENT_DATA") statusClass = "badge-grey";
+
+    return `
+      <tr onclick="selectBlockageSegment('${s.id}')">
+        <td><b>${s.segment_code}</b></td>
+        <td><b>${s.name}</b></td>
+        <td style="color:#64748b;">${s.channel_type || 'Culvert'}</td>
+        <td><b>${(s.elevation_m || 0).toFixed(1)}m</b></td>
+        <td>${(s.length_m || 0).toFixed(0)}m</td>
+        <td>${((s.slope || 0) * 100).toFixed(2)}%</td>
+        <td><span class="blockage-metric-badge ${statusClass}">${s.status.replace("_", " ")}</span></td>
+        <td><b>${s.risk_level}</b></td>
+        <td style="color:${s.debris_coverage_pct > 50 ? '#ef4444' : '#0f172a'}; font-weight:700;">${(s.debris_coverage_pct || 0).toFixed(1)}%</td>
+        <td>${(s.silt_depth_cm || 0).toFixed(0)}cm</td>
+        <td style="font-size:11px; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${s.action_recommended}">${s.action_recommended}</td>
+        <td>
+          <button class="btn-download-report" style="padding: 4px 8px; font-size: 11px;" onclick="event.stopPropagation(); triggerSegmentPdfDownload('${s.id}')">
+            PDF 📥
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+/**
+ * Download PDF report for the currently selected segment.
+ */
+function downloadSelectedSegmentReport() {
+  const segId = window.blockageState.selectedSegmentId;
+  if (!segId) {
+    alert("Please select a drainage segment first.");
+    return;
+  }
+  triggerSegmentPdfDownload(segId);
+}
+
+/**
+ * Trigger direct file download for an individual drainage segment PDF.
+ */
+function triggerSegmentPdfDownload(segmentId) {
+  const url = `${API_BASE}/api/v1/blockage/reports/individual/${segmentId}/pdf`;
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `drainage_report_${segmentId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+/**
+ * Trigger city-wide report download (PDF or CSV).
+ */
+function downloadCityBlockageReport(format) {
+  const city = window.blockageState.activeCity || "indore";
+  const url = `${API_BASE}/api/v1/blockage/reports/city/${city}/${format}`;
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `city_blockage_report_${city}.${format}`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }

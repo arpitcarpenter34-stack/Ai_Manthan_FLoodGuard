@@ -13,7 +13,14 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 
 import config
-from backend.api import flood_router, sensor_router, report_router, model_intel_router, dataset_intel_router
+from backend.api import (
+    flood_router,
+    sensor_router,
+    report_router,
+    model_intel_router,
+    dataset_intel_router,
+    blockage_router,
+)
 from backend.simulators.sensor_stream_sim import sensor_simulator
 from backend.models.cv_purity_detector import cv_detector
 from backend.models.acoustic_level_ai import acoustic_ai
@@ -100,6 +107,7 @@ app.include_router(sensor_router)
 app.include_router(report_router)
 app.include_router(model_intel_router)
 app.include_router(dataset_intel_router)
+app.include_router(blockage_router)
 
 
 @app.get("/", summary="System Root & Hydrological Info")

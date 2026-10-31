@@ -44,6 +44,7 @@
           <li><a class="nav-link" onclick="navigateTo('model-intel')">Model Intel</a></li>
           <li><a class="nav-link" onclick="navigateTo('map')">GIS Map</a></li>
           <li><a class="nav-link" onclick="navigateTo('reports')">Reports & Audit</a></li>
+          <li><a class="nav-link" onclick="navigateTo('blockage')">Blockage Intel</a></li>
         </ul>
 
         <button class="nav-cta-btn" onclick="scrollToSection('features-section')">
@@ -409,6 +410,31 @@
           </div>
         </div>
 
+        <!-- Feature 10: Drainage Blockage Intelligence -->
+        <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('blockage')">
+          <div class="flc-header">
+            <div class="flc-icon-box" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <span class="flc-badge" style="background: rgba(239, 68, 68, 0.12); color: #b91c1c; border-color: rgba(239, 68, 68, 0.3);">Topography & Evidence</span>
+          </div>
+          <h3 class="flc-title">Drainage Blockage Intelligence</h3>
+          <p class="flc-desc">
+            Topographical drainage network mapping, red blockage symbols, OpenCV inspection camera evidence, and downloadable engineering PDF reports.
+          </p>
+          <div class="flc-action">
+            <span>Explore Blockages</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </div>
+
         <!-- Feature 9: Reports & Audit -->
         <div class="feature-launch-card module-card dashboard-card" onclick="navigateTo('reports')">
           <div class="flc-header">
@@ -594,6 +620,14 @@
               <line x1="16" y1="17" x2="8" y2="17"></line>
             </svg>
             <span>Reports & Audit</span>
+          </li>
+          <li class="sidebar-item" id="nav-item-blockage" onclick="navigateTo('blockage')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span>Blockage Intel</span>
           </li>
           <li class="sidebar-category-header" style="padding: 12px 16px 4px; font-size: 10px; font-weight: 800; color: #475569; letter-spacing: 0.08em;">DIAGNOSTICS</li>
           <li class="sidebar-item" id="nav-item-purity" onclick="navigateTo('purity')">
@@ -1140,6 +1174,258 @@
             </div>
           </div>
         </section>
+
+        
+        <!-- SCREEN 9: DRAINAGE BLOCKAGE INTELLIGENCE & TOPOGRAPHICAL MAP -->
+        <section id="screen-blockage" class="screen-container" style="display: none;">
+          <div class="blockage-container">
+            <!-- Header & Control Bar -->
+            <div class="blockage-glass-panel">
+              <div class="blockage-controls-row">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">⚠️</span>
+                    <h2 style="font-size: 20px; font-weight: 850; color: #0f172a; margin: 0;">Drainage Blockage Intelligence & Topographical Mapping</h2>
+                    <span class="provenance-tag tag-verified">Copernicus DEM & OpenCV Ground Truth</span>
+                  </div>
+                  <p style="font-size: 13px; color: #64748b; margin: 0;">
+                    Interactive GIS topographical drainage monitoring, red circular blockage markers, photographic evidence, and downloadable engineering audit reports.
+                  </p>
+                </div>
+
+                <!-- Global City Report Downloads -->
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <button class="btn-download-report" onclick="downloadCityBlockageReport('pdf')">
+                    <span>📥 Download City Report (PDF)</span>
+                  </button>
+                  <button class="btn-download-report" style="background: #ffffff; color: #0284c7; border: 1px solid #0284c7; box-shadow: none;" onclick="downloadCityBlockageReport('csv')">
+                    <span>📊 Export CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <div style="height: 1px; background: #e2e8f0; margin: 16px 0;"></div>
+
+              <!-- Filter Bar -->
+              <div class="blockage-controls-row">
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                  <div>
+                    <label style="font-size: 11px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase;">SELECT CITY / REGION:</label>
+                    <select id="blockage-city-select" class="blockage-select" onchange="onBlockageCityChange(this.value)">
+                      <option value="indore" selected>Indore, MP (Municipal GIS & Sump Outfall Cameras)</option>
+                      <option value="eastbourne">Eastbourne & Pevensey (Blue Heart UK Gully Telemetry)</option>
+                      <option value="pune">Pune & Khadakwasla (CWPRS Rainfall Telemetry Only)</option>
+                      <option value="bellinge">Bellinge, Denmark (SWMM Sewer Telemetry)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style="font-size: 11px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase;">SEARCH DRAINAGE:</label>
+                    <input type="text" id="blockage-search-input" class="blockage-search" placeholder="Search by Code (e.g. DS-05), Name, River..." oninput="onBlockageSearch(this.value)">
+                  </div>
+                </div>
+
+                <!-- Status Filter Pills -->
+                <div>
+                  <label style="font-size: 11px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase;">BLOCKAGE STATUS FILTER:</label>
+                  <div class="blockage-pills-wrap">
+                    <span class="blockage-pill all active" onclick="setBlockageFilter('ALL', this)">All Segments (<span id="count-all">0</span>)</span>
+                    <span class="blockage-pill red" onclick="setBlockageFilter('CONFIRMED_BLOCKAGE', this)">🔴 Confirmed Blockage (<span id="count-red">0</span>)</span>
+                    <span class="blockage-pill orange" onclick="setBlockageFilter('SUSPECTED_BLOCKAGE', this)">🟠 Suspected Hotspot (<span id="count-orange">0</span>)</span>
+                    <span class="blockage-pill green" onclick="setBlockageFilter('NORMAL_MONITORED', this)">🟢 Normal Monitored (<span id="count-green">0</span>)</span>
+                    <span class="blockage-pill grey" onclick="setBlockageFilter('INSUFFICIENT_DATA', this)">⚪ Insufficient Data (<span id="count-grey">0</span>)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Scientific Limitations Notice Banner -->
+              <div id="blockage-limitation-banner" style="margin-top: 14px; padding: 10px 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 12px; color: #166534; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 15px;">ℹ️</span>
+                <span id="blockage-limitation-text">Active municipal monitoring: 2 confirmed blockages, 2 suspected hotspots, 4 clear monitored trunks, 1 unmonitored.</span>
+              </div>
+            </div>
+
+            <!-- Topographical Scorecard Metrics -->
+            <div class="blockage-stats-strip">
+              <div class="blockage-stat-card" style="border-left: 4px solid #ef4444;">
+                <div class="blockage-stat-num" id="stat-card-red" style="color: #ef4444;">0</div>
+                <div class="blockage-stat-lbl">Confirmed Blockages (RED)</div>
+                <div style="font-size: 11px; color: #64748b;">Severe sediment/sludge choke</div>
+              </div>
+              <div class="blockage-stat-card" style="border-left: 4px solid #f97316;">
+                <div class="blockage-stat-num" id="stat-card-orange" style="color: #f97316;">0</div>
+                <div class="blockage-stat-lbl">Suspected Hotspots (ORANGE)</div>
+                <div style="font-size: 11px; color: #64748b;">Telemetry surcharge / backwater</div>
+              </div>
+              <div class="blockage-stat-card" style="border-left: 4px solid #10b981;">
+                <div class="blockage-stat-num" id="stat-card-green" style="color: #10b981;">0</div>
+                <div class="blockage-stat-lbl">Normal Monitored (GREEN)</div>
+                <div style="font-size: 11px; color: #64748b;">Unobstructed gravity flow</div>
+              </div>
+              <div class="blockage-stat-card" style="border-left: 4px solid #64748b;">
+                <div class="blockage-stat-num" id="stat-card-grey" style="color: #64748b;">0</div>
+                <div class="blockage-stat-lbl">Insufficient Data (GREY)</div>
+                <div style="font-size: 11px; color: #64748b;">Inspection camera pending</div>
+              </div>
+            </div>
+
+            <!-- Main Layout: Map (Left) + Detail Panel (Right) -->
+            <div class="blockage-layout-grid">
+              <!-- Left Map Container -->
+              <div class="blockage-glass-panel" style="padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 4px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 14px; font-weight: 800; color: #0f172a;">🗺️ Topographical Drainage Network Map</span>
+                    <span id="map-city-label" style="font-size: 12px; color: #64748b; font-weight: 600;">Indore, Madhya Pradesh</span>
+                  </div>
+                  <div style="font-size: 11.5px; color: #64748b; display: flex; gap: 12px;">
+                    <span>Elevation Datum: <b>EGM2008 (GLO-30)</b></span>
+                    <span>Click any segment or marker to inspect</span>
+                  </div>
+                </div>
+
+                <div class="blockage-map-box">
+                  <div id="blockage-leaflet-map"></div>
+                </div>
+              </div>
+
+              <!-- Right Detail Panel -->
+              <div class="blockage-glass-panel blockage-detail-card" id="blockage-detail-panel">
+                <!-- Header -->
+                <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                    <div>
+                      <span id="bd-code" style="font-size: 12px; font-weight: 800; color: #0284c7; letter-spacing: 0.05em;">DS-05</span>
+                      <h3 id="bd-name" style="font-size: 16px; font-weight: 850; color: #0f172a; margin: 4px 0 0;">Pardeshipura Industrial Drain & Culvert</h3>
+                    </div>
+                    <span id="bd-status-badge" class="blockage-metric-badge badge-red">CONFIRMED BLOCKAGE</span>
+                  </div>
+                  <div id="bd-channel" style="font-size: 11.5px; color: #64748b; margin-top: 4px;">Enclosed Industrial Concrete Culvert</div>
+                </div>
+
+                <!-- Topographical & Geometry KPI Grid -->
+                <div class="blockage-kpi-grid">
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-elevation">526.0 m</div>
+                    <div class="blockage-kpi-lbl">Elevation (Copernicus DEM)</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-length">1,500 m</div>
+                    <div class="blockage-kpi-lbl">Segment Length</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-slope">0.18%</div>
+                    <div class="blockage-kpi-lbl">Gradient (Slope)</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-coords">22.7471°N, 75.8770°E</div>
+                    <div class="blockage-kpi-lbl">Midpoint Coordinates</div>
+                  </div>
+                </div>
+
+                <!-- Diagnostic Telemetry -->
+                <div class="blockage-kpi-grid">
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-debris" style="color: #ef4444;">74.5%</div>
+                    <div class="blockage-kpi-lbl">OpenCV Debris Area</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-silt" style="color: #ea580c;">78 cm</div>
+                    <div class="blockage-kpi-lbl">Silt Accumulation</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-flow">22.0%</div>
+                    <div class="blockage-kpi-lbl">Effective Hydraulic Flow</div>
+                  </div>
+                  <div class="blockage-kpi-box">
+                    <div class="blockage-kpi-val" id="bd-water-level">86.0%</div>
+                    <div class="blockage-kpi-lbl">Sump Water Level</div>
+                  </div>
+                </div>
+
+                <!-- Image Evidence Card -->
+                <div>
+                  <div style="font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 6px;">Drainage Inspection Image Evidence:</div>
+                  <div class="blockage-image-evidence-box" id="bd-image-wrap">
+                    <img id="bd-image" src="/samples/images/polluted_sludge.jpg" alt="Drainage Inspection Evidence" class="blockage-evidence-img" onerror="this.src='/samples/images/clean_rainwater.jpg'">
+                    <div class="blockage-evidence-overlay">
+                      <span id="bd-img-source">Municipal Camera D-05</span>
+                      <span id="bd-img-date">2026-10-31</span>
+                    </div>
+                  </div>
+                  <div id="bd-no-image-notice" style="display: none; padding: 16px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; text-align: center; color: #64748b; font-size: 12px;">
+                    <b>No drainage inspection image available.</b><br/>
+                    <span style="font-size: 11px;">Status derived from telemetric hydraulic observations without synthetic image fabrication.</span>
+                  </div>
+                </div>
+
+                <!-- Evidence Summary -->
+                <div style="background: #f8fafc; border-left: 3px solid #ef4444; border-radius: 6px; padding: 10px 12px;">
+                  <div style="font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase;">Diagnostic Evidence Summary:</div>
+                  <div id="bd-evidence-text" style="font-size: 12px; color: #334155; margin-top: 4px; line-height: 1.45;">
+                    CONFIRMED SEVERE BLOCKAGE: Camera frame reveals heavy black industrial sludge and solid debris obstructing 74.5% of outfall aperture. Silt depth 78cm. Flow velocity choked by 78%.
+                  </div>
+                </div>
+
+                <!-- Operational Action Recommendation -->
+                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 12px;">
+                  <div style="font-size: 11px; font-weight: 800; color: #1e40af; text-transform: uppercase;">Recommended Municipal Action:</div>
+                  <div id="bd-action-text" style="font-size: 12px; color: #1e3a8a; margin-top: 4px; line-height: 1.45;">
+                    URGENT INTERVENTION REQUIRED: Deploy heavy mechanical backhoe loader and high-velocity water jetting team within 2 hours.
+                  </div>
+                </div>
+
+                <!-- Download Individual PDF Report Button -->
+                <button class="btn-download-report" id="btn-download-ind-pdf" onclick="downloadSelectedSegmentReport()">
+                  <span>📥 Download Drainage Blockage Report (PDF)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Table Section: Full Drainage Evidence Inventory -->
+            <div class="blockage-glass-panel">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <div>
+                  <h3 style="font-size: 15px; font-weight: 850; color: #0f172a; margin: 0;">Drainage Network Inventory & Topographical Evidence Audit</h3>
+                  <p style="font-size: 12px; color: #64748b; margin: 2px 0 0;">Complete tabular breakdown of all monitored channels, elevation MSL, debris coverage, and operational status.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                  <button class="btn-download-report" style="padding: 8px 14px; font-size: 12px;" onclick="downloadCityBlockageReport('pdf')">
+                    <span>Download City PDF</span>
+                  </button>
+                  <button class="btn-download-report" style="padding: 8px 14px; font-size: 12px; background: #ffffff; color: #0284c7; border: 1px solid #0284c7; box-shadow: none;" onclick="downloadCityBlockageReport('csv')">
+                    <span>Export CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="blockage-table-wrap">
+                <table class="blockage-table">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Drainage Channel Name</th>
+                      <th>Channel Type</th>
+                      <th>Elevation (m)</th>
+                      <th>Length</th>
+                      <th>Slope</th>
+                      <th>Status</th>
+                      <th>Risk</th>
+                      <th>Debris %</th>
+                      <th>Silt Depth</th>
+                      <th>Action Required</th>
+                      <th>PDF Report</th>
+                    </tr>
+                  </thead>
+                  <tbody id="blockage-table-body">
+                    <!-- Populated dynamically by app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
         <!-- SCREEN 7: REPORTS & MONITORING (Phase 2B Reference Match) -->
         <section id="screen-reports" class="screen-container">
@@ -3743,7 +4029,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
   <!-- Main Client Application JS -->
-  <script src="/static/js/app.js?v=4.3.6"></script>
+  <script src="/static/js/app.js?v=4.4.0"></script>
 
   <!-- Cinematic ZIP-Based Scroll Animation JS -->
   <script src="/static/js/hero_scroll_animation.js?v=1.1"></script>
